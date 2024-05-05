@@ -148,7 +148,7 @@ for p=1,#global.player_forces do
 	local pforce = game.forces[global.player_forces[p]]
 	if surface and the_event and pforce and (not surfacename or surface.name==surfacename) and (not forcename or pforce.name==forcename) then
 		--DRD
-		if surface.peaceful_mode and not settings.global["bm-events-when-peaceful"].value then
+		if (surface.peaceful_mode or surface.map_gen_settings.autoplace_controls["enemy-base"].size == 0) and not settings.global["bm-events-when-peaceful"].value then
 			break
 		end
 		--DRD
@@ -315,10 +315,10 @@ end
 
 
 function get_pos_near_enemy_nest(surface,spawn,pforce)
-local enemy = surface.find_nearest_enemy{position=spawn, max_distance=500, force=pforce}
+local enemy = surface.find_nearest_enemy{position=spawn, max_distance=3000, force=pforce}
 if enemy then
 	local f = enemy.force
-	local nests = surface.find_entities_filtered{type='unit-spawner', position=enemy.position, radius=300, force=f, limit=5}
+	local nests = surface.find_entities_filtered{type='unit-spawner', position=enemy.position, radius=300, force=f}
 	if #nests>0 then 
 		spawn = get_random_pos_near(nests[math.random(#nests)].position,30)
 		spawn = surface.find_non_colliding_position('assembling-machine-1', spawn, 0, 1)
@@ -329,7 +329,7 @@ end
 
 function Create_Position_Event(the_event, surface, position, pforce)
 	--DRD
-	if surface.peaceful_mode and not settings.global["bm-events-when-peaceful"].value then
+	if (surface.peaceful_mode or surface.map_gen_settings.autoplace_controls["enemy-base"].size == 0) and not settings.global["bm-events-when-peaceful"].value then
 		return
 	end
 	--DRD

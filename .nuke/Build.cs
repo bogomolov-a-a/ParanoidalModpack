@@ -1,22 +1,17 @@
+#nullable enable
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
+using FactorioParanoidal.FactorioMods;
+using FactorioParanoidal.FactorioMods.Mods;
 using FactorioParanoidal.ModSettingsDat;
-using Microsoft.VisualBasic.CompilerServices;
 using Nuke.Common;
-using Nuke.Common.CI;
-using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
-using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
-using Nuke.Common.Utilities.Collections;
 using Serilog;
-using static Nuke.Common.EnvironmentInfo;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
 
 [SuppressMessage("ReSharper", "AllUnderscoreLocalParameterName")]
 partial class Build : NukeBuild
@@ -45,7 +40,8 @@ partial class Build : NukeBuild
             var modSettingsJsonPath = RootDirectory / "mods" / "mod-settings.json";
             if (!File.Exists(modSettingsDatPath))
             {
-                throw new FileNotFoundException($"File {modSettingsDatPath} not found. Ensure that this file exists", modSettingsDatPath);
+                throw new FileNotFoundException($"File {modSettingsDatPath} not found. Ensure that this file exists",
+                    modSettingsDatPath);
             }
 
             Log.Information("Starting reading {Path}", modSettingsDatPath);
@@ -58,7 +54,7 @@ partial class Build : NukeBuild
             await JsonSerializer.SerializeAsync(jsonFileStream, modSettings, SerializerOptions);
             Log.Information("{Path} successfully written", modSettingsJsonPath);
         });
-    
+
     Target ConvertModSettingsFromJson => _ => _
         .Executes(async () =>
         {
@@ -66,7 +62,8 @@ partial class Build : NukeBuild
             var modSettingsJsonPath = RootDirectory / "mods" / "mod-settings.json";
             if (!File.Exists(modSettingsJsonPath))
             {
-                throw new FileNotFoundException($"File {modSettingsJsonPath} not found. Ensure that this file exists", modSettingsJsonPath);
+                throw new FileNotFoundException($"File {modSettingsJsonPath} not found. Ensure that this file exists",
+                    modSettingsJsonPath);
             }
 
             Log.Information("Starting reading {Path}", modSettingsJsonPath);
@@ -76,7 +73,62 @@ partial class Build : NukeBuild
 
             Log.Information("Opening {Path} file to write JSON", modSettingsDatPath);
             await using var datFileStream = File.Open(modSettingsDatPath, FileMode.Create, FileAccess.Write);
-            ModSettingsConverter.Serialize(modSettings, datFileStream);
+            ModSettingsConverter.Serialize(modSettings!, datFileStream);
             Log.Information("{Path} successfully written", modSettingsDatPath);
+        });
+
+    Target ZipMods => _ => _
+        .Executes(async () =>
+        {
+            var targetDirectory = RootDirectory / "zipped-mods";
+            targetDirectory.CreateOrCleanDirectory();
+
+            var modsDirectory = RootDirectory / "mods";
+            Log.Information("Discovering mods in {TargetDirectory}", targetDirectory);
+            var modpack = await FactorioModpack.LoadFromDirectory(modsDirectory);
+            Log.Information("Discovered {Count} mods", modpack.Count());
+
+            Log.Information("Zipping mods to {TargetDirectory}", targetDirectory);
+            Parallel.ForEach(modpack.Cast<FolderFactorioMod>(), (mod, _) =>
+            {
+                var modZipPath = targetDirectory / $"{mod.Info.Name}_{mod.Info.Version}.zip";
+                Log.Information("Started zipping {ModName} to {ModZipPath}", mod.Info.Name, modZipPath);
+                Zip(modZipPath, mod.Directory);
+            });
+        });
+
+    Target PrepareHeadless => _ => _
+        .Unlisted()
+        .Executes(async () =>
+        {
+            if (!OperatingSystem.IsLinux())
+            {
+                Log.Warning("Seems like you are running on non-linux os");
+                Log.Warning("Factorio headless server will only available for linux!");
+            }
+
+            var paranoidalMod = await FolderFactorioMod.LoadFromDirectory(RootDirectory / "mods" / "zzzparanoidal");
+            var requiredFactorioVersion = paranoidalMod.GetBaseGameRequiredVersion();
+
+            await FactorioLauncher.DownloadFactorioIfRequired(AbsolutePath.Create("factorio_headless"),
+                requiredFactorioVersion, "headless", "linux64");
+
+            Log.Information("Factorio {RequiredVersion} server downloaded!", requiredFactorioVersion);
+        });
+
+    Target EnsureLaunchability => _ => _
+        .Unlisted()
+        .DependsOn(PrepareHeadless)
+        .Executes(async () =>
+        {
+            var paranoidalMod = await FolderFactorioMod.LoadFromDirectory(RootDirectory / "mods" / "zzzparanoidal");
+            var requiredFactorioVersion = paranoidalMod.GetBaseGameRequiredVersion();
+            var factorioServerLocation = AbsolutePath.Create("factorio_headless") / requiredFactorioVersion.ToString(3);
+
+            Log.Information("Testing PARANOIDAL launchability");
+            if (!await FactorioLauncher.EnsureFactorioServerCanLaunch(factorioServerLocation, RootDirectory / "mods"))
+            {
+                throw new Exception("Factorio launchability check failed. Check log for details.");
+            }
         });
 }

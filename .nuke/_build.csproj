@@ -9,11 +9,18 @@
     <NukeScriptDirectory>..</NukeScriptDirectory>
     <NukeTelemetryVersion>1</NukeTelemetryVersion>
     <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <FactorioParanoidalLibsVersion>0.1.0</FactorioParanoidalLibsVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FactorioParanoidal.ModSettingsDat" Version="0.1.0" />
+    <PackageReference Include="FactorioParanoidal.FactorioMods" Version="$(FactorioParanoidalLibsVersion)" />
+    <PackageReference Include="FactorioParanoidal.ModSettingsDat" Version="$(FactorioParanoidalLibsVersion)" />
     <PackageReference Include="Nuke.Common" Version="8.0.0" />
+    <PackageReference Include="SharpCompress" Version="0.30.1" />
   </ItemGroup>
 
 </Project>

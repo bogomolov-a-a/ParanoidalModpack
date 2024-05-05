@@ -20,7 +20,7 @@ data:extend({
    },
    -- skp, drd
 
-  
+
 {
 	type = "double-setting",
 	name = "bm-invasion-min_evo",
