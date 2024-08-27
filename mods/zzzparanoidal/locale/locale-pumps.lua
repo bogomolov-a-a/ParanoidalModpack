@@ -4,9 +4,9 @@ local technology = data.raw.technology
 -- local powered_pump = data.raw["assembling-machine"]
 -- local technology = data.raw.technology
 
--- local field_font = "\n[font=default-semibold][color=#ffe6c0]"
--- local field_font_2 = "[font=default-semibold][color=#ffe6c0]"
--- local end_font = ": [/color][/font]"
+local field_font = "\n[font=default-semibold][color=#ffe6c0]"
+local field_font_2 = "[font=default-semibold][color=#ffe6c0]"
+local end_font = ": [/color][/font]"
 
 local pumpjack_name = { "string.water-pumpjack" }
 local pumpjack_tech_desc = { "technology-description.water-pumpjack" }
@@ -16,7 +16,7 @@ local pumpjack_tech_desc = { "technology-description.water-pumpjack" }
 local pumping_speed = { "description.pumping-speed" }
 -- local pumping_speed = {"description.pumping-speed"}
 
--- -- Water pumpjacks
+-- Water pumpjacks
 
 powered_pump["water-pumpjack-1"].localised_name = { "", pumpjack_name }
 powered_pump["water-pumpjack-2"].localised_name = { "", pumpjack_name, " 2" }

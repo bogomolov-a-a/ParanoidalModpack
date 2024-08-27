@@ -35,27 +35,6 @@ data.raw["offshore-pump"]["seafloor-pump-2-placeholder"].adjacent_tile_collision
 collision_mask_util.add_layer(data.raw["offshore-pump"]["seafloor-pump-3-placeholder"].adjacent_tile_collision_test,
     layer)
 data.raw["offshore-pump"]["seafloor-pump-3-placeholder"].adjacent_tile_collision_mask = nil
-collision_mask_util.add_layer(data.raw["offshore-pump"]["offshore-mk0-pump"].adjacent_tile_collision_test, layer)
-collision_mask_util.add_layer(data.raw["offshore-pump"]["offshore-pump"].adjacent_tile_collision_test, layer)
-collision_mask_util.add_layer(data.raw["offshore-pump"]["offshore-mk2-pump"].adjacent_tile_collision_test, layer)
-collision_mask_util.add_layer(data.raw["offshore-pump"]["offshore-mk3-pump"].adjacent_tile_collision_test, layer)
-collision_mask_util.add_layer(data.raw["offshore-pump"]["offshore-mk4-pump"].adjacent_tile_collision_test, layer)
-collision_mask_util.add_layer(data.raw["offshore-pump"]["seafloor-pump"].adjacent_tile_collision_test, layer)
-collision_mask_util.add_layer(data.raw["offshore-pump"]["seafloor-pump-2"].adjacent_tile_collision_test, layer)
-collision_mask_util.add_layer(data.raw["offshore-pump"]["seafloor-pump-3"].adjacent_tile_collision_test, layer)
-
-data.raw["offshore-pump"]["offshore-mk0-pump"].adjacent_tile_collision_mask = nil
-data.raw["offshore-pump"]["offshore-pump"].adjacent_tile_collision_mask = nil
-data.raw["offshore-pump"]["offshore-mk2-pump"].adjacent_tile_collision_mask = nil
-data.raw["offshore-pump"]["offshore-mk3-pump"].adjacent_tile_collision_mask = nil
-data.raw["offshore-pump"]["offshore-mk4-pump"].adjacent_tile_collision_mask = nil
-data.raw["offshore-pump"]["seafloor-pump"].adjacent_tile_collision_mask = nil
-data.raw["offshore-pump"]["seafloor-pump-2"].adjacent_tile_collision_mask = nil
-data.raw["offshore-pump"]["seafloor-pump-3"].adjacent_tile_collision_mask = nil
-
-
-
-
 
 -- -- -- Начало мода на помпы Pumps on Landfill
 -- -- for _,tile in pairs(data.raw.tile) do
@@ -86,4 +65,4 @@ data.raw["offshore-pump"]["seafloor-pump-3"].adjacent_tile_collision_mask = nil
 -- -- collision_mask_util.add_layer(data.raw["offshore-pump"]["seafloor-pump-3-placeholder"].adjacent_tile_collision_test, layer)
 -- -- data.raw["offshore-pump"]["seafloor-pump-3-placeholder"].adjacent_tile_collision_mask = nil
 
--- Конец мода на помпы Pumps on Landfill
+-- -- -- Конец мода на помпы Pumps on Landfill
