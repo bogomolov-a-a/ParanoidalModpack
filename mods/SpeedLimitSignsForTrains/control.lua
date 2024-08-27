@@ -233,13 +233,16 @@ function onBuiltEntity(event)
     if event.player_index then
         player = game.players[event.player_index]
     end
-    if event.created_entity.name == "placed-train-limit" or event.created_entity.name == "placed-train-unlimit" then
+    if event.created_entity.name == "placed-train-limit" then
         event.created_entity.operable = false
         if not setLimitIndication(event.created_entity, 0) then
             if player then
                 player.print({ "gui-set-failed" })
             end
         end
+    end
+    if event.created_entity.name == "placed-train-unlimit" then
+        event.created_entity.operable = false
     end
     --[[  then
 
