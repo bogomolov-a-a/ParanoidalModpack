@@ -1625,3 +1625,55 @@ bobmods.lib.recipe.set_ingredients("bob-sniper-turret-1",
 --Маяки больше не действуют на термальные скважины
 data.raw["mining-drill"]["thermal-extractor"].allowed_effects = { "consumption", "pollution" }
 data.raw["mining-drill"]["thermal-bore"].allowed_effects = { "consumption", "pollution" }
+
+--################### финальный код для новых береговых насосов ###################
+--offshore-burner
+data.raw['item']["offshore-mk0-pump"].place_result = "offshore-mk0-pump"
+data.raw["pump"]["offshore-mk0-pump-output"].energy_usage = "900kW"
+data.raw["offshore-pump"]["offshore-mk0-pump"].pumping_speed = 5
+data.raw.pump["offshore-mk0-pump-output"].pumping_speed = data.raw["offshore-pump"]["offshore-mk0-pump"].pumping_speed
+data.raw["item"]["offshore-mk0-pump"].order = "b[fluids]-c[offshore-mk0-pump]"
+--offshore-1
+data.raw['item']["offshore-pump"].place_result = "offshore-pump"
+data.raw["pump"]["offshore-pump-output"].energy_usage = "1200kW"
+data.raw["offshore-pump"]["offshore-pump"].pumping_speed = 20 --20 = 1200/c
+data.raw.pump["offshore-pump-output"].pumping_speed = data.raw["offshore-pump"]["offshore-pump"].pumping_speed
+data.raw["item"]["offshore-pump"].subgroup = "extraction-machine"
+data.raw["item"]["offshore-pump"].order = "b[fluids]-c[offshore-mk1-pump]"
+bobmods.lib.recipe.set_ingredients("offshore-pump", { { "electronic-circuit", 2 }, { "pipe", 5 }, { "iron-gear-wheel", 5 } })
+bobmods.lib.tech.add_recipe_unlock("electricity", "offshore-pump")
+--offshore-2
+data.raw['item']["offshore-mk2-pump"].place_result = "offshore-mk2-pump"
+data.raw["pump"]["offshore-mk2-pump-output"].energy_usage = "2000kW"
+data.raw["offshore-pump"]["offshore-mk2-pump"].pumping_speed = 40
+data.raw.pump["offshore-mk2-pump-output"].pumping_speed = data.raw["offshore-pump"]["offshore-mk2-pump"].pumping_speed
+data.raw["item"]["offshore-mk2-pump"].order = "b[fluids]-c[offshore-mk2-pump]"
+bobmods.lib.recipe.set_ingredients("offshore-mk2-pump",
+    { { "steel-pipe", 5 }, { "advanced-circuit", 2 }, { "steel-gear-wheel", 10 } })
+data.raw["technology"]["offshore-mk2-pump"].prerequisites = { "advanced-electronics", "bob-fluid-handling-2" }
+--offshore-3
+data.raw['item']["offshore-mk3-pump"].place_result = "offshore-mk3-pump"
+data.raw["pump"]["offshore-mk3-pump-output"].energy_usage = "2800kW"
+data.raw["offshore-pump"]["offshore-mk3-pump"].pumping_speed = 60
+data.raw.pump["offshore-mk3-pump-output"].pumping_speed = data.raw["offshore-pump"]["offshore-mk3-pump"].pumping_speed
+data.raw["item"]["offshore-mk3-pump"].order = "b[fluids]-c[offshore-mk3-pump]"
+bobmods.lib.recipe.set_ingredients("offshore-mk3-pump",
+    { { "titanium-pipe", 5 }, { "advanced-circuit", 2 }, { "titanium-gear-wheel", 10 } })
+data.raw["technology"]["offshore-mk3-pump"].prerequisites = { "offshore-mk2-pump", "advanced-electronics",
+    "angels-titanium-smelting-1" }
+data.raw["technology"]["offshore-mk3-pump"].prerequisites = { "advanced-electronics", "bob-fluid-handling-2" }
+--offshore-4
+data.raw['item']["offshore-mk4-pump"].place_result = "offshore-mk4-pump"
+data.raw["pump"]["offshore-mk4-pump-output"].energy_usage = "3700kW"
+data.raw["offshore-pump"]["offshore-mk4-pump"].pumping_speed = 80
+data.raw.pump["offshore-mk4-pump-output"].pumping_speed = data.raw["offshore-pump"]["offshore-mk4-pump"].pumping_speed
+data.raw["item"]["offshore-mk4-pump"].order = "b[fluids]-c[offshore-mk4-pump]"
+bobmods.lib.recipe.set_ingredients("offshore-mk4-pump",
+    { { "titanium-pipe", 5 }, { "advanced-circuit", 2 }, { "titanium-gear-wheel", 10 } })
+data.raw["technology"]["offshore-mk4-pump"].prerequisites = { "offshore-mk3-pump", "advanced-electronics-2",
+    "advanced-electronics-3" }
+data.raw.technology["offshore-mk4-pump"].unit.ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "chemical-science-pack", 1 }, { "production-science-pack", 1 } }
+--seafloor pumps коррекция скорости помпы
+data.raw.pump["seafloor-pump-output"].pumping_speed = data.raw["offshore-pump"]["seafloor-pump"].pumping_speed
+data.raw.pump["seafloor-pump-2-output"].pumping_speed = data.raw["offshore-pump"]["seafloor-pump-2"].pumping_speed
+data.raw.pump["seafloor-pump-3-output"].pumping_speed = data.raw["offshore-pump"]["seafloor-pump-3"].pumping_speed
