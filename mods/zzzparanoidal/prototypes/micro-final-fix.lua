@@ -1625,3 +1625,188 @@ bobmods.lib.recipe.set_ingredients("bob-sniper-turret-1",
 --Маяки больше не действуют на термальные скважины
 data.raw["mining-drill"]["thermal-extractor"].allowed_effects = { "consumption", "pollution" }
 data.raw["mining-drill"]["thermal-bore"].allowed_effects = { "consumption", "pollution" }
+
+--###############################################################################################
+--Фикс снайперских турелей
+data.raw["ammo-turret"]["bob-sniper-turret-1"].attack_parameters.min_range = 15
+data.raw["ammo-turret"]["bob-sniper-turret-1"].attack_parameters.cooldown = 300
+data.raw["ammo-turret"]["bob-sniper-turret-2"].attack_parameters.min_range = 17
+data.raw["ammo-turret"]["bob-sniper-turret-2"].attack_parameters.cooldown = 240
+data.raw["ammo-turret"]["bob-sniper-turret-3"].attack_parameters.min_range = 20
+data.raw["ammo-turret"]["bob-sniper-turret-3"].attack_parameters.cooldown = 210
+bobmods.lib.recipe.set_ingredients("bob-sniper-turret-1",
+    { { "steel-gear-wheel", 20 }, { "gun-turret", 1 }, { "copper-plate", 20 } })
+--###############################################################################################
+--Фикс легкихтурелей
+data.raw["ammo-turret"]["scattergun-turret"].attack_parameters.range = 18
+data.raw["ammo-turret"]["scattergun-turret"].attack_parameters.damage_modifier = 2.0
+data.raw["ammo-turret"]["scattergun-turret"].attack_parameters.min_range = 0
+data.raw["ammo-turret"]["scattergun-turret"].attack_parameters.turn_range = 1
+bobmods.lib.recipe.set_ingredients("scattergun-turret",
+    { { "iron-gear-wheel", 20 }, { "gun-turret", 1 }, { "stone-brick", 50 } })
+--###############################################################################################
+--Фикс простых турелей
+data.raw["ammo-turret"]["gun-turret"].attack_parameters.damage_modifier = 1.5
+data.raw["ammo-turret"]["bob-gun-turret-2"].attack_parameters.damage_modifier = 2.0
+data.raw["ammo-turret"]["bob-gun-turret-3"].attack_parameters.damage_modifier = 3.0
+data.raw["ammo-turret"]["bob-gun-turret-4"].attack_parameters.damage_modifier = 4.0
+data.raw["ammo-turret"]["bob-gun-turret-5"].attack_parameters.damage_modifier = 5.0
+--###############################################################################################
+--Фикс модульных турелей
+data.raw["ammo-turret"]["w93-hmg-turret"].attack_parameters.turn_range = 1
+data.raw["ammo-turret"]["w93-hmg-turret"].attack_parameters.damage_modifier = 3.0
+data.raw["ammo-turret"]["w93-hmg-turret"].attack_parameters.cooldown = 5
+data.raw["ammo-turret"]["w93-hmg-turret2"].attack_parameters.damage_modifier = 4.0
+data.raw["ammo-turret"]["w93-hmg-turret2"].attack_parameters.cooldown = 5
+
+data.raw["technology"]["w93-modular-turrets2"].prerequisites = { "w93-modular-turrets", "electric-engine", "plastics" }
+data.raw.technology["w93-modular-turrets2"].unit.ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "military-science-pack", 1 } }
+bobmods.lib.tech.remove_recipe_unlock("w93-modular-turrets", "w93-hmg-turret2")
+bobmods.lib.tech.add_recipe_unlock("w93-modular-turrets2", "w93-hmg-turret2")
+bobmods.lib.tech.add_prerequisite("w93-modular-turrets-gatling", "w93-modular-turrets2")
+bobmods.lib.tech.add_prerequisite("w93-modular-turrets-lcannon", "w93-modular-turrets2")
+bobmods.lib.tech.add_prerequisite("w93-modular-turrets-rocket", "w93-modular-turrets2")
+bobmods.lib.tech.add_prerequisite("w93-modular-turrets-plaser", "w93-modular-turrets2")
+
+data.raw["ammo-turret"]["w93-gatling-turret"].attack_parameters.turn_range = 1
+data.raw["ammo-turret"]["w93-gatling-turret"].attack_parameters.damage_modifier = 3.0
+data.raw["ammo-turret"]["w93-gatling-turret"].attack_parameters.cooldown = 1
+data.raw["ammo-turret"]["w93-gatling-turret2"].attack_parameters.turn_range = 0.5
+data.raw["ammo-turret"]["w93-gatling-turret2"].attack_parameters.min_range = 0
+data.raw["ammo-turret"]["w93-gatling-turret2"].attack_parameters.damage_modifier = 4.0
+data.raw["ammo-turret"]["w93-gatling-turret2"].attack_parameters.cooldown = 1
+
+data.raw["ammo-turret"]["w93-lcannon-turret"].attack_parameters.turn_range = 0.4
+data.raw["ammo-turret"]["w93-lcannon-turret"].attack_parameters.range = 40
+data.raw["ammo-turret"]["w93-lcannon-turret2"].attack_parameters.turn_range = 0.5
+data.raw["ammo-turret"]["w93-lcannon-turret2"].attack_parameters.cooldown = 60
+data.raw["ammo-turret"]["w93-lcannon-turret2"].attack_parameters.range = 45
+
+data.raw["ammo-turret"]["w93-dcannon-turret"].attack_parameters.turn_range = 0.4
+data.raw["ammo-turret"]["w93-dcannon-turret"].attack_parameters.cooldown = 60
+data.raw["ammo-turret"]["w93-dcannon-turret"].attack_parameters.range = 50
+data.raw["ammo-turret"]["w93-dcannon-turret"].attack_parameters.min_range = 25
+data.raw["ammo-turret"]["w93-dcannon-turret2"].attack_parameters.turn_range = 0.5
+data.raw["ammo-turret"]["w93-dcannon-turret2"].attack_parameters.cooldown = 30
+data.raw["ammo-turret"]["w93-dcannon-turret2"].attack_parameters.range = 55
+data.raw["ammo-turret"]["w93-dcannon-turret2"].attack_parameters.min_range = 32
+
+data.raw["ammo-turret"]["w93-hcannon-turret"].attack_parameters.turn_range = 0.4
+data.raw["ammo-turret"]["w93-hcannon-turret2"].attack_parameters.turn_range = 0.5
+data.raw["ammo-turret"]["w93-hcannon-turret"].attack_parameters.damage_modifier = 3.0
+data.raw["ammo-turret"]["w93-hcannon-turret2"].attack_parameters.min_range = 40
+data.raw["ammo-turret"]["w93-hcannon-turret2"].attack_parameters.damage_modifier = 4.0
+data.raw["ammo-turret"]["w93-hcannon-turret2"].attack_parameters.cooldown = 120
+
+data.raw["electric-turret"]["w93-plaser-turret"].attack_parameters.turn_range = 0.4
+data.raw["electric-turret"]["w93-plaser-turret"].attack_parameters.damage_modifier = 4.5
+data.raw["electric-turret"]["w93-plaser-turret2"].attack_parameters.turn_range = 0.5
+data.raw["electric-turret"]["w93-plaser-turret2"].attack_parameters.damage_modifier = 5.5
+data.raw["electric-turret"]["w93-plaser-turret2"].attack_parameters.cooldown = 12
+
+data.raw["electric-turret"]["w93-tlaser-turret"].attack_parameters.turn_range = 0.4
+data.raw["electric-turret"]["w93-tlaser-turret2"].attack_parameters.turn_range = 0.5
+data.raw["electric-turret"]["w93-tlaser-turret2"].attack_parameters.range = 65
+
+data.raw["electric-turret"]["w93-beam-turret"].attack_parameters.turn_range = 0.4
+data.raw["electric-turret"]["w93-beam-turret"].attack_parameters.damage_modifier = 2.0
+data.raw["electric-turret"]["w93-beam-turret"].attack_parameters.range = 40
+data.raw["electric-turret"]["w93-beam-turret2"].attack_parameters.turn_range = 0.5
+data.raw["electric-turret"]["w93-beam-turret2"].attack_parameters.cooldown = 10
+
+data.raw["ammo-turret"]["w93-rocket-turret"].attack_parameters.turn_range = 0.4
+data.raw["ammo-turret"]["w93-rocket-turret"].attack_parameters.cooldown = 120
+data.raw["ammo-turret"]["w93-rocket-turret"].attack_parameters.range = 80
+data.raw["ammo-turret"]["w93-rocket-turret2"].attack_parameters.turn_range = 0.5
+data.raw["ammo-turret"]["w93-rocket-turret2"].attack_parameters.cooldown = 60
+data.raw["ammo-turret"]["w93-rocket-turret2"].attack_parameters.range = 95
+data.raw["ammo-turret"]["w93-rocket-turret2"].attack_parameters.min_range = 55
+
+--###############################################################################################
+--Фикс злых снайперов из Big Monsters
+for i = 1, 10 do
+    local sniper_name = "tc_fake_human_sniper_" .. i
+    if data.raw["unit"][sniper_name] then
+        data.raw["unit"][sniper_name].attack_parameters.range = 60
+        data.raw["unit"][sniper_name].attack_parameters.min_range = 55
+    end
+end
+--###############################################################################################
+--Финальный Ремонт дерева исследований
+bobmods.lib.tech.remove_prerequisite("radar", "electronics")                                                                                          --фикс радара
+-- bobmods.lib.tech.add_prerequisite ("radar", "electricity") --фикс радара
+bobmods.lib.recipe.set_ingredients("radar",
+    { { "electric-motor", 12 }, { "basic-circuit-board", 20 }, { "stone-brick", 20 }, { "iron-plate", 20 } })                                         --фикс радара
+bobmods.lib.tech.add_prerequisite("bob-nuclear-power-2", "centrifuging-1")                                                                            --ториевая энергетика под Продвинутое центрифугирование 1
+bobmods.lib.tech.add_prerequisite("bob-area-drills-2", "bob-drills-2")                                                                                --фикс буров
+bobmods.lib.tech.add_prerequisite("bob-area-drills-3", "bob-drills-3")                                                                                --фикс буров
+bobmods.lib.tech.add_prerequisite("rocket-silo", "bob-area-drills-3")                                                                                 --фикс буров
+bobmods.lib.tech.add_prerequisite("battery-3", "powder-metallurgy-5")                                                                                 --Аккумулятор 3 поставить под Порошковая металлургия 4
+bobmods.lib.tech.remove_recipe_unlock("advanced-electronics-3", "intelligent-io")                                                                     -- Интеллектуальное арифметико-логическое устройство под Квантовые модули 1
+bobmods.lib.tech.add_recipe_unlock("god-module-2", "intelligent-io")                                                                                  -- Интеллектуальное арифметико-логическое устройство под Квантовые модули 1
+bobmods.lib.tech.remove_recipe_unlock("bi-tech-resin-extraction", "bi-resin-pulp")                                                                    --прячем лишнюю смолу
+bobmods.lib.tech.remove_recipe_unlock("bi-tech-resin-extraction", "bi-wood-from-pulp")                                                                --прячем лишнюю смолу
+data.raw.technology["bi-tech-resin-extraction"].hidden = true                                                                                         --прячем лишнюю смолу
+bobmods.lib.tech.add_prerequisite("hiend_train", "bob-fluid-wagon-3")                                                                                 -- привязать магнитный локомотив и вагоны к вагонам и цистернам мк3
+bobmods.lib.tech.add_prerequisite("water-chemistry-2", "thorium-fuel-reprocessing")                                                                   -- привязатьо дейтериевую энергетику к Переработки тория (нет ядерного катализатора)
+bobmods.lib.tech.add_prerequisite("extremely-advanced-rocket-payloads", "space-lab")                                                                  -- Привязать КОсмический челнок к Космическая лаборатория (Данные с космической станции недоступны)
+bobmods.lib.recipe.add_ingredient("offshore-pump", { "offshore-mk0-pump", 2 })                                                                        -- к Электрический береговой насос добавляем Твердотопливный береговой насос 2 штуки
+
+--###############################################################################################
+--Финальный Ремонт дерева исследований от ЮШРАКА прости Господи
+bobmods.lib.tech.add_prerequisite("physical-projectile-damage-2", "logistic-science-pack")
+bobmods.lib.tech.add_prerequisite("physical-projectile-damage-3", "military-science-pack")
+bobmods.lib.tech.add_prerequisite("physical-projectile-damage-6", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("stronger-explosives-4", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("refined-flammables-4", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("energy-weapons-damage-4", "chemical-science-pack")
+bobmods.lib.tech.add_prerequisite("energy-weapons-damage-5", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("laser-shooting-speed-5", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("follower-robot-count-5", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("inserter-capacity-bonus-5", "advanced-logistic-science-pack")
+bobmods.lib.tech.add_prerequisite("inserter-capacity-bonus-7", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("logistic-science-pack", "logistics")
+bobmods.lib.tech.add_prerequisite("steel-processing", "electric-mining")
+bobmods.lib.tech.add_prerequisite("logistics", "electronics")
+bobmods.lib.tech.add_prerequisite("chemical-science-pack", "engine")
+bobmods.lib.tech.add_prerequisite("military-science-pack", "gun-turret")
+bobmods.lib.tech.add_prerequisite("production-science-pack", "electric-engine")
+bobmods.lib.tech.add_prerequisite("utility-science-pack", "nuclear-power")
+bobmods.lib.tech.add_prerequisite("utility-science-pack", "logistics-3")
+bobmods.lib.tech.add_prerequisite("advanced-electronics", "angels-sulfur-processing-2")
+bobmods.lib.tech.add_prerequisite("braking-force-3", "advanced-logistic-science-pack")
+bobmods.lib.tech.add_prerequisite("braking-force-6", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("logistics-3", "titanium-processing")
+bobmods.lib.tech.add_prerequisite("research-speed-5", "production-science-pack")
+bobmods.lib.tech.add_prerequisite("research-speed-6", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("electric-energy-distribution-2", "concrete")
+bobmods.lib.tech.add_prerequisite("effect-transmission", "concrete")
+bobmods.lib.tech.add_prerequisite("electric-engine", "engine")
+bobmods.lib.tech.add_prerequisite("worker-robots-speed-3", "advanced-logistic-science-pack")
+bobmods.lib.tech.add_prerequisite("worker-robots-speed-5", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("worker-robots-storage-2", "advanced-logistic-science-pack")
+bobmods.lib.tech.add_prerequisite("worker-robots-storage-3", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("energy-shield-equipment", "electric-engine")
+bobmods.lib.tech.add_prerequisite("battery-equipment", "electric-engine")
+bobmods.lib.tech.add_prerequisite("fusion-reactor-equipment", "solar-panel-equipment-4")
+bobmods.lib.tech.add_prerequisite("personal-roboport-equipment", "advanced-electronics-2")
+bobmods.lib.tech.add_prerequisite("mining-productivity-3", "production-science-pack")
+bobmods.lib.tech.add_prerequisite("mining-productivity-3", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("autonomous-space-mining-drones", "bob-drills-4")
+bobmods.lib.tech.add_prerequisite("robot-attrition-explosion-safety", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("nitinol-processing", "utility-science-pack")
+bobmods.lib.tech.add_prerequisite("electronics-machine-2", "fast-inserter")
+bobmods.lib.tech.add_prerequisite("bob-power-armor-3", "space-science-pack")
+bobmods.lib.tech.add_prerequisite("miniloader", "angels-steel-smelting-1")
+bobmods.lib.tech.add_prerequisite("fast-miniloader", "fast-inserter")
+bobmods.lib.tech.add_prerequisite("express-miniloader", "express-inserters")
+bobmods.lib.tech.add_prerequisite("turbo-miniloader", "turbo-inserter")
+bobmods.lib.tech.add_prerequisite("ultimate-miniloader", "ultimate-inserter")
+bobmods.lib.tech.add_prerequisite("advanced-ore-refining-3", "titanium-processing")
+bobmods.lib.tech.add_prerequisite("advanced-ore-refining-4", "advanced-electronics-3")
+bobmods.lib.tech.add_prerequisite("speed-module-7", "advanced-electronics-3")
+bobmods.lib.tech.add_prerequisite("effectivity-module-7", "advanced-electronics-3")
+bobmods.lib.tech.add_prerequisite("productivity-module-7", "advanced-electronics-3")
+bobmods.lib.tech.add_prerequisite("pollution-clean-module-7", "advanced-electronics-3")
+bobmods.lib.tech.add_prerequisite("pollution-create-module-7", "advanced-electronics-3")
+--###############################################################################################
