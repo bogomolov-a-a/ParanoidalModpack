@@ -1733,24 +1733,24 @@ for i = 1, 10 do
 end
 --###############################################################################################
 --Финальный Ремонт дерева исследований
-bobmods.lib.tech.remove_prerequisite("radar", "electronics")                                                                                          --фикс радара
+bobmods.lib.tech.remove_prerequisite("radar", "electronics") --фикс радара
 -- bobmods.lib.tech.add_prerequisite ("radar", "electricity") --фикс радара
 bobmods.lib.recipe.set_ingredients("radar",
-    { { "electric-motor", 12 }, { "basic-circuit-board", 20 }, { "stone-brick", 20 }, { "iron-plate", 20 } })                                         --фикс радара
-bobmods.lib.tech.add_prerequisite("bob-nuclear-power-2", "centrifuging-1")                                                                            --ториевая энергетика под Продвинутое центрифугирование 1
-bobmods.lib.tech.add_prerequisite("bob-area-drills-2", "bob-drills-2")                                                                                --фикс буров
-bobmods.lib.tech.add_prerequisite("bob-area-drills-3", "bob-drills-3")                                                                                --фикс буров
-bobmods.lib.tech.add_prerequisite("rocket-silo", "bob-area-drills-3")                                                                                 --фикс буров
-bobmods.lib.tech.add_prerequisite("battery-3", "powder-metallurgy-5")                                                                                 --Аккумулятор 3 поставить под Порошковая металлургия 4
-bobmods.lib.tech.remove_recipe_unlock("advanced-electronics-3", "intelligent-io")                                                                     -- Интеллектуальное арифметико-логическое устройство под Квантовые модули 1
-bobmods.lib.tech.add_recipe_unlock("god-module-2", "intelligent-io")                                                                                  -- Интеллектуальное арифметико-логическое устройство под Квантовые модули 1
-bobmods.lib.tech.remove_recipe_unlock("bi-tech-resin-extraction", "bi-resin-pulp")                                                                    --прячем лишнюю смолу
-bobmods.lib.tech.remove_recipe_unlock("bi-tech-resin-extraction", "bi-wood-from-pulp")                                                                --прячем лишнюю смолу
-data.raw.technology["bi-tech-resin-extraction"].hidden = true                                                                                         --прячем лишнюю смолу
-bobmods.lib.tech.add_prerequisite("hiend_train", "bob-fluid-wagon-3")                                                                                 -- привязать магнитный локомотив и вагоны к вагонам и цистернам мк3
-bobmods.lib.tech.add_prerequisite("water-chemistry-2", "thorium-fuel-reprocessing")                                                                   -- привязатьо дейтериевую энергетику к Переработки тория (нет ядерного катализатора)
-bobmods.lib.tech.add_prerequisite("extremely-advanced-rocket-payloads", "space-lab")                                                                  -- Привязать КОсмический челнок к Космическая лаборатория (Данные с космической станции недоступны)
-bobmods.lib.recipe.add_ingredient("offshore-pump", { "offshore-mk0-pump", 2 })                                                                        -- к Электрический береговой насос добавляем Твердотопливный береговой насос 2 штуки
+    { { "electric-motor", 12 }, { "basic-circuit-board", 20 }, { "stone-brick", 20 }, { "iron-plate", 20 } }) --фикс радара
+bobmods.lib.tech.add_prerequisite("bob-nuclear-power-2", "centrifuging-1")                                    --ториевая энергетика под Продвинутое центрифугирование 1
+bobmods.lib.tech.add_prerequisite("bob-area-drills-2", "bob-drills-2")                                        --фикс буров
+bobmods.lib.tech.add_prerequisite("bob-area-drills-3", "bob-drills-3")                                        --фикс буров
+bobmods.lib.tech.add_prerequisite("rocket-silo", "bob-area-drills-3")                                         --фикс буров
+bobmods.lib.tech.add_prerequisite("battery-3", "powder-metallurgy-5")                                         --Аккумулятор 3 поставить под Порошковая металлургия 4
+bobmods.lib.tech.remove_recipe_unlock("advanced-electronics-3", "intelligent-io")                             -- Интеллектуальное арифметико-логическое устройство под Квантовые модули 1
+bobmods.lib.tech.add_recipe_unlock("god-module-2", "intelligent-io")                                          -- Интеллектуальное арифметико-логическое устройство под Квантовые модули 1
+bobmods.lib.tech.remove_recipe_unlock("bi-tech-resin-extraction", "bi-resin-pulp")                            --прячем лишнюю смолу
+bobmods.lib.tech.remove_recipe_unlock("bi-tech-resin-extraction", "bi-wood-from-pulp")                        --прячем лишнюю смолу
+data.raw.technology["bi-tech-resin-extraction"].hidden = true                                                 --прячем лишнюю смолу
+bobmods.lib.tech.add_prerequisite("hiend_train", "bob-fluid-wagon-3")                                         -- привязать магнитный локомотив и вагоны к вагонам и цистернам мк3
+bobmods.lib.tech.add_prerequisite("water-chemistry-2", "thorium-fuel-reprocessing")                           -- привязатьо дейтериевую энергетику к Переработки тория (нет ядерного катализатора)
+bobmods.lib.tech.add_prerequisite("extremely-advanced-rocket-payloads", "space-lab")                          -- Привязать КОсмический челнок к Космическая лаборатория (Данные с космической станции недоступны)
+bobmods.lib.recipe.add_ingredient("offshore-pump", { "offshore-mk0-pump", 2 })                                -- к Электрический береговой насос добавляем Твердотопливный береговой насос 2 штуки
 
 --###############################################################################################
 --Финальный Ремонт дерева исследований от ЮШРАКА прости Господи
@@ -1809,4 +1809,43 @@ bobmods.lib.tech.add_prerequisite("effectivity-module-7", "advanced-electronics-
 bobmods.lib.tech.add_prerequisite("productivity-module-7", "advanced-electronics-3")
 bobmods.lib.tech.add_prerequisite("pollution-clean-module-7", "advanced-electronics-3")
 bobmods.lib.tech.add_prerequisite("pollution-create-module-7", "advanced-electronics-3")
+--###############################################################################################
+--Последние правки Space X
+data.raw["assembling-machine"]["space-telescope-uplink-station"].icon =
+"__expanded-rocket-payloads__/graphic/space-telescope-uplink-station-32.png"                                                                         --фикс неправильной иконки
+data.raw["recipe"]["osmium-ore-processing"].category = "ore-processing-4"                                                                            --фикс слишком легкого осмия
+data.raw["recipe"]["osmium-processed-processing"].category = "pellet-pressing-4"                                                                     --фикс слишком легкого осмия
+data.raw["recipe"]["osmium-pellet-smelting"].category = "blast-smelting-4"                                                                           --фикс слишком легкого осмия
+data.raw["recipe"]["casting-powder-osmium"].category = "powder-mixing-4"                                                                             --фикс слишком легкого осмия
+bobmods.lib.tech.add_prerequisite("astrometrics", "advanced-osmium-smelting")                                                                        --Астрометрика под осмий
+bobmods.lib.tech.add_recipe_unlock("bi-tech-stone-crushing-1", "stone-crushed-2")                                                                    --открываем рецепт камня
+--###############################################################################################
+--Баланс телепортера под параноидал
+bobmods.lib.recipe.set_ingredients("teleporter",
+    { { "raw-speed-module-8", 2 }, { "space-science-pack", 50 }, { "advanced-processing-unit", 50 }, { "low-density-structure", 150 }, { "silver-zinc-battery", 100 }, { "nitinol-alloy", 150 } })
+data.raw.technology["teleporter"].unit.ingredients = { { "automation-science-pack", 1 }, { "logistic-science-pack", 1 }, { "military-science-pack", 1 }, { "chemical-science-pack", 1 }, { "advanced-logistic-science-pack", 1 }, { "production-science-pack", 1 }, { "utility-science-pack", 1 }, { "space-science-pack", 1 } }
+data.raw.technology["teleporter"].unit.count = 2000
+bobmods.lib.tech.add_prerequisite("teleporter", "space-science-pack")
+--###############################################################################################
+-- попытка исправить ошибку с отсутсвием насоса на старте
+data.raw.container["crash-site-spaceship"].minable =
+{
+    mining_time = 5,
+    results = {
+        --{name="iron-plate", amount = 114},
+        --{name="copper-plate", amount = 56},
+        { name = "steel-plate",          amount_min = 5,  amount_max = 25 },
+        { name = "iron-gear-wheel",      amount_min = 5,  amount_max = 20 },
+        { name = "electronic-circuit",   amount_min = 4,  amount_max = 12 },
+        { name = "concrete",             amount_min = 25, amount_max = 85 },
+        { name = "pipe",                 amount_min = 5,  amount_max = 45 },
+        { name = "aluminium-plate",      amount_min = 5,  amount_max = 85 },
+        { name = "titanium-plate",       amount_min = 5,  amount_max = 85 },
+        { name = "condensator3",         amount_min = 5,  amount_max = 35 },
+        { name = "processing-electronics", amount_min = 1, amount_max = 5 },
+        { name = "insulated-cable",      amount_min = 11, amount_max = 39 },
+        { name = "salvaged-generator",   amount = 1 },
+        { name = "offshore-mk0-pump",    amount = 1 }
+    }
+}
 --###############################################################################################
