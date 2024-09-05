@@ -659,8 +659,11 @@ local function move_recipes_to_another_technologies(mode)
         mode)
     -- конец перенос из удалённых технологий
     --another
-    tech_util.move_recipe_effects_to_another_technology("w93-modular-turrets", "w93-modular-turrets2", "w93-hmg-turret2",
-        mode)
+    if mods["hero turrets"] then
+        tech_util.move_recipe_effects_to_another_technology("w93-modular-turrets", "w93-modular-turrets2",
+            "w93-hmg-turret2",
+            mode)
+    end
     tech_util.move_recipe_effects_to_another_technology("tungsten-processing", "tungsten-alloy-processing",
         "anotherworld-structure-components", mode)
     tech_util.move_recipe_effects_to_another_technology("basic-automation", "steam-power", "steam-inserter", mode)
