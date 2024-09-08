@@ -47,7 +47,7 @@ local function check_recipes_not_has_hidden_in_tree_element(technology_name, mod
         recipe_names,
         function(recipe_name)
             local moded_recipe = Utils.get_moded_object("recipe", recipe_name, mode)
-            if not moded_recipe or moded_recipe.hidden then
+            if moded_recipe.hidden then
                 error(
                     " for technology " ..
                     technology_name ..
@@ -466,6 +466,39 @@ local function check_recipe_results_applied_something(active_technology_name, mo
     )
     --
 end
+local function check_recipe_ingredient_result_must_be_greater_than_zero(recipe_name, active_technology_name, mode)
+    local recipe_ingredients_with_amounts = recipe_util.get_all_recipe_ingredients_with_amounts(recipe_name, mode)
+    _table.each(recipe_ingredients_with_amounts, function(recipe_ingredient_with_amounts)
+        if recipe_ingredient_with_amounts.amount and recipe_ingredient_with_amounts.amount < 0 then
+            error("amount for ingredient " ..
+                recipe_ingredient_with_amounts.name .. " for recipe " .. recipe_name ..
+                " in technology " .. active_technology_name .. " for mode " .. mode .. " can't less than 0")
+        end
+    end)
+    local recipe_results_with_amounts = recipe_util.get_all_recipe_results_with_amounts(recipe_name, mode)
+    _table.each(recipe_results_with_amounts, function(recipe_result_with_amounts)
+        if recipe_result_with_amounts.amount and recipe_result_with_amounts.amount < 0 then
+            error("amount for result " ..
+                recipe_result_with_amounts.name .. " for recipe " .. recipe_name ..
+                " in technology " .. active_technology_name .. " for mode " .. mode .. " can't less than 0")
+        end
+        if recipe_result_with_amounts.amount_min and recipe_result_with_amounts.amount_min < 0 then
+            error("amount_min for result " ..
+                recipe_result_with_amounts.name .. " for recipe " .. recipe_name ..
+                " in technology " .. active_technology_name .. " for mode " .. mode .. " can't less than 0")
+        end
+    end)
+end
+local function check_recipe_ingredients_results_must_be_greater_than_zero(active_technology_name, mode)
+    local all_technology_recipe_names =
+        tech_util.get_all_recipe_names_for_specified_technology(active_technology_name, mode)
+    _table.each(
+        all_technology_recipe_names,
+        function(recipe_name)
+            check_recipe_ingredient_result_must_be_greater_than_zero(recipe_name, active_technology_name, mode)
+        end
+    )
+end
 
 local function handle_technology_tree(active_technology_name, mode)
     log("checking technology tree " .. active_technology_name .. " for mode " .. mode)
@@ -483,6 +516,9 @@ local function handle_technology_tree(active_technology_name, mode)
     end
     if settings.startup["check-technology-tree-mods-protocol-use-recipe-result-as-ingredient-or-placeable-item-validating"].value then
         check_recipe_results_applied_something(active_technology_name, mode)
+    end
+    if settings.startup["check-technology-tree-mods-protocol-use-validating-result-ingredients-greater-than-zero-in-signature"].value then
+        check_recipe_ingredients_results_must_be_greater_than_zero(active_technology_name, mode)
     end
     log("technology tree " .. active_technology_name .. " for mode " .. mode .. " checked")
 end

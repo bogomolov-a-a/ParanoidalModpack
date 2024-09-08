@@ -128,6 +128,7 @@ RecipeUtil.get_all_recipe_results = function(recipe_name, mode, use_only_real_pr
     _table.insert_all_if_not_exists(result, additional_results)
     return result
 end
+
 RecipeUtil.get_rocket_launch_recipe_results = function(recipe_name, mode)
     local result = {}
     local recipe_data = get_recipe_object_for_mode(recipe_name, mode)
@@ -146,23 +147,24 @@ local function get_recipe_data_ingredients(recipe_data)
     if not recipe_data then
         return result
     end
-    if recipe_data.ingredients and _table.size(recipe_data.ingredients) > 0 then
-        _table.each(
-            recipe_data.ingredients,
-            function(result_data)
-                local result_name = result_data.name or result_data[1]
-                if result_name ~= "" then
-                    table.insert(
-                        result,
-                        {
-                            name = result_name,
-                            type = result_data.type or "item"
-                        }
-                    )
-                end
-            end
-        )
+    if not recipe_data.ingredients or _table.size(recipe_data.ingredients) == 0 then
+        return result
     end
+    _table.each(
+        recipe_data.ingredients,
+        function(result_data)
+            local result_name = result_data.name or result_data[1]
+            if result_name ~= "" then
+                table.insert(
+                    result,
+                    {
+                        name = result_name,
+                        type = result_data.type or "item"
+                    }
+                )
+            end
+        end
+    )
     return result
 end
 
@@ -298,6 +300,131 @@ RecipeUtil.get_recipe_signature = function(recipe_name, mode)
         category = RecipeUtil.get_recipe_category(recipe_name),
         name = recipe_name
     }
+end
+
+RecipeUtil.get_all_recipe_ingredients_with_amounts = function(recipe_name, mode)
+    local recipe_data = get_recipe_object_for_mode(recipe_name, mode)
+    local result = {}
+    if not recipe_data then
+        return result
+    end
+    if not recipe_data.ingredients or _table.size(recipe_data.ingredients) == 0 then
+        return result
+    end
+    _table.each(
+        recipe_data.ingredients,
+        function(result_data)
+            local result_name = result_data.name or result_data[1]
+            local result_amount = result_data.amount or result_data[2]
+            if result_name ~= "" then
+                table.insert(
+                    result,
+                    {
+                        name = result_name,
+                        type = result_data.type or "item",
+                        amount = result_amount
+                    }
+                )
+            end
+        end
+    )
+    return result
+end
+
+local function create_technology_effect_result_from_rocket_launch_product_with_amounts(rocket_launch_product_data)
+    if not rocket_launch_product_data then
+        error("rocket launch product not found")
+    end
+    local rocket_launch_product_data_type = rocket_launch_product_data.type or "item"
+    local rocket_launch_product_data_name = rocket_launch_product_data.name or rocket_launch_product_data[1]
+    local rocket_launch_product_data_amount = rocket_launch_product_data.amount or rocket_launch_product_data[2]
+    --log("rocket launch result type " .. rocket_launch_product_data_type .. " name " .. rocket_launch_product_data_name)
+    return {
+        name = rocket_launch_product_data_name,
+        type = rocket_launch_product_data_type,
+        amount = rocket_launch_product_data_amount,
+        amount_min = rocket_launch_product_data.amount_min,
+        amount_max = rocket_launch_product_data.amount_max,
+    }
+end
+
+local function get_rocket_launch_results_with_amounts(result_data)
+    local result = {}
+    local result_data_item = data.raw[result_data.type][result_data.name]
+    if not result_data_item then
+        return result
+    end
+    if result_data_item.rocket_launch_product then
+        table.insert(
+            result,
+            create_technology_effect_result_from_rocket_launch_product_with_amounts(result_data_item
+                .rocket_launch_product)
+        )
+    end
+    if result_data_item.rocket_launch_products and _table.size(result_data_item.rocket_launch_products) > 0 then
+        _table.each(
+            result_data_item.rocket_launch_products,
+            function(rocket_launch_product_data)
+                table.insert(result,
+                    create_technology_effect_result_from_rocket_launch_product_with_amounts(rocket_launch_product_data))
+            end
+        )
+    end
+    return result
+end
+local function get_recipe_data_products_with_amounts(recipe_data)
+    local result = {}
+    if not recipe_data then
+        return result
+    end
+    if recipe_data.result and recipe_data.result ~= "" then
+        table.insert(
+            result,
+            {
+                name = recipe_data.result,
+                type = "item",
+                amount = recipe_data.result_count
+            }
+        )
+    end
+    if recipe_data.results and _table.size(recipe_data.results) > 0 then
+        _table.each(
+            recipe_data.results,
+            function(result_data)
+                local result_name = result_data.name or result_data[1]
+                local result_type = result_data.type or "item"
+                local result_amount = result_data.amount or result_data[2]
+                if result_name ~= "" then
+                    table.insert(
+                        result,
+                        {
+                            name = result_name,
+                            type = result_type,
+                            amount = result_amount,
+                            amount_min = result_data.amount_min,
+                            amount_max = result_data.amount_max,
+                        }
+                    )
+                end
+            end
+        )
+    end
+    return result
+end
+
+RecipeUtil.get_all_recipe_results_with_amounts = function(recipe_name, mode)
+    local result = {}
+    local recipe_data = get_recipe_object_for_mode(recipe_name, mode)
+    _table.insert_all_if_not_exists(result, get_recipe_data_products_with_amounts(recipe_data))
+    local additional_results = {}
+    _table.each(
+        result,
+        function(result_data)
+            _table.insert_all_if_not_exists(additional_results, get_rocket_launch_results_with_amounts(result_data))
+        end
+    )
+    _table.insert_all_if_not_exists(result, additional_results)
+    return result
 end
 
 return RecipeUtil

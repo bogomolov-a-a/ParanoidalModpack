@@ -339,7 +339,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("garden-mutation", { "utility-science-pack" }, mode)
     tech_util.add_prerequisites_to_technology("advanced-magnesium-smelting", { "water-treatment-4" }, mode)
     tech_util.add_prerequisites_to_technology("advanced-depleted-uranium-smelting-1", { "utility-science-pack" }, mode)
-    tech_util.add_prerequisites_to_technology("advanced-osmium-smelting", { "asteroid-mining" }, mode)
+    tech_util.add_prerequisites_to_technology("advanced-osmium-smelting", { "asteroid-mining", "ore-processing-5" }, mode)
     tech_util.add_prerequisites_to_technology("advanced-uranium-processing-1", { "utility-science-pack" }, mode)
     tech_util.add_prerequisites_to_technology("mercury-processing-1",
         { "automation-science-pack", "logistic-science-pack", "chemical-science-pack" }, mode)
@@ -721,6 +721,8 @@ local function move_recipes_to_another_technologies(mode)
         mode)
     tech_util.move_recipe_effects_to_another_technology("geode-processing-2", "geode-processing-3",
         "ober-liquify-diamond", mode)
+    tech_util.move_recipe_effects_to_another_technology("god-module-2", "god-module-1",
+        "intelligent-io", mode)
     if mods["holographic_signs"] then
         tech_util.move_recipe_effects_to_another_technology("optics", "electronics", "hs_holo_sign", mode)
     end

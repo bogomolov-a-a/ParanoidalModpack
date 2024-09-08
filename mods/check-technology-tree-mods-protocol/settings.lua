@@ -16,5 +16,11 @@ data:extend({
         name = "check-technology-tree-mods-protocol-use-recipe-result-as-ingredient-or-placeable-item-validating",
         setting_type = "startup",
         default_value = true,
+    },
+    {
+        type = "bool-setting",
+        name = "check-technology-tree-mods-protocol-use-validating-result-ingredients-greater-than-zero-in-signature",
+        setting_type = "startup",
+        default_value = true
     }
 })
