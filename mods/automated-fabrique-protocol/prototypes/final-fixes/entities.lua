@@ -1,7 +1,7 @@
 _table.each(data.raw["train-stop"],
     function(train_stop_prototype)
-        train_stop_prototype.collision_box = { { -0.25, -0.25 }, { 0.25, 0.25 } }
-        train_stop_prototype.selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } }
+        train_stop_prototype.collision_box = { { -0.1, -0.1 }, { 0.1, 0.1 } }
+        train_stop_prototype.selection_box = { { -0.5, 0.5 }, { 0.5, 1.5 } }
     end)
 _table.each(data.raw["locomotive"], function(rolling_stock)
     rolling_stock.connection_distance = 4.05
