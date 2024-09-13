@@ -195,8 +195,29 @@ local function on_entity_bio_removed(event)
         end
     end
 end
---###############################################################################################
---код из SpilledItems
+-- ###############################################################################################
+-- from some corpse marker
+script.on_event(defines.events.on_pre_player_died, function(event)
+    local player = game.players[event.player_index]
+    player.force.add_chart_tag(player.surface, {
+        position = player.position,
+        text = 'Corpse: ' .. player.name .. '; Time: ' .. math.floor(game.tick / 60 / 60 / 60) .. ':' ..
+            (math.floor(game.tick / 60 / 60) % 60),
+        icon = {
+            type = "virtual",
+            name = "signal-info"
+        }
+    })
+end)
+
+
+local function off_evo() --удаление эволюции
+    game.map_settings.enemy_evolution.enabled = false
+end
+
+
+-- ###############################################################################################
+-- задаём функцию для SpilledItems
 local function spilled_items(event)
     --	on_entity_died
     --	Called when an entity dies. Can be filtered using LuaEntityDiedEventFilters
@@ -351,12 +372,35 @@ local function nasos_and_entity(event)
     hidden_entity_created(event)
 end
 
+local function evo_and_dolly() --выключаем эволюцию
+    if (settings.global["paranoidal-disable-vanilla-evolution"] or {}).value then
+        off_evo()
+    end
+    configure_picker_dollies()
+end
+
+
+
+
 script.on_event(defines.events.on_built_entity, gui_and_created) -- вместе с delete gui
 script.on_event(defines.events.on_robot_built_entity, nasos_and_entity)
 
 script.on_event(defines.events.on_player_rotated_entity, on_player_rotated_entity)
 
 script.on_event(defines.events.on_entity_died, spilled_and_removed) -- вместе с SpilledItems
-script.on_event(defines.events.on_pre_player_mined_item, bio_hidden_removed)
-script.on_event(defines.events.on_robot_pre_mined, bio_hidden_removed)
-script.on_event(defines.events.script_raised_destroy, bio_hidden_removed)
+script.on_event(defines.events.on_pre_player_mined_item, offshore_and_bio)
+script.on_event(defines.events.on_robot_pre_mined, offshore_and_bio)
+script.on_event(defines.events.script_raised_destroy, offshore_and_bio)
+-- script.on_event(defines.events.on_entity_destroyed, offshore_and_bio) --скорей всего не понадобится, но пусть лежит
+
+script.on_init(function() --наш любимый init, запрещаем двигать наши насосы
+    evo_and_dolly()
+end)
+
+script.on_load(function() --без дропа эволюции потому что game недоступен
+    configure_picker_dollies()
+end)
+
+script.on_configuration_changed(function() --фикс эволюции при загрузке игры, если галочка была убрана и поставлена вновь
+    evo_and_dolly()
+end)
