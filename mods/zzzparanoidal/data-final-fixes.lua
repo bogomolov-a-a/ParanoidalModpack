@@ -38,10 +38,7 @@ require("prototypes.mod_compatibility.JunkTrain")
 
 -------------------------------------------------------------------------------------------------
 require("prototypes.Angels_RBOS") --Angels_RBOS Angel's Re-enabled Basic Ore Smelting
--------------------------------------------------------------------------------------------------
-require("prototypes.offshore-pump.animation") --анимация для новых насосов
-require("prototypes.offshore-pump.offshore-final-fix") --финальные фиксы для новых насосов
--------------------------------------------------------------------------------------------------
+
 require("prototypes.landfill-pump") --Установка насосов на отсыпку
 -------------------------------------------------------------------------------------------------
 require("recipes.poles") --Изменение рецептов ЛЭП
