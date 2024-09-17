@@ -52,7 +52,7 @@ function KaoExtended.result_check(object)
     end
 
   else
-    log(object .. " does not exist.")
+    error(object .. " does not exist.")
   end
 end
 
@@ -165,10 +165,10 @@ function KaoExtended.recipe.addtorecipe(recipe, item)
 
   else
     if not data.raw.recipe[recipe] then
-      log("Recipe " .. recipe .. " does not exist.")
+      error("Recipe " .. recipe .. " does not exist.")
     end
     if not KaoExtended.item.get_type(item) then
-      log("Ingredient " .. KaoExtended.item.basic_item(item).name .. " does not exist.")
+      error("Ingredient " .. KaoExtended.item.basic_item(item).name .. " does not exist.")
     end
   end
 end
