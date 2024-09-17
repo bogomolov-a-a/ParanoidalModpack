@@ -84,7 +84,6 @@ bobmods.lib.tech.add_prerequisite ("remelting-alloy-mixer-1", "logistic-science-
 bobmods.lib.tech.add_prerequisite ("chemical-processing-2", "logistic-science-pack")
 bobmods.lib.tech.add_prerequisite ("angels-ironworks-1", "logistic-science-pack")
 bobmods.lib.tech.add_prerequisite ("bi-tech-bio-farming-2", "logistic-science-pack")
-bobmods.lib.tech.add_prerequisite ("adv-seed-extraction", "logistic-science-pack")
 bobmods.lib.tech.add_prerequisite ("nanobots-cliff", "logistic-science-pack")
 --синие банки
 bobmods.lib.tech.add_prerequisite ("remelting-alloy-mixer-2", "chemical-science-pack")
@@ -93,7 +92,6 @@ bobmods.lib.tech.add_prerequisite ("bio-refugium-fish-3", "chemical-science-pack
 bobmods.lib.tech.add_prerequisite ("bio-refugium-hatchery-2", "chemical-science-pack")
 bobmods.lib.tech.add_prerequisite ("worker-robots-speed-1", "chemical-science-pack")
 bobmods.lib.tech.add_prerequisite ("Rubber-Processing", "chemical-science-pack")
-bobmods.lib.tech.add_prerequisite ("worker-robots-battery-1", "chemical-science-pack")
 bobmods.lib.tech.add_prerequisite ("bet-tech", "chemical-science-pack")
 bobmods.lib.tech.add_prerequisite ("roboport-interface", "chemical-science-pack")
 bobmods.lib.tech.add_prerequisite ("bio-farm-3", "chemical-science-pack")
@@ -1029,7 +1027,6 @@ data.raw["assembling-machine"]["blast-furnace-4"].crafting_categories = {"blast-
 
 ----------------SEO fix----------------
 --убираем неправильные зависимости
-bobmods.lib.tech.remove_prerequisite("cement-mixture-1", "concrete") --бетон
 bobmods.lib.tech.remove_prerequisite("angels-stone-smelting-2", "concrete") --бетон
 bobmods.lib.tech.remove_prerequisite("plastic-1", "plastics") --пластик
 
@@ -1233,7 +1230,7 @@ bobmods.lib.tech.add_prerequisite("bio-refugium-fish-3", "angels-titanium-smelti
 bobmods.lib.tech.add_prerequisite("bio-refugium-butchery-3", "angels-titanium-smelting-1") --бойня 3 под титан
 bobmods.lib.tech.add_prerequisite("bio-refugium-butchery-3", "advanced-electronics-2") --бойня 3 под титан
 bobmods.lib.tech.add_prerequisite("remelting-alloy-mixer-3", "production-science-pack") --смешиватель мк3 под производственн пакеты
-bobmods.lib.tech.add_prerequisite("offshore-mk3-pump", "angels-titanium-smelting-1") --насос 3 под титан
+--bobmods.lib.tech.add_prerequisite("offshore-mk3-pump", "angels-titanium-smelting-1") --насос 3 под титан
 bobmods.lib.tech.add_prerequisite("logistics-3", "angels-titanium-smelting-1") --логистика 3 под титан
 bobmods.lib.tech.add_prerequisite("CW-air-filtering-4", "advanced-electronics-2") --фильтры 3 под электронику 3
 bobmods.lib.tech.add_prerequisite("CW-air-filtering-4", "angels-titanium-smelting-1") --фильтры 3 под титан
@@ -1480,7 +1477,7 @@ data.raw["mining-drill"]["thermal-extractor"].allowed_effects = {"consumption", 
 data.raw["mining-drill"]["thermal-bore"].allowed_effects = {"consumption", "pollution"}
 
 --###############################################################################################
---финальный код для новых береговых насосов
+--[[--финальный код для новых береговых насосов
 --offshore-burner
 data.raw['item']["offshore-mk0-pump"].place_result = "offshore-mk0-pump"
 data.raw["pump"]["offshore-mk0-pump-output"].energy_usage = "900kW"
@@ -1526,7 +1523,7 @@ data.raw.technology["offshore-mk4-pump"].unit.ingredients = {{"automation-scienc
 data.raw.pump["seafloor-pump-output"].pumping_speed = data.raw["offshore-pump"]["seafloor-pump"].pumping_speed
 data.raw.pump["seafloor-pump-2-output"].pumping_speed = data.raw["offshore-pump"]["seafloor-pump-2"].pumping_speed
 data.raw.pump["seafloor-pump-3-output"].pumping_speed = data.raw["offshore-pump"]["seafloor-pump-3"].pumping_speed
-
+]]
 --###############################################################################################
 --Фикс снайперских турелей
 data.raw["ammo-turret"]["bob-sniper-turret-1"].attack_parameters.min_range = 15
@@ -1648,7 +1645,7 @@ data.raw.technology["bi-tech-resin-extraction"].hidden = true --прячем л�
 bobmods.lib.tech.add_prerequisite ("hiend_train", "bob-fluid-wagon-3") -- привязать магнитный локомотив и вагоны к вагонам и цистернам мк3
 bobmods.lib.tech.add_prerequisite ("water-chemistry-2", "thorium-fuel-reprocessing") -- привязатьо дейтериевую энергетику к Переработки тория (нет ядерного катализатора)
 bobmods.lib.tech.add_prerequisite ("extremely-advanced-rocket-payloads", "space-lab") -- Привязать КОсмический челнок к Космическая лаборатория (Данные с космической станции недоступны)
-bobmods.lib.recipe.add_ingredient("offshore-pump", {"offshore-mk0-pump", 2}) -- к Электрический береговой насос добавляем Твердотопливный береговой насос 2 штуки
+--bobmods.lib.recipe.add_ingredient("offshore-pump", {"offshore-mk0-pump", 2}) -- к Электрический береговой насос добавляем Твердотопливный береговой насос 2 штуки
 
 --###############################################################################################
 --Финальный Ремонт дерева исследований от ЮШРАКА прости Господи
