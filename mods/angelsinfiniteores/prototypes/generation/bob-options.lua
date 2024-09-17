@@ -1,4 +1,4 @@
-if mods["bobores"] then
+if mods["bobores"] and settings.startup["bobmods-ores-enablegemsore"].value then  
   if bobmods.ores.settings.UnsortedGemOre == true then
     bobmods.lib.resource.add_result("infinite-gem-ore", {name="gem-ore"})
   else

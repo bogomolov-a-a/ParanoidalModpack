@@ -1,13 +1,7 @@
 --BOBS + VANILLA
 
-bobmods.lib.recipe.add_new_ingredient ("submachine-gun", {type="gun", name="pistol", amount=2})
+bobmods.lib.recipe.add_new_ingredient ("submachine-gun", {type="item", name="pistol", amount=2})
 
-  bobmods.lib.recipe.remove_ingredient("bob-logistic-robot-2", {"logistic-robot"})
-  bobmods.lib.recipe.remove_ingredient("bob-construction-robot-2", {"construction-robot"})
-  bobmods.lib.recipe.remove_ingredient("bob-logistic-robot-3", {"bob-logistic-robot-2"})
-  bobmods.lib.recipe.remove_ingredient("bob-construction-robot-3", {"bob-construction-robot-2"})
-  bobmods.lib.recipe.remove_ingredient("bob-logistic-robot-4", {"bob-logistic-robot-3"})
-  bobmods.lib.recipe.remove_ingredient("bob-construction-robot-4", {"bob-construction-robot-3"})
   bobmods.lib.recipe.add_ingredient("bob-logistic-robot-2", {"logistic-robot", 2})
   bobmods.lib.recipe.add_ingredient("bob-construction-robot-2", {"construction-robot", 2})
   bobmods.lib.recipe.add_ingredient("bob-logistic-robot-3", {"bob-logistic-robot-2", 2})
@@ -73,7 +67,7 @@ bobmods.lib.recipe.remove_ingredient ("steam-turbine-3", "steam-turbine-2")
 bobmods.lib.recipe.add_new_ingredient ("steam-turbine-3", {type="item", name="steam-turbine-2", amount=2})
 
 bobmods.lib.recipe.remove_ingredient ("assembling-machine-2", "assembling-machine-1")
-bobmods.lib.recipe.add_new_ingredient ("assembling-machine-2", {type="item", name="assembling-machine", amount=2})
+bobmods.lib.recipe.add_new_ingredient ("assembling-machine-2", {type="item", name="assembling-machine-1", amount=2})
 bobmods.lib.recipe.remove_ingredient ("assembling-machine-3", "assembling-machine-2")
 bobmods.lib.recipe.add_new_ingredient ("assembling-machine-3", {type="item", name="assembling-machine-2", amount=2})
 bobmods.lib.recipe.remove_ingredient ("assembling-machine-4", "assembling-machine-3")
@@ -84,7 +78,7 @@ bobmods.lib.recipe.remove_ingredient ("assembling-machine-6", "assembling-machin
 bobmods.lib.recipe.add_new_ingredient ("assembling-machine-6", {type="item", name="assembling-machine-5", amount=2})
 
 bobmods.lib.recipe.remove_ingredient ("electronics-machine-1", "iron-gear-wheel")
-bobmods.lib.recipe.add_new_ingredient ("electronics-machine-1", {type="item", name="assembling-machine", amount=1})
+bobmods.lib.recipe.add_new_ingredient ("electronics-machine-1", {type="item", name="assembling-machine-1", amount=1})
 bobmods.lib.recipe.remove_ingredient ("electronics-machine-2", "electronics-machine-1")
 bobmods.lib.recipe.add_new_ingredient ("electronics-machine-2", {type="item", name="electronics-machine-1", amount=2})
 bobmods.lib.recipe.remove_ingredient ("electronics-machine-3", "electronics-machine-2")

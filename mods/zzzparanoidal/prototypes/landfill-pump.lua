@@ -1,4 +1,4 @@
-if not mods["P-U-M-P-S"] then return end
+if mods["P-U-M-P-S"] then return end
 -- Начало мода на помпы Pumps on Landfill
 for _, tile in pairs(data.raw.tile) do
     if (tile.name == "landfill" or tile.water_contained) then
