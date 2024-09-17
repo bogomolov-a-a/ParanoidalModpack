@@ -1,0 +1,2 @@
+function on_destroy_entity_station_parts(event)
+end
