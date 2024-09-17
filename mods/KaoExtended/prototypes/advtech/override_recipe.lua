@@ -116,16 +116,16 @@ if kaoextended.settingsoveride == true then
 	KaoExtended.recipe.addtorecipe("module-processor-board-3", {"condensator3", 16})	
 	
 	KaoExtended.recipe.addtorecipe("speed-processor", {"condensator", 8})
-	KaoExtended.recipe.addtorecipe("speed-processor-2", {"condensator-2", 8})
-	KaoExtended.recipe.addtorecipe("speed-processor-3", {"condensator-3", 8})	
+	KaoExtended.recipe.addtorecipe("speed-processor-2", {"condensator2", 8})
+	KaoExtended.recipe.addtorecipe("speed-processor-3", {"condensator3", 8})	
 
 	KaoExtended.recipe.addtorecipe("effectivity-processor", {"condensator", 8})
-	KaoExtended.recipe.addtorecipe("effectivity-processor-2", {"condensator-2", 8})
-	KaoExtended.recipe.addtorecipe("effectivity-processor-3", {"condensator-3", 8})		
+	KaoExtended.recipe.addtorecipe("effectivity-processor-2", {"condensator2", 8})
+	KaoExtended.recipe.addtorecipe("effectivity-processor-3", {"condensator3", 8})		
 	
 	KaoExtended.recipe.addtorecipe("productivity-processor", {"condensator", 8})
-	KaoExtended.recipe.addtorecipe("productivity-processor-2", {"condensator-2", 8})
-	KaoExtended.recipe.addtorecipe("productivity-processor-3", {"condensator-3", 8})		
+	KaoExtended.recipe.addtorecipe("productivity-processor-2", {"condensator2", 8})
+	KaoExtended.recipe.addtorecipe("productivity-processor-3", {"condensator3", 8})		
 	
 	KaoExtended.recipe.addtorecipe("transport-belt", {"basic-transport-belt", 2})
 	

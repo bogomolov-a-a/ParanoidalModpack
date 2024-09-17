@@ -22,14 +22,14 @@ local function reset_basic_technology_prerequisites_to_regular_tree(mode)
     tech_util.reset_prerequisites_for_technology("angels-zinc-smelting-1",
         _table.deepcopy(Utils.get_moded_object("technology", "zinc-processing", mode).prerequisites), mode)
     --заменяем удалённые технологии
-    tech_util.replace_all_occurs_prerequisite_to_another_in_active_technologies("zinc-processing",
+   --[[ tech_util.replace_all_occurs_prerequisite_to_another_in_active_technologies("zinc-processing",
         "angels-brass-smelting-1", mode)
     tech_util.replace_all_occurs_prerequisite_to_another_in_active_technologies("nitrogen-processing",
         "angels-nitrogen-processing-1", mode)
     tech_util.replace_all_occurs_prerequisite_to_another_in_active_technologies("radars-1", "radar", mode)
     tech_util.replace_all_occurs_prerequisite_to_another_in_active_technologies("bio-fermentation", "bio-farm-1", mode)
     tech_util.replace_all_occurs_prerequisite_to_another_in_active_technologies("k-angels-advanced-chemistry-5",
-        "angels-advanced-chemistry-3", mode)
+        "angels-advanced-chemistry-3", mode)]]
     -- конец заменяем удалённые технологии
     if mods["nixie-tubes"] then
         tech_util.reset_prerequisites_for_technology("cathodes", { "circuit-network" }, mode)
@@ -37,7 +37,7 @@ local function reset_basic_technology_prerequisites_to_regular_tree(mode)
 end
 
 local function add_prerequisites_to_technologies_in_regular_tree(mode)
-    --для бойлеров
+    --[[--для бойлеров
     if settings.startup["bobmods-power-heatsources"].value == true then
         tech_util.add_prerequisites_to_technology("burner-reactor-1", { "nuclear-power" }, mode)
     end
@@ -583,11 +583,11 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("vehicle-big-turret-equipment-1", { "alien-artifact" }, mode)
     tech_util.add_prerequisites_to_technology("bi-tech-advanced-biotechnology", { "alien-artifact" }, mode)
     tech_util.add_prerequisites_to_technology("bio-refugium-hatchery", { "gardens" }, mode)
-    tech_util.add_prerequisites_to_technology("alien-artifact", { "automation-science-pack" }, mode)
+    tech_util.add_prerequisites_to_technology("alien-artifact", { "automation-science-pack" }, mode)]]
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
-    -- удаление скрытых технологий
+    --[[-- удаление скрытых технологий
     tech_util.remove_prerequisites_from_technology("water-chemistry-2", { "angels-electric-boiler-2" }, mode)
     -- конец удаление скрытых технологий
     -- удаление остальных
@@ -605,11 +605,11 @@ local function remove_prerequisites_from_technologies_in_regular_tree(mode)
     -- конец удаление остальных
     -- удаление после начала игры и использование "когнитивной составляющей"
     tech_util.remove_prerequisites_from_technology("bio-farm-1", { "gardens" }, mode)
-    tech_util.remove_prerequisites_from_technology("alien-artifact", { "gardens" }, mode)
+    tech_util.remove_prerequisites_from_technology("alien-artifact", { "gardens" }, mode)]]
 end
 
 local function remove_recipes_from_technology_effects_in_regular_tree(mode)
-    -- скрытые рецепты или несуществующие
+   --[[ -- скрытые рецепты или несуществующие
     tech_util.remove_recipe_effect_from_technology("ober-nuclear-processing", "nuclear-smelting-copper-plate", mode)
     tech_util.remove_recipe_effect_from_technology("ober-nuclear-processing", "nuclear-smelting-iron-plate", mode)
     tech_util.remove_recipe_effect_from_technology("ober-nuclear-processing", "nuclear-smelting-lead-plate", mode)
@@ -635,11 +635,11 @@ local function remove_recipes_from_technology_effects_in_regular_tree(mode)
     tech_util.remove_recipe_effect_from_technology("slag-processing-1", "slag-processing-6", mode)
     tech_util.remove_recipe_effect_from_technology("bio-farm-1", "crop-farm", mode)
     -- применимость всех результатов рецептов
-    tech_util.remove_recipe_effect_from_technology("robotics", "robot-drone-frame-large", mode)
+    tech_util.remove_recipe_effect_from_technology("robotics", "robot-drone-frame-large", mode)]]
 end
 
 local function move_recipes_to_another_technologies(mode)
-    --basic
+    --[[--basic
     tech_util.move_recipe_effects_to_another_technology("electricity", "repair-pack", "repair-pack", mode)
     tech_util.move_recipe_effects_to_another_technology("electricity", "basic-logistics", "burner-filter-inserter", mode)
     tech_util.move_recipe_effects_to_another_technology("basic-automation", "basic-logistics", "burner-inserter", mode)
@@ -659,11 +659,8 @@ local function move_recipes_to_another_technologies(mode)
         mode)
     -- конец перенос из удалённых технологий
     --another
-    if mods["hero turrets"] then
-        tech_util.move_recipe_effects_to_another_technology("w93-modular-turrets", "w93-modular-turrets2",
-            "w93-hmg-turret2",
-            mode)
-    end
+    tech_util.move_recipe_effects_to_another_technology("w93-modular-turrets", "w93-modular-turrets2", "w93-hmg-turret2",
+        mode)
     tech_util.move_recipe_effects_to_another_technology("tungsten-processing", "tungsten-alloy-processing",
         "anotherworld-structure-components", mode)
     tech_util.move_recipe_effects_to_another_technology("basic-automation", "steam-power", "steam-inserter", mode)
@@ -731,7 +728,7 @@ local function move_recipes_to_another_technologies(mode)
         "condensator2", mode)
     -- после начала игры и прохождения технологического стэка
     tech_util.move_recipe_effects_to_another_technology("advanced-electronics", "alien-research", "sci-component-o", mode)
-    --end another
+    --end another]]
 end
 
 local function add_recipe_to_technology_effects(mode)
@@ -789,7 +786,7 @@ local function add_recipe_to_technology_effects(mode)
     tech_util.add_recipe_effect_to_technology("military", "copper-nickel-firearm-magazine", mode)
     --#end region basic tech recipes
     -- остальные
-    tech_util.add_recipe_effect_to_technology("nuclear-power", "used-up-RITEG-1", mode)
+    --[[tech_util.add_recipe_effect_to_technology("nuclear-power", "used-up-RITEG-1", mode)
 
     if settings.startup["bobs-military-simplify"].value == true then
         tech_util.add_recipe_effect_to_technology("bob-bullets", "bullet-casing", mode)
@@ -826,13 +823,12 @@ local function add_recipe_to_technology_effects(mode)
     tech_util.add_recipe_effect_to_technology("powder-metallurgy-1", "sintering-oven", mode)
     -- дешёвыё вариант плавки бронзы необходим, иначе нет достижимости производства бронзы, сразу в металлургию 1
     tech_util.add_recipe_effect_to_technology("angels-metallurgy-1", "bronze-alloy", mode)
-    -- конец остальные
+    -- конец остальные]]
 end
 local function hide_recipes(mode)
-    local recipes = data.raw["recipe"]
-    -- скрыть бесполезный факел
+  --[[  -- скрыть бесполезный факел
     tech_util.hide_recipe("torch", mode)
-    -- конец скрыть бесполезный факел
+    -- конец скрыть бесполезный факел]]
     -- отключить ручной крафт руд
     tech_util.hide_recipe("angelsore1-crushed-hand", mode)
     tech_util.hide_recipe("angelsore3-crushed-hand", mode)
@@ -843,7 +839,7 @@ local function hide_technologies(mode)
     tech_util.hide_technology("angels-electric-boiler", mode)
     tech_util.hide_technology("angels-electric-boiler-2", mode)
     tech_util.hide_technology("angels-electric-boiler-3", mode)
-    --конец отключить электробойлеры, реализованные как сборочные автоматы
+--[[    --конец отключить электробойлеры, реализованные как сборочные автоматы
     --отключить электробойлер и бойлер на солнечных батареях
     tech_util.hide_technology("bi-tech-steamsolar-combination", mode)
     -- конец отключить электробойлер и бойлер на солнечных батареях
@@ -861,14 +857,14 @@ local function hide_technologies(mode)
     end
     if data.raw["technology"]["nuclear-fuel"] then
         tech_util.hide_technology("nuclear-fuel", mode)
-    end
+    end]]
 end
 local function show_technologies(mode)
-    tech_util.show_technology("angels-solder-smelting-basic", mode)
-    tech_util.show_technology("powder-metallurgy-1", mode)
+    --[[tech_util.show_technology("angels-solder-smelting-basic", mode)
+    tech_util.show_technology("powder-metallurgy-1", mode)]]
 end
 local function show_recipes(mode)
-    tech_util.show_recipe("magazine", mode)
+    --[[tech_util.show_recipe("magazine", mode)
 
     if settings.startup["bobs-military-simplify"].value == true then
         tech_util.show_recipe("shotgun-shell-casing", mode)
@@ -882,7 +878,7 @@ local function show_recipes(mode)
     tech_util.show_recipe("angels-solder-mixture-smelting", mode)
     tech_util.show_recipe("angels-stone-pipe-casting", mode)
     tech_util.show_recipe("angels-stone-pipe-to-ground-casting", mode)
-    tech_util.show_recipe("sintering-oven", mode)
+    tech_util.show_recipe("sintering-oven", mode)]]
 end
 
 _table.each(GAME_MODES, function(mode)
