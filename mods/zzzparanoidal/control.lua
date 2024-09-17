@@ -1,19 +1,9 @@
-require("prototypes.mod_compatibility.heroturrets_script") -- скрипт разжалования турелей
+require("prototypes.mod_compatibility.heroturrets_script") --скрипт разжалования турелей
 require("__PMRPGsystem__/prototypes/test")
--- ##############################
--- код для работы новых насосов
-local offshore_pump_types = {"offshore-mk0-pump", "offshore-pump", "offshore-mk2-pump", "offshore-mk3-pump", "offshore-mk4-pump", "seafloor-pump", "seafloor-pump-2", "seafloor-pump-3"}
 
-local function offshore_pump_setup(entity)
-    local direction = entity.direction
-    local position = entity.position
-    position.y = position.y + 1 / 32
-    entity.surface.create_entity {
-        name = entity.name .. "-output",
-        position = position,
-        direction = direction,
-        force = entity.force
-    }
+
+if (settings.global["paranoidal-disable-vanilla-evolution"] or {}).value then
+    script.on_init(function() game.map_settings.enemy_evolution.enabled = false end)
 end
 
 local function on_entity_created(event)
@@ -37,7 +27,7 @@ local function hidden_entity_created(event) --создаём скрытые pole
                 return
             end
             if entity.name == pump then
-                entity.surface.create_entity{name="hidden-electric-pole", position=entity.position, force=entity.force}
+                entity.surface.create_entity { name = "hidden-electric-pole", position = entity.position, force = entity.force }
                 return
             end
         end
@@ -47,7 +37,7 @@ end
 local function remove_entities(surface, names, position, area)
     for _, name in pairs(names) do
         for _, entity in pairs(surface.find_entities_filtered {
-            area = {{position.x - area, position.y - area}, {position.x + area, position.y + area}},
+            area = { { position.x - area, position.y - area }, { position.x + area, position.y + area } },
             name = name
         }) do
             entity.destroy()
@@ -60,12 +50,12 @@ local function on_entity_removed(event) --удаление лишних сущн
         local entity = event.entity
         for _, pump in pairs(offshore_pump_types) do
             if entity.name == pump .. "-output" then
-                remove_entities(entity.surface, {pump}, entity.position, 0.5)
-                remove_entities(entity.surface, {"hidden-electric-pole"}, entity.position, 0.5)
+                remove_entities(entity.surface, { pump }, entity.position, 0.5)
+                remove_entities(entity.surface, { "hidden-electric-pole" }, entity.position, 0.5)
                 return
             elseif entity.name == pump then
-                remove_entities(entity.surface, {pump .. "-output"}, entity.position, 0.5)
-                remove_entities(entity.surface, {"hidden-electric-pole"}, entity.position, 0.5)
+                remove_entities(entity.surface, { pump .. "-output" }, entity.position, 0.5)
+                remove_entities(entity.surface, { "hidden-electric-pole" }, entity.position, 0.5)
                 return
             end
         end
@@ -78,8 +68,8 @@ local function on_player_rotated_entity(event) --я хз зачем это вс�
         for _, pump in pairs(offshore_pump_types) do
             if entity.name == pump .. "-output" then
                 local pumps = entity.surface.find_entities_filtered {
-                    area = {{entity.position.x - 0.5, entity.position.y - 0.5},
-                            {entity.position.x + 0.5, entity.position.y + 0.5}},
+                    area = { { entity.position.x - 0.5, entity.position.y - 0.5 },
+                        { entity.position.x + 0.5, entity.position.y + 0.5 } },
                     name = pump,
                     limit = 1
                 }
@@ -175,9 +165,9 @@ local function on_entity_bio_removed(event)
             }
 
             for _, name in pairs(entities_to_remove) do
-                local nearby_entities = surface.find_entities_filtered{
-                    name = name, 
-                    position = position, 
+                local nearby_entities = surface.find_entities_filtered {
+                    name = name,
+                    position = position,
                     radius = 1
                 }
                 for _, nearby_entity in pairs(nearby_entities) do
@@ -242,11 +232,11 @@ local function spilled_items(event)
 
     table.insert(inventories, entity.get_burnt_result_inventory())
 
-    local grid = entity.grid -- LuaEquipmentGrid
+    local grid = entity.grid                             -- LuaEquipmentGrid
     if grid then
-        local equipments = grid.equipment -- array of LuaEquipment [R]
+        local equipments = grid.equipment                -- array of LuaEquipment [R]
         for i, equipment in pairs(equipments) do
-            local prototype = equipment.prototype -- LuaEquipmentPrototype [Read-only]
+            local prototype = equipment.prototype        -- LuaEquipmentPrototype [Read-only]
             local item_prototype = prototype.take_result -- LuaItemPrototype [Read-only]
             local name = item_prototype.name
             surface.spill_item_stack(position, {
@@ -269,8 +259,8 @@ local function spilled_items(event)
                     local name = item_stack.name
                     local count = item_stack.count
                     --					if count >= stack_size then
-                    --						surface.create_entity{name="item-on-ground", 
-                    --							position=position, 
+                    --						surface.create_entity{name="item-on-ground",
+                    --							position=position,
                     --							stack={name=name, count=count}}
                     --					else -- I want to split count by stacks, but not today
                     surface.spill_item_stack(position, {
@@ -286,12 +276,12 @@ local function spilled_items(event)
         inventory.clear() -- not for other mods
     end
 end
--- ###############################################################################################
--- ############################## Все ресурсы х5 на дефолт настройках
+--###############################################################################################
+--############################## Все ресурсы х5 на дефолт настройках
 
 -- Список имен ресурсов, которые вы хотите изменить
-local resourceNames = {"angels-ore1", "angels-ore2", "coal", "angels-ore3", "angels-ore4", "angels-ore5", "angels-ore6",
-                       "angels-natural-gas", "crude-oil"}
+local resourceNames = { "angels-ore1", "angels-ore2", "coal", "angels-ore3", "angels-ore4", "angels-ore5", "angels-ore6",
+    "angels-natural-gas", "crude-oil" }
 
 if settings.startup["newbie_resourse"].value == true then
     -- Обработчик события on_chunk_generated
@@ -299,9 +289,7 @@ if settings.startup["newbie_resourse"].value == true then
         -- Проверяем, что это именно генерация ресурсов
         if event.surface.name == "nauvis" then
             -- Изменяем настройки генерации ресурсов в чанках
-            for _, entity in pairs(event.surface.find_entities_filtered {
-                area = event.area
-            }) do
+            for _, entity in pairs(event.surface.find_entities_filtered { area = event.area }) do
                 -- Проверяем, является ли сущность ресурсом
                 if isResource(entity.name, resourceNames) then
                     if entity.amount * 5 >= 4294967294 then
@@ -338,7 +326,6 @@ local function configure_picker_dollies()
         end
     end
 end
-
 -- ##############################
 -- ############################## Скрипт для удаления лишнего окна в Gui Unifer
 local function delete_gui_random(event)
@@ -352,22 +339,21 @@ local function delete_gui_random(event)
     end
 end
 
+
 -- ##############################
 -- запускаем скрипты
+
 local function spilled_and_removed(event)
     if settings.startup["item-drop"].value == true then
         spilled_items(event) -- должен быть первым
     end
-    on_entity_removed(event)
-    replace_blueprint(event) -- заменяем чертежи скрытой помпы при смерти
     on_entity_bio_removed(event)
 end
 
-local function offshore_and_bio(event)
-    on_entity_removed(event)
-    -- replace_blueprint(event) -- сдесь надо код на замену чертежа при контрол зет. пока непоянтно как
+local function bio_hidden_removed(event)
     on_entity_bio_removed(event)
 end
+
 
 local function gui_and_created(event)
     kill_nasos(event)
@@ -394,8 +380,6 @@ end
 
 script.on_event(defines.events.on_built_entity, gui_and_created) -- вместе с delete gui
 script.on_event(defines.events.on_robot_built_entity, nasos_and_entity)
-script.on_event(defines.events.script_raised_built, nasos_and_entity)
-script.on_event(defines.events.script_raised_revive, nasos_and_entity)
 
 script.on_event(defines.events.on_player_rotated_entity, on_player_rotated_entity)
 
