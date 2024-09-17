@@ -145,7 +145,7 @@ local function get_another_trees_handling_error_message(
             effect_ingredient_not_found_in_current_tree
         )
     local all_with_hidden_technology_names = tech_util.get_all_technology_names_with_hidden()
-    local result = "all with hidden technology names " .. Utils.dump_to_console(all_with_hidden_technology_names) .. "\n"
+    local result = ""--"all with hidden technology names " .. Utils.dump_to_console(all_with_hidden_technology_names) .. "\n"
     local all_with_hidden_technology_names_for_missed_ingredient =
         filter_all_available_technologies_with_ingredient(
             all_with_hidden_technology_names,
