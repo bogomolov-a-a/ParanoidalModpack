@@ -18,12 +18,13 @@ local function create_resource_detected_technologies_and_add_it_to_normal_techno
             resource_recipe_name
         )
         --log("resource_detected_technology " .. Utils.dump_to_console(resource_detected_technology))
-        data:extend({
-            resource_detected_technology,
-        })
+        if not data.raw[resource_detected_technology.type][resource_detected_technology.name] then 
+            data:extend({
+                resource_detected_technology,
+            })
+        end
         _table.each(active_technology_names, function(active_technology_name)
-            local recipe_ingredients =
-                tech_util.get_all_recipe_ingredients_for_specified_technology(active_technology_name, mode)
+            local recipe_ingredients = tech_util.get_all_recipe_ingredients_for_specified_technology(active_technology_name, mode)
             if _table.contains_f_deep(recipe_ingredients, recipe_result) then
                 tech_util.add_recipe_effect_to_technology(active_technology_name, resource_recipe_name, mode)
                 tech_util.add_prerequisites_to_technology(active_technology_name, { resource_detected_technology.name },
