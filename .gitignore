@@ -1,18 +1,16 @@
-/*
+*
 !.github
 !mods
+!mods/** 
+
 !docs
-!.nuke
-!build.*
+!build.sh
 !Paranoidal.sln
 !config.json
 !.gitlab-ci.yml
 !README.md
 
-bin
-obj
-temp
-.idea
 mods/mod-settings.dat
 mods/mod-list.json
 mods/*.zip
+mods/music-new_0.1.6/**
