@@ -57,6 +57,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     if mods["Electric_Transformators"] then
         tech_util.add_prerequisites_to_technology("trafo-s",{"angels-steel-smelting-1"},mode)
         tech_util.add_prerequisites_to_technology("trafo-l", { "chemical-science-pack" }, mode)
+        tech_util.add_prerequisites_to_technology("trafo-xl",{"production-science-pack"},mode)
 
     end
     if mods["UnrealisticReactors"] then
