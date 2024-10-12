@@ -103,11 +103,14 @@ function boiler_processing(technology_names, mode)
                 local filtered_boiler_data = _table.filter(boiler_datas, function(data)
                     return data.is_burner_energy_source
                 end)[1]
-                tech_util.add_prerequisites_to_technology(
-                    current_technology_name,
-                    { filtered_boiler_data.technology_name_occured_boiler_prototype },
-                    mode
-                )
+                if not  TechnologyTreeUtil.have_technology_in_tree(current_technology_name, filtered_boiler_data.technology_name_occured_boiler_prototype, mode) then
+                
+                    tech_util.add_prerequisites_to_technology(
+                        current_technology_name,
+                        { filtered_boiler_data.technology_name_occured_boiler_prototype },
+                        mode
+                    )
+                end
             end
         end)
     end)
@@ -120,6 +123,7 @@ local function set_recipe_result(target_boiler_recipe, target_boiler_name)
     target_boiler_recipe.expensive.result = target_boiler_name
     target_boiler_recipe.expensive.results = nil
 end
+
 local function handle_one_recipe_data_by_temperature(recipe_data_by_temperature)
     local fuel_data_water_amount = recipe_data_by_temperature.fuel_data_water_amount
     --	log("fuel_data_water_amount " .. Utils.dump_to_console(fuel_data_water_amount))
