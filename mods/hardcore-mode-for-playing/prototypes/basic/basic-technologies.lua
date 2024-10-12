@@ -42,8 +42,8 @@ local function create_basic_technology(
         name = technology_name,
         icon_size = icon_size,
         icon = icon_name,
-        normal = technology_data,
-        expensive = technology_data
+        normal = _table.deep_copy(technology_data),
+        expensive = _table.deep_copy(technology_data)
     }
 end
 
