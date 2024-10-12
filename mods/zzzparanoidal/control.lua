@@ -8,7 +8,7 @@ end
 
 local function on_entity_created(event)
     local entity = event.created_entity or event.entity
-    if entity and entity.valid then
+    if entity and entity.valid and offshore_pump_types then
         for _, pump in pairs(offshore_pump_types) do
             if entity.name == pump then
                 offshore_pump_setup(entity)
@@ -20,7 +20,7 @@ end
 
 local function hidden_entity_created(event) --создаём скрытые pole
     local entity = event.created_entity or event.entity
-    if entity and entity.valid then
+    if entity and entity.valid and offshore_pump_types then
         for _, pump in pairs(offshore_pump_types) do
             -- Исключаем "offshore-mk0-pump"
             if entity.name == "offshore-mk0-pump" then
@@ -46,7 +46,7 @@ local function remove_entities(surface, names, position, area)
 end
 
 local function on_entity_removed(event) --удаление лишних сущностей
-    if event.entity and event.entity.valid then
+    if event.entity and event.entity.valid and offshore_pump_types then
         local entity = event.entity
         for _, pump in pairs(offshore_pump_types) do
             if entity.name == pump .. "-output" then
@@ -63,8 +63,8 @@ local function on_entity_removed(event) --удаление лишних сущн
 end
 
 local function on_player_rotated_entity(event) --я хз зачем это все равно помпы низя вертеть, но пусть будет
-    if event.entity and event.entity.valid then
-        local entity = event.entity
+    if event.entity and event.entity.valid and offshore_pump_types then
+        local entity = event.entity 
         for _, pump in pairs(offshore_pump_types) do
             if entity.name == pump .. "-output" then
                 local pumps = entity.surface.find_entities_filtered {
@@ -86,7 +86,7 @@ end
 
 local function replace_blueprint(event) --устраняем баги при смерти насоса
     local entity = event.entity
-    if entity and entity.valid then
+    if entity and entity.valid and offshore_pump_types then
         for _, pump_name in pairs(offshore_pump_types) do
             -- Проверяем, является ли сущность одним из типов с суффиксом "-output"
             if entity.name == pump_name .. "-output" then
@@ -116,9 +116,11 @@ end
 
 -- Функция для проверки наличия значения в таблице
 local function table_contains(tbl, value)
-    for _, v in pairs(tbl) do
-        if v == value then
-            return true
+    if tbl then
+        for _, v in pairs(tbl) do
+            if v == value then
+                return true
+            end
         end
     end
     return false
@@ -314,7 +316,7 @@ if settings.startup["newbie_resourse"].value == true then
 end
 -- ###############################################################################################
 -- Запрещаем двигать все насосы через PickerDollies
-local function configure_picker_dollies()
+--[[local function configure_picker_dollies()
     if remote.interfaces["PickerDollies"] then
         local suffixes = {"-output"}
         for _, pump_type in ipairs(offshore_pump_types) do
@@ -325,7 +327,7 @@ local function configure_picker_dollies()
             end
         end
     end
-end
+end]]
 -- ##############################
 -- ############################## Скрипт для удаления лишнего окна в Gui Unifer
 local function delete_gui_random(event)
@@ -372,7 +374,7 @@ local function evo_and_dolly() --выключаем эволюцию
     if (settings.global["paranoidal-disable-vanilla-evolution"] or {}).value then
         off_evo()
     end
-    configure_picker_dollies()
+  --  configure_picker_dollies()
 end
 
 
@@ -394,7 +396,7 @@ script.on_init(function() --наш любимый init, запрещаем дв�
 end)
 
 script.on_load(function() --без дропа эволюции потому что game недоступен
-    configure_picker_dollies()
+    --configure_picker_dollies()
 end)
 
 script.on_configuration_changed(function() --фикс эволюции при загрузке игры, если галочка была убрана и поставлена вновь
