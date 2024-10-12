@@ -104,12 +104,12 @@ end
 
 
 data:extend({
-    --[[{
+    {
         type = "locomotive",
         name = "JunkTrain",
         icon = "__JunkTrain3__/graphics/junk-train-icon.png",
         icon_size = 32,
-        flags = {"placeable-neutral", "player-creation", "placeable-off-grid", "not-on-map"},
+        flags = {"placeable-neutral", "player-creation", "placeable-off-grid"},
         minable = {mining_time = 1, result = "JunkTrain"},
         mined_sound = {filename = "__core__/sound/deconstruct-medium.ogg"},
         max_health = 100,
@@ -274,7 +274,7 @@ data:extend({
         open_sound = { filename = "__base__/sound/car-door-open.ogg", volume=0.7 },
         close_sound = { filename = "__base__/sound/car-door-close.ogg", volume = 0.7 },
         sound_minimum_speed = 0.5;
-    },]]
+    },
   {
     type = "straight-rail",
     name = "straight-scrap-rail",
@@ -320,12 +320,12 @@ data:extend({
     pictures = scrap_rail_pictures(),
     placeable_by = { item="scrap-rail", count = 4}
   },
-  --[[{
+  {
     type = "cargo-wagon",
     name = "ScrapTrailer",
     icon = "__JunkTrain3__/graphics/junk-wagon-icon.png",
     icon_size = 32,
-    flags = {"placeable-neutral", "player-creation", "placeable-off-grid", "not-on-map"},
+    flags = {"placeable-neutral", "player-creation", "placeable-off-grid"},
     inventory_size = 8,
     minable = {mining_time = 1, result = "ScrapTrailer"},
     mined_sound = {filename = "__core__/sound/deconstruct-medium.ogg"},
@@ -377,7 +377,7 @@ data:extend({
                 }
             }
     }
-	},]]
+	},
 
 
   {
