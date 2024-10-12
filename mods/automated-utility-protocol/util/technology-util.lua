@@ -166,6 +166,7 @@ TechUtil.add_prerequisites_to_technology = function(technology_candidate_name, p
                 error("У технологии "..technology_candidate_name.." уже есть зависимость "..prerequisite_name .." режим "..mode..
                 " data.raw ".. Utils.dump_to_console(data.raw["technology"][technology_candidate_name]))
             end
+            table.insert(technology.prerequisites, prerequisite_name)
         end
     )
 end
