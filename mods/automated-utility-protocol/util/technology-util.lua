@@ -167,6 +167,7 @@ TechUtil.add_prerequisites_to_technology = function(technology_candidate_name, p
                 " data.raw ".. Utils.dump_to_console(data.raw["technology"][technology_candidate_name]))
             end
             table.insert(technology.prerequisites, prerequisite_name)
+            log('К технологии '..technology_candidate_name..' добавлена технология '..prerequisite_name)
         end
     )
 end
@@ -182,6 +183,8 @@ TechUtil.remove_prerequisites_from_technology = function(technology_candidate_na
         prerequisites,
         function(prerequisite)
             _table.remove_item(technology.prerequisites, prerequisite)
+            log('Из технологии '..technology_candidate_name..' удалена технология '..prerequisite_name)
+
         end
     )
 end
