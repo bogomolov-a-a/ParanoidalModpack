@@ -303,6 +303,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("utility-science-pack",{"rubbers"},mode)
     tech_util.add_prerequisites_to_technology("flamethrower",{"engine"},mode)
     tech_util.add_prerequisites_to_technology("advanced-electronics-2",{"circuit-network"},mode)
+    tech_util.add_prerequisites_to_technology("w93-modular-turrets2",{"concrete"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
