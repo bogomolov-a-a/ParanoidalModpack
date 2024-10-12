@@ -121,7 +121,9 @@ local function handle_one_recipe(recipe_name, basic_technology_name, mode)
                     empty_recipe_name,
                     mode
                 )
-                tech_util.add_prerequisites_to_technology(target_technology_name, { basic_technology_name }, mode)
+                if not  TechnologyTreeUtil.have_technology_in_tree(target_technology_name, target_technology_name, mode) then
+                    tech_util.add_prerequisites_to_technology(target_technology_name, { target_technology_name }, mode)
+                end
                 --[[			log(
 					"add recipe pair "
 						.. recipe_name
