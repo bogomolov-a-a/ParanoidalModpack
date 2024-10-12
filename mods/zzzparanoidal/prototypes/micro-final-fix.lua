@@ -785,8 +785,9 @@ bobmods.lib.recipe.add_ingredient("bet-fuel-4-empty", {"advanced-processing-unit
 --recycling battery
 --исправление переработки батарей
 --в моде на электро-батарейковый поезд какая-то зубодробительная хрень с расчетом поэтому просто ввел количество
-
-bobmods.lib.recipe.remove_result("bet-fuel-2-recycling", "battery")
+if mods["BatteryElectricTrain"] then -- ВСЕГДА СТАВЬ МОД, В КОТОРОМ ТЫ МЕНЯЕШЬ ПРОТОТИПЫ!!!!! СЕГОДНЯ ОН ЕСТЬ В СБОРКЕ, А ЗАВТРА ЕГО НЕТ В СБОРКЕ!!!!
+if settings.startup["bet-recycling"].value== true then 
+  bobmods.lib.recipe.remove_result("bet-fuel-2-recycling", "battery")
 bobmods.lib.recipe.set_result("bet-fuel-2-recycling", {"lithium-ion-battery", 405})
 
 bobmods.lib.recipe.remove_result("bet-fuel-3-recycling", "battery")
@@ -794,6 +795,7 @@ bobmods.lib.recipe.set_result("bet-fuel-3-recycling", {"silver-zinc-battery", 67
 
 bobmods.lib.recipe.remove_result("bet-fuel-4-recycling", "battery")
 bobmods.lib.recipe.set_result("bet-fuel-4-recycling", {"silver-zinc-battery", 816})
+end
 -------------------------------------------------------------------------------------------------
 --зарядные
 data.raw.furnace["bet-charger-1"].icon = "__zzzparanoidal__/graphics/train/electric/factory_var_1_icon.png"
@@ -887,6 +889,7 @@ data.raw.furnace["bet-charger-3"].animation =
   animation_speed = 0.05,
   scale = 0.5,
 }
+end
 end
 --###############################################################################################
 --баланс поездов
