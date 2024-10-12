@@ -125,3 +125,15 @@ end
 function get_resource_detected_technology_name(resource_name)
     return resource_name .. DETECTED_RESOURCE_TECHNOLOGY_SUFFIX
 end
+Utils.dump_mods_list_to_stringz_without_base_mod=function(mods)
+    local mods_list={}
+    _table.each(mods, function(version,name)
+        if keyname~='base' then 
+            mods_list[#mods_list+1]={name=name,version=version}
+        end
+    end)
+    table.sort(mods_list, function(item1,item2)return item1.name<item2.name  end)
+    local result=''
+    _table.each(mods_list,function (item) result=result..item.name..':'..item.version..';' end)
+    return result
+end
