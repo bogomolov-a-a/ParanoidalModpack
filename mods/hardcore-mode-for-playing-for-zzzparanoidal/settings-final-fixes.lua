@@ -441,3 +441,7 @@ if mods["UnrealisticReactors"] then
     end
 end
 -- end startup
+--выключаем переработку аккумуляторов
+if mods["BatteryElectricTrain"]then 
+    set_settings_default_value("bool-setting","bet-recycling",false)
+end
