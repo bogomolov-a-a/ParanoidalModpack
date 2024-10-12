@@ -508,8 +508,7 @@ local function handle_technology_tree(active_technology_name, mode)
     check_recipes_not_has_hidden_in_tree(tree, mode)
     local unresolved_in_technology_ingredients = get_unresolved_technology_ingredients(active_technology_name, mode)
     if settings.startup["check-technology-tree-mods-protocol-use-recipe-ingredient-reacheable-validating"].value then
-        check_recipe_ingredients_reachable_in_tree(unresolved_in_technology_ingredients, active_technology_name, tree,
-            mode)
+        check_recipe_ingredients_reachable_in_tree(unresolved_in_technology_ingredients, active_technology_name, tree,mode)
     end
     if settings.startup["check-technology-tree-mods-protocol-use-recipe-signature-in-machine-automated-validating"].value then
         check_recipe_signatures_allowed_automated(active_technology_name, tree, mode)
