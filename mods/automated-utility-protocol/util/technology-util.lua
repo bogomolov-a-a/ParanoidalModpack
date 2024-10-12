@@ -181,7 +181,7 @@ TechUtil.remove_prerequisites_from_technology = function(technology_candidate_na
     end
     _table.each(
         prerequisites,
-        function(prerequisite)
+        function(prerequisite_name)
             _table.remove_item(technology.prerequisites, prerequisite)
             log('Из технологии '..technology_candidate_name..' удалена технология '..prerequisite_name)
 
