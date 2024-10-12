@@ -22,5 +22,12 @@ data:extend({
         name = "check-technology-tree-mods-protocol-use-validating-result-ingredients-greater-than-zero-in-signature",
         setting_type = "startup",
         default_value = true
+    },
+    {
+        type = "string-setting",
+        name = "check-technology-tree-mods-protocol-use-validating-mod-versions-table",
+        setting_type = "startup",        
+        default_value="(no mods)",
+        hidden=true
     }
 })
