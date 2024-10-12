@@ -1745,8 +1745,8 @@ data.raw.container["crash-site-spaceship"].minable =
   {name="condensator3", amount_min = 5, amount_max = 35},
   {name="processing-electronics", amount_min = 1, amount_max = 5},
   {name="insulated-cable", amount_min = 11, amount_max = 39},
-      {name="salvaged-generator", amount = 1},
-      {name="offshore-mk0-pump", amount = 1}
+      {name="salvaged-generator", amount = 1}--,
+      --{name="offshore-mk0-pump", amount = 1}
 }}
 --###############################################################################################
 --новый биоконтент МК2 и МК3
