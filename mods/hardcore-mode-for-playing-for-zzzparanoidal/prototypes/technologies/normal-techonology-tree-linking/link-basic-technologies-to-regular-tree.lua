@@ -305,6 +305,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("advanced-electronics-2",{"circuit-network"},mode)
     tech_util.add_prerequisites_to_technology("w93-modular-turrets2",{"concrete"},mode)
     tech_util.add_prerequisites_to_technology("Schall-tank-SH-1",{"utility-science-pack"},mode)
+    tech_util.add_prerequisites_to_technology("nanobots",{"repair-pack"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
