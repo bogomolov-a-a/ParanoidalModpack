@@ -307,6 +307,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("Schall-tank-SH-1",{"utility-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("nanobots",{"repair-pack"},mode)
     tech_util.add_prerequisites_to_technology("bob-fluid-handling-2",{"angels-bronze-smelting-1"},mode)
+    tech_util.add_prerequisites_to_technology("bob-robo-modular-1",{"concrete"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
