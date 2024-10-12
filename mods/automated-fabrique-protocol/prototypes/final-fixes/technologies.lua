@@ -95,10 +95,12 @@ local function handle_one_attp_technology_for_mode(attp_technology_name, mode)
         Utils.dump_to_console(real_to_add_attp_technology_name_descendants))
     _table.each(real_to_add_attp_technology_name_descendants,
         function(to_add_attp_technology_name_descendant_name)
-            tech_util.add_prerequisites_to_technology(to_add_attp_technology_name_descendant_name,
-                { attp_technology_name }, mode)
-            log('to technology ' .. to_add_attp_technology_name_descendant_name .. ' technology ' ..
-                attp_technology_name .. ' as prerequisite added')
+            if not  TechnologyTreeUtil.have_technology_in_tree(to_add_attp_technology_name_descendant_name, attp_technology_name, mode) then
+                tech_util.add_prerequisites_to_technology(to_add_attp_technology_name_descendant_name,
+                    { attp_technology_name }, mode)
+                log('to technology ' .. to_add_attp_technology_name_descendant_name .. ' technology ' ..
+                    attp_technology_name .. ' as prerequisite added')
+            end
         end)
 end
 local function handle_technology_mode(mode)
