@@ -299,6 +299,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("logistic-science-pack", { "angels-metallurgy-1" }, mode)    
     tech_util.add_prerequisites_to_technology("basic-wood-production", { "basic-metal-processing" }, mode)    
     tech_util.add_prerequisites_to_technology("utility-science-pack",{"rubbers"},mode)
+    tech_util.add_prerequisites_to_technology("flamethrower",{"engine"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
