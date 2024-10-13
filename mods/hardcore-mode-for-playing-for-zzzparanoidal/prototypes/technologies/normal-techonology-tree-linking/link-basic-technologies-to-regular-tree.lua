@@ -311,6 +311,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("toolbelt-4",{"utility-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("inserter-stack-size-bonus-4",{"utility-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("bob-shotgun-plasma-shells",{"automation-3"},mode)
+    tech_util.add_prerequisites_to_technology("memory-unit",{"warehouse-research"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
