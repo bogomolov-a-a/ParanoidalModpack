@@ -314,6 +314,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("memory-unit",{"warehouse-research"},mode)
     tech_util.add_prerequisites_to_technology("vehicle-roboport-equipment",{"concrete"},mode)
     tech_util.add_prerequisites_to_technology("armor-absorb-20",{"utility-science-pack"},mode)
+    tech_util.add_prerequisites_to_technology("cargo-planes",{"military"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
