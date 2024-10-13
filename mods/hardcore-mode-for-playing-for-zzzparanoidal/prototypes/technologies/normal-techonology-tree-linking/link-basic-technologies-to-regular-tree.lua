@@ -323,6 +323,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("ore-leaching",{"concrete"},mode)
     tech_util.add_prerequisites_to_technology("geode-processing-3",{"geode-crystallization-2"},mode)
     tech_util.add_prerequisites_to_technology("ore-powderizer",{"automation-2"},mode)
+    tech_util.add_prerequisites_to_technology("water-washing-2",{"angels-bronze-smelting-1"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
