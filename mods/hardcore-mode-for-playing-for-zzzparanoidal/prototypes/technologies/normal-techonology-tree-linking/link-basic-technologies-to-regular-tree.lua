@@ -281,6 +281,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("radiothermal-fuel-2", { "water-treatment-4" }, mode)
     tech_util.add_prerequisites_to_technology("thorium-nuclear-fuel-reprocessing-2", { "thorium-plutonium-fuel-cell" },mode)
     tech_util.add_prerequisites_to_technology("thorium-ore-processing", { "slag-processing-3" }, mode)
+    tech_util.add_prerequisites_to_technology("angels-advanced-gas-processing",{"concrete"},mode)
     tech_util.add_prerequisites_to_technology("angels-advanced-gas-processing-2",{ "angels-copper-tungsten-smelting-1", "advanced-electronics-3", "tungsten-alloy-processing","angels-advanced-chemistry-5" }, mode)
     tech_util.add_prerequisites_to_technology("sodium-processing-2",{ "angels-lead-smelting-3", "production-science-pack", "utility-science-pack" }, mode)
     tech_util.add_prerequisites_to_technology("angels-advanced-bio-processing", { "advanced-electronics-3" }, mode)
@@ -324,7 +325,8 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("ore-powderizer",{"automation-2"},mode)
     tech_util.add_prerequisites_to_technology("water-washing-2",{"angels-bronze-smelting-1","concrete"},mode)
     tech_util.add_prerequisites_to_technology("angels-sulfur-processing-2",{"electronics-machine-2"},mode)
-    tech_util.add_prerequisites_to_technology("angels-nitrogen-processing-2",{"angels-bronze-smelting-1"},mode)
+    tech_util.add_prerequisites_to_technology("angels-nitrogen-processing-2",{"angels-bronze-smelting-1"},mode)    
+
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
