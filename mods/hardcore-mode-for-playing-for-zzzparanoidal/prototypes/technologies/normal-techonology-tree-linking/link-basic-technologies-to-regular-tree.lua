@@ -333,6 +333,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("better-cargo-planes",{"low-density-structure","production-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("angels-aluminium-smelting-1",{"angels-sulfur-processing-2"},mode)
     tech_util.add_prerequisites_to_technology("angels-chrome-smelting-1",{"angels-metallurgy-4"},mode)
+    tech_util.add_prerequisites_to_technology("angels-lead-casting-2",{"angels-lead-smelting-1"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
