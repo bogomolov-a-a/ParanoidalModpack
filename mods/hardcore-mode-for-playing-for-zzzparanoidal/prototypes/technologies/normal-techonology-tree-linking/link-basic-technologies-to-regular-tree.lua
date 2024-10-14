@@ -329,6 +329,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("angels-advanced-chemistry-1",{"angels-bronze-smelting-1"},mode)
     tech_util.add_prerequisites_to_technology("angels-advanced-chemistry-2",{"concrete"},mode)
     tech_util.add_prerequisites_to_technology("angels-advanced-chemistry-4",{"titanium-processing","ore-refining"},mode)
+    tech_util.add_prerequisites_to_technology("resin-1",{"automation-2"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
@@ -347,7 +348,7 @@ local function remove_prerequisites_from_technologies_in_regular_tree(mode)
     tech_util.remove_prerequisites_from_technology("angels-metallurgy-2", { "angels-brass-smelting-1" }, mode)
     tech_util.remove_prerequisites_from_technology("logistic-science-pack", { "angels-bronze-smelting-1" }, mode)
     tech_util.remove_prerequisites_from_technology("alien-artifact", { "gardens" }, mode) 
-    tech_util.remove_prerequisites_from_technology("electronics-machine-2", { "advanced-electronics" }, mode)           
+    tech_util.remove_prerequisites_from_technology("electronics-machine-2", { "advanced-electronics" }, mode)      
 end
 
 local function remove_recipes_from_technology_effects_in_regular_tree(mode)
