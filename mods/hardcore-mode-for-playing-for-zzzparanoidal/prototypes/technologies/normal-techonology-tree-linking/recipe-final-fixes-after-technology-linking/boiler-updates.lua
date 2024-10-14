@@ -93,10 +93,10 @@ local function remove_recipe_ingredients(mode)
     recipe_util.remove_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-styrene",mode,{ { type = "item",name = "oil-steam-boiler-4" },{ type = "item",name = "boiler-5" } })
     recipe_util.remove_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-ethylbenzene",mode,{ { type = "item",name = "oil-steam-boiler-4" },{ type = "item",name = "boiler-5" } })
     recipe_util.remove_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-resin",mode,{ { type = "item",name = "oil-steam-boiler-4" },{ type = "item",name = "boiler-5" } })
+    recipe_util.remove_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-rubber",mode,{ { type = "item",name = "oil-steam-boiler-4" },{ type = "item",name = "boiler-5" } })
     
     --[[
     recipe_util.remove_recipe_ingredients("oil-steam-boiler-4-steam-615-with-fuel-fluid-liquid-rubber",mode,{ { type = "item",name = "oil-steam-boiler-3" },{ type = "item",name = "boiler-4" } })
-    recipe_util.remove_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-rubber",mode,{ { type = "item",name = "oil-steam-boiler-4" },{ type = "item",name = "boiler-5" } })
     --конец жидкие котлы]]
     --биобойлеры
      recipe_util.remove_recipe_ingredient("bi-bio-boiler-steam-165-with-fuel-item-coal",mode,{ type = "item",name = "boiler" })
@@ -208,10 +208,10 @@ local function add_recipe_ingredients(mode)
     recipe_util.add_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-styrene",mode,{ { type = "item",name = "steel-furnace",amount = 26 },{ type = "item",name = "steel-pipe",amount = 27 } })
     recipe_util.add_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-ethylbenzene",mode,{ { type = "item",name = "steel-furnace",amount = 26 },{ type = "item",name = "steel-pipe",amount = 27 } })
     recipe_util.add_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-resin",mode,{ { type = "item",name = "steel-furnace",amount = 26 },{ type = "item",name = "steel-pipe",amount = 27 } })
+    recipe_util.add_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-rubber",mode,{ { type = "item",name = "steel-furnace",amount = 26 },{ type = "item",name = "steel-pipe",amount = 27 } })
         
     --[[
     recipe_util.add_recipe_ingredients("oil-steam-boiler-4-steam-615-with-fuel-fluid-liquid-rubber",mode,{ { type = "item",name = "steel-furnace",amount = 18 },{ type = "item",name = "steel-pipe",amount = 19 } })
-    recipe_util.add_recipe_ingredients("oil-steam-boiler-5-steam-765-with-fuel-fluid-liquid-rubber",mode,{ { type = "item",name = "steel-furnace",amount = 26 },{ type = "item",name = "steel-pipe",amount = 27 } })
     --конец жидкие котлы]]
     --биобойлеры
     recipe_util.add_recipe_ingredients("bi-bio-boiler-steam-165-with-fuel-item-coal",mode,{ { type = "item",name = "stone-furnace",amount = 4 },{ type = "item",name = "pipe",amount = 4 } })
