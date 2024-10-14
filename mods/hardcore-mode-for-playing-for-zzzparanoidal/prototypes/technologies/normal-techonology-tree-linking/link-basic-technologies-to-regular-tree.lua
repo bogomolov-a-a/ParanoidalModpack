@@ -327,6 +327,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("angels-sulfur-processing-2",{"electronics-machine-2"},mode)
     tech_util.add_prerequisites_to_technology("angels-nitrogen-processing-2",{"angels-bronze-smelting-1"},mode)    
     tech_util.add_prerequisites_to_technology("angels-advanced-chemistry-1",{"angels-bronze-smelting-1"},mode)
+    tech_util.add_prerequisites_to_technology("angels-advanced-chemistry-2",{"concrete"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
