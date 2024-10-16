@@ -336,7 +336,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("angels-lead-casting-2",{"angels-lead-smelting-1"},mode)
     tech_util.add_prerequisites_to_technology("strand-casting-1",{"angels-bronze-smelting-1"},mode)
     tech_util.add_prerequisites_to_technology("angels-cooling",{"angels-bronze-smelting-1","angels-stone-smelting-1"},mode)
-    tech_util.add_prerequisites_to_technology("bio-processing-green",{"angels-steel-smelting-1"},mode)
+    tech_util.add_prerequisites_to_technology("bio-processing-green",{"angels-steel-smelting-1","angels-stone-smelting-1"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
