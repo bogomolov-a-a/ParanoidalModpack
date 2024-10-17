@@ -339,6 +339,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("bio-processing-green",{"angels-steel-smelting-1","angels-stone-smelting-1"},mode)
     tech_util.add_prerequisites_to_technology("bio-processing-blue",{"concrete"},mode)
     tech_util.add_prerequisites_to_technology("bio-processing-alien-2",{"slag-processing-2"},mode)
+    tech_util.add_prerequisites_to_technology("bio-pressing-1",{"angels-bronze-smelting-1"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
