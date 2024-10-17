@@ -343,7 +343,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("factory-preview",{"logistic-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("garden-mutation",{"utility-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("advanced-depleted-uranium-smelting-1",{"utility-science-pack"},mode)
-    
+    tech_util.add_prerequisites_to_technology("Rubber-Processing",{"ore-processing-2"},mode)    
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
