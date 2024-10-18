@@ -346,6 +346,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("Rubber-Processing",{"ore-processing-2"},mode)
     tech_util.add_prerequisites_to_technology("remelting-alloy-mixer-4",{"advanced-electronics-2","titanium-processing","utility-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("angels-copper-tungsten-smelting-2",{"utility-science-pack"},mode)
+    tech_util.add_prerequisites_to_technology("bio-refugium-butchery-3",{"titanium-processing"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
