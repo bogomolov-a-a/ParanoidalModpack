@@ -196,6 +196,12 @@ RecipeUtil.add_recipe_ingredient = function(recipe_name, mode, ingredient)
     if not moded_recipe.ingredients then
         moded_recipe.ingredients = {}
     end
+    if  _table.contains_f(moded_recipe.ingredients,function(item1)
+        return (ingredient.type or "item")==(item1.type or "item") and (ingredient.name or ingredient[1])==(item1.name or item1[1])
+    end)
+    then 
+        error("ingredient "..Utils.dump_to_console(ingredient).." already exists in recipe '"..recipe_name.."'")
+    end
     table.insert(moded_recipe.ingredients, ingredient)
 end
 RecipeUtil.add_recipe_ingredients = function(recipe_name, mode, ingredients)
