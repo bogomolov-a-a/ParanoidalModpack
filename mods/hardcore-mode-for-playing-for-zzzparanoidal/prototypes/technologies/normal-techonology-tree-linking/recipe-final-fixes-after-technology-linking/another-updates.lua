@@ -37,7 +37,6 @@ local function add_recipe_ingredients(mode)
             { type = "item", name = "speed-processor-2",        amount = 16 },{ type = "item", name = "effectivity-processor-2",  amount = 16 },{ type = "item", name = "productivity-processor-2", amount = 16 }
         })
     recipe_util.add_recipe_ingredients("intermediate-structure-components",mode,{{type = "item",name="steel-gear-wheel",amount=12}})
-    recipe_util.add_recipe_ingredients("standart-io",mode,{{  type = "item",name="condensator",amount=10}})
     recipe_util.add_recipe_ingredients("electronics-machine-2",mode,{{  type = "item",name="electronic-circuit",amount=10}})
 end
 _table.each(GAME_MODES,function(mode)
