@@ -350,6 +350,7 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("water-washing-4",{"advanced-electronics-2","utility-science-pack"},mode)
     tech_util.add_prerequisites_to_technology("angels-brass-smelting-2",{"strand-casting-1"},mode)
     tech_util.add_prerequisites_to_technology("angels-bronze-smelting-3",{"angels-coolant-1"},mode)
+    tech_util.add_prerequisites_to_technology("angels-gunmetal-smelting-1",{"angels-tin-smelting-1"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
