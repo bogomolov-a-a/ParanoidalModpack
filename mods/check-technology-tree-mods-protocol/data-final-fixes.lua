@@ -5,7 +5,7 @@ log('Список актуальных модов игры '..actual_mods)
 log('Список проверенных модов игры '..mod_version_checked_value)
 if mod_version_checked_value~=actual_mods  then
     log("Выполняется проверка модов! ожидайте")
-    GameModeUtil.handle_game_mode_datas()
+    --GameModeUtil.handle_game_mode_datas()
     log("Проверка модов завершена успешно! Приятной игры!")
 else
     log('Проверка модов не требуется! Приятной игры!')
