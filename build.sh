@@ -23,7 +23,6 @@ for((i=0; ;++i)); do
 	echo Oh, it looks like the process is done.
 	wait $factorio_server_pid
 	factorio_server_exit_code=$?
-	find . -name 'script-output' -print
 	echo "factorio_server_exit_code $factorio_server_exit_code"	
 	exit $factorio_server_exit_code
 done;
