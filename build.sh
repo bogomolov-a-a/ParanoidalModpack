@@ -12,12 +12,14 @@ for((i=0; ;++i)); do
 	while   ps | grep " $factorio_server_pid "     
 	do   echo $factorio_server_pid is still in the ps output. Must still be running.
 		sleep 3
-	done
-	$my_statusopened_port=$(netstat -u -n -a);
-	if [[ $opened_port == *":34197"* ]]; then
-		echo "factorio server started at $opened_port. Mods validation on start with contol.lua completed! New game has been created!"; 
-		exit 0;  
-	fi
+		factorio_opened_port=$(netstat -u -n -a);
+		echo "factorio_opened_port $factorio_opened_port"
+		if [[ $factorio_opened_port == *":34197"* ]]; then
+			echo "factorio server started at $opened_port. Mods validation on start with contol.lua completed! New game has been created!"; 
+			ls $paranoidal_mods_path -a
+			kill -TERM $factorio_server_pid;						
+		fi;
+	done;	
 	echo Oh, it looks like the process is done.
 	wait $factorio_server_pid
 	factorio_server_exit_code=$?
