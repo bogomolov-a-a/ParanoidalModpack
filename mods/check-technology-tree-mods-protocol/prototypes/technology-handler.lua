@@ -437,14 +437,7 @@ local function check_recipe_result_applied_something(recipe_name, active_technol
             result_used_in_tree_or_surface = string.find(recipe_result_prototype.subgroup,
                 "space-exploration-", 1, true)
         end
-        if result_used_in_tree_or_surface then return end
-        --ядерное оружие
-        if mods["True-Nukes"] then
-            result_used_in_tree_or_surface = string.find(recipe_result_prototype.name,
-                "TN-warhead-", 1, true)
-        end
-        if result_used_in_tree_or_surface then return end
-
+        if result_used_in_tree_or_surface then return end        
         --если не нашли ничего - выкидываем ошибку, мы нашли лишний, неиспользуемый результат рецепта, надо удалить бесполезный рецепт или добавить нужный в данной цепочке.
         error("recipe_result " ..
             Utils.dump_to_console(recipe_result) ..
