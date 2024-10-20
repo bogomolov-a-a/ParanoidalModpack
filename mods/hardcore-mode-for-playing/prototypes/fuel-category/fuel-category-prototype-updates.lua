@@ -9,7 +9,14 @@ _table.each(data.raw, function(prototype_table)
 		--log("found prototype as fuel with type " .. prototype_type .. " called " .. prototype_name)
 		if prototype_type == "item" then
 			local fuel_category_name = get_fuel_category_name_for_prototype(prototype)
-			data:extend({ { type = "fuel-category", name = fuel_category_name } })
+			data:extend({ 
+				{
+					type = "fuel-category",
+					name = fuel_category_name,
+					localised_name={'item-name.'..prototype_name},
+					localised_description={'item-description.'..prototype_name} 
+				}
+			})
 			change_fuel_category_fuel_item(prototype_name, fuel_category_name)
 			--[[local actual_joil_prototype_stack_energy_value = FuelEnergyUtil.read_energy_value_in_raw_joules(
 				prototype.fuel_value
