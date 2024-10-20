@@ -14,6 +14,20 @@ local function fix_steam_prototype()
     steam_prototype.default_temperature = 100
 end
 
+local function evaluate_recipe_steam_fluid_localised_name(fuel_data)
+    if fuel_data.type=="fluid"then 
+        return {"recipe-name.steam-with-fuel-fluid",fuel_data.name}
+    end
+    return {"recipe-name.steam-with-fuel-item",fuel_data.name}
+end
+
+local function evaluate_recipe_steam_fluid_localised_description(fuel_data)
+    if fuel_data.type=="fluid"then 
+        return {"recipe-description.steam-with-fuel-fluid",fuel_data.name}
+    end
+    return {"recipe-description.steam-with-fuel-item",fuel_data.name}
+end
+
 local function create_steam_recipe_for_fuel_and_temperature(new_steam_name, fuel_data, water_amount)
     local resource_fluid_prototype = data.raw["fluid"]["steam"]
     local mode_data = {
@@ -47,13 +61,14 @@ local function create_steam_recipe_for_fuel_and_temperature(new_steam_name, fuel
         icon = resource_fluid_prototype.icon,
         icon_size = resource_fluid_prototype.icon_size,
         category = "crafting-with-fluid",
-        normal = mode_data,
-        expensive = mode_data,
+        normal = _table.deep_copy(mode_data),
+        expensive = _table.deep_copy(mode_data),
+        localised_name=evaluate_recipe_steam_fluid_localised_name(fuel_data),
+        localised_description=evaluate_recipe_steam_fluid_localised_description(fuel_data)
     }
     data:extend({
         recipe,
     })
-    --log("basic recipe " .. recipe.name .. " created with new name")
     return recipe
 end
 
@@ -72,16 +87,6 @@ local function is_allow_prototype_to_apply_boiler_prototype(boiler_prototype, re
     then
         return false
     end
-    --[[log(
-		"recipe_result_prototype "
-			.. recipe_result_prototype.name
-			.. ", fuel_value: "
-			.. recipe_result_prototype.fuel_value
-			.. ", fuel_category: "
-			.. tostring(energy_source.fuel_category)
-			.. ", fuel_categories: "
-			.. Utils.dump_to_console(energy_source.fuel_categories)
-	)]]
     if boiler_data.is_burner_energy_source then
         return recipe_result_prototype.type == "item"
     end
@@ -93,6 +98,7 @@ local function is_allow_prototype_to_apply_boiler_prototype(boiler_prototype, re
     end
     return false
 end
+
 local function is_available_water_amount_level_by_fuel_rype(water_amount, fuel_type)
     return water_amount <= STEAM_MAX_OUTPUT_LEVEL_FOR_TEMPERATURE_BY_FUEL
         and (
@@ -100,6 +106,7 @@ local function is_available_water_amount_level_by_fuel_rype(water_amount, fuel_t
             or fuel_type == "fluid" and water_amount >= STEAM_OUTPUT_LEVEL_FOR_FLUID_FOR_TEMPERATURE_BY_FUEL
         )
 end
+
 local function evaluate_fuel_datas_for_recipe(
     prototype,
     is_allow_prototype_to_apply_prototype_function,
@@ -150,6 +157,21 @@ local function evaluate_fuel_datas_for_recipe(
     end)
     return result
 end
+
+local function evaluate_full_with_fuel_steam_fluid_localised_name(fuel_data)
+    if fuel_data.type=="fluid"then 
+        return {"fluid-name.steam-with-fuel-fluid"}
+    end
+    return {"fluid-name.steam-with-fuel-item",fuel_data.name}
+end
+
+local function evaluate_full_with_fuel_steam_fluid_localised_description(fuel_data)
+    if fuel_data.type=="fluid"then 
+        return {"fluid-name.steam-with-fuel-fluid",fuel_data.name}
+    end
+    return {"fluid-name.steam-with-fuel-item",fuel_data.name}
+end
+
 local function handle_one_fuel_data_water_amount(
     fuel_data_water_amount,
     target_temperature,
@@ -157,16 +179,23 @@ local function handle_one_fuel_data_water_amount(
     mode,
     boiler_data
 )
+    local fuel_data=fuel_data_water_amount.fuel_data
+    
     local steam_recipe = create_steam_recipe_for_fuel_and_temperature(
         "steam-" .. tostring(target_temperature),
-        fuel_data_water_amount.fuel_data,
+        fuel_data,
         fuel_data_water_amount.water_amount
     )
     data:extend({
         steam_recipe,
     })
+    local fuel_data_name=fuel_data.name
+    local fuel_data_type=fuel_data.type
+    local data_prototype=data.raw[fuel_data_type][fuel_data_name]
     local full_with_fuel_steam_recipe_name = steam_recipe.name
     local full_with_fuel_steam_fluid = flib.copy_prototype(data.raw["fluid"]["steam"], full_with_fuel_steam_recipe_name)
+    full_with_fuel_steam_fluid.localised_name=evaluate_full_with_fuel_steam_fluid_localised_name(fuel_data)
+    full_with_fuel_steam_fluid.localised_description=evaluate_full_with_fuel_steam_fluid_localised_description(fuel_data)
     data:extend({ full_with_fuel_steam_fluid })
     tech_util.add_recipe_effect_to_technology(boiler_occurred_technology_name, full_with_fuel_steam_recipe_name,
         mode)
