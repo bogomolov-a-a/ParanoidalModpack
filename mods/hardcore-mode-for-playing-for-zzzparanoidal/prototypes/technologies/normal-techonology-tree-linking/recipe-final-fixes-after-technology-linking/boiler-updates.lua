@@ -26,7 +26,6 @@ local function remove_recipe_ingredients(mode)
     recipe_util.remove_recipe_ingredient("boiler-5-steam-765-with-fuel-item-gas-chloroethane-barrel",mode,{ type = "item",name = "boiler-4" })    
 
     --жидкие котлы
-    recipe_util.remove_recipe_ingredient("oil-steam-boiler-steam-165-with-fuel-fluid-liquid-plastic",mode,{ type = "item",name = "boiler" })
     recipe_util.remove_recipe_ingredient("oil-steam-boiler-steam-165-with-fuel-fluid-gas-residual",mode,{ type = "item",name = "boiler" })
     recipe_util.remove_recipe_ingredient("oil-steam-boiler-steam-165-with-fuel-fluid-gas-ethylene",mode,{ type = "item",name = "boiler" })    
     recipe_util.remove_recipe_ingredient("oil-steam-boiler-steam-165-with-fuel-fluid-gas-benzene",mode,{ type = "item",name = "boiler" })
@@ -106,7 +105,6 @@ local function add_recipe_ingredients(mode)
     
     
     --жидкие котлы
-    recipe_util.add_recipe_ingredients("oil-steam-boiler-steam-165-with-fuel-fluid-liquid-plastic",mode,{ { type = "item",name = "stone-furnace",amount = 4 },{ type = "item",name = "pipe",amount = 4 } })
     recipe_util.add_recipe_ingredients("oil-steam-boiler-steam-165-with-fuel-fluid-gas-residual",mode,{ { type = "item",name = "stone-furnace",amount = 4 },{ type = "item",name = "pipe",amount = 4 } })
     recipe_util.add_recipe_ingredients("oil-steam-boiler-steam-165-with-fuel-fluid-gas-ethylene",mode,{ { type = "item",name = "stone-furnace",amount = 4 },{ type = "item",name = "pipe",amount = 4 } })
     recipe_util.add_recipe_ingredients("oil-steam-boiler-steam-165-with-fuel-fluid-gas-benzene",mode,{ { type = "item",name = "stone-furnace",amount = 4 },{ type = "item",name = "pipe",amount = 4 } })
