@@ -64,7 +64,7 @@ FuelEnergyUtil.evaluate_water_heating_to_temperature_energy_in_joules = function
 	local water_prototype = data.raw["fluid"]["water"]
 	local steam_prototype = data.raw["fluid"]["steam"]
 	if not temperature or temperature <= steam_prototype.default_temperature then
-		error("can't steam energy evaluating for temperature " .. tostring(temperature))
+		error("Невозможно вычислить энергию пара для текущей температуры " .. tostring(temperature))
 	end
 	return (water_prototype.max_temperature - water_prototype.default_temperature)
 		* FuelEnergyUtil.read_energy_value_in_raw_joules(water_prototype.heat_capacity)
