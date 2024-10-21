@@ -2,7 +2,7 @@ mods_directory=$(cat config.json |jq -r '.modsPath');
 paranoidal_mods_path="$mods_directory/$(cat config.json |jq -r '.mod.name')"
 base_mod_version_data=$(cat "$paranoidal_mods_path/info.json" | jq -r ".dependencies "  |jq ".[0] " |xargs)
 if [[ $base_mod_version_data =~  ^(base >= )([0-9]{0,}\.[0-9]{0,}\.[0-9]{0,})$ ]]; then base_mod_version=${BASH_REMATCH[2]}; else exit 1; fi
-echo "Factorio version is $base_mod_version"
+echo "Версия Factorio для проверки $base_mod_version"
 wget  "$(cat config.json |jq -r '.serverDownloadLink')/$base_mod_version/$(cat config.json |jq -r '.version')/linux64" -O factorio.tar.xz && tar xf factorio.tar.xz
 ./factorio/bin/x64/factorio  --version
 runner_hostname=$(hostname -f)
@@ -14,15 +14,13 @@ for((i=0; ;++i)); do
 	do   echo $factorio_server_pid is still in the ps output. Must still be running.
 		sleep 3
 		factorio_opened_port=$(netstat -u -n -a);
-		echo "factorio_opened_port $factorio_opened_port"
 		if [[ $factorio_opened_port == *":34197"* ]]; then
-			echo "factorio server started at $opened_port. Mods validation on start with contol.lua completed! New game has been created!"; 
+			echo "Сервер Factorio запущен на $opened_port. Сборка модов валидна, все прототипы проверены. Новая игра создана, без ошибок при старте! Приятной игры!"; 
 			kill -TERM $factorio_server_pid;						
 		fi;
 	done;	
-	echo Oh, it looks like the process is done.
 	wait $factorio_server_pid
 	factorio_server_exit_code=$?
-	echo "factorio_server_exit_code $factorio_server_exit_code"	
+	echo "Factorio завершилась с кодом выхода $factorio_server_exit_code"	
 	exit $factorio_server_exit_code
 done;

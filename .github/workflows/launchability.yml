@@ -1,4 +1,4 @@
-name: Modpack launchability
+name: Проверка на запускаемость с текущим набором модов и версией zzzparanoidal, указанной в манифесте мода
 on:
   push:
     branches:
@@ -9,14 +9,15 @@ on:
       - '**'
 jobs:
   launchability:
-    name: Modpack launchability
+    name: Проверка на запускаемость с текущим набором модов и версией zzzparanoidal, указанной в манифесте мода
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     steps:
       - uses: actions/checkout@v4
+        name: Клонирование репозитория с LFS
         with:
           clean: true
           lfs: true
           set-safe-directory: false          
-      - name: Launch Factorio with current set of mods
-        run: ./build.sh
+      - name: Проверка на запускаемость с текущим набором модов и версией zzzparanoidal, указанной в манифесте мода
+        run: ./run-with-mods.sh
