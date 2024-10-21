@@ -568,7 +568,7 @@ local function hide_technologies(mode)
     tech_util.hide_technology("zinc-processing", mode)        
     tech_util.hide_technology("nitrogen-processing", mode)
     tech_util.hide_technology("mirv-technology", mode)
-   -- tech_util.hide_technology("bi-tech-bio-boiler",mode)
+    tech_util.hide_technology("bi-tech-bio-boiler",mode)
     -- конец остальное]]--
     -- после выяснения используемых реально рецептов
 end
