@@ -4,12 +4,12 @@ local function available_for_mining_elements(entity)
         or entity.type == "tree" and entity.name == "desert-tree"
         or entity.type == "tree" and entity.name == "temperate-tree"
 end
+
 function on_player_mined_entity(e)
     local entity = e.entity
     if not entity or not entity.valid then
         return
     end
-    --log(entity.type .. " " .. entity.name)
     if available_for_mining_elements(entity) then
         local player = game.players[e.player_index]
         research_technologies_for_resources_if_exists_not_researched({ { type = entity.type, name = entity.name } },
@@ -73,14 +73,11 @@ function on_player_mined_entity(e)
 end
 
 function on_player_mined_item(e)
-    --log("on_player_mined_item fired")
     local item_stack = e.item_stack
     if not item_stack then
-        --	log("on_player_mined_item fired, not item stack!")
         return
     end
     local item_stack_name = item_stack.name
-    -- log("item " .. item_stack_name)
     local player = game.players[e.player_index]
     local force = game.players[e.player_index].force
     research_technologies_for_resources_if_exists_not_researched({ { type = "item", name = item_stack_name } }, force,

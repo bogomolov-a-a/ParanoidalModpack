@@ -54,7 +54,6 @@ local function create_technology_effect_result_from_rocket_launch_product(rocket
     end
     local rocket_launch_product_data_type = rocket_launch_product_data.type or "item"
     local rocket_launch_product_data_name = rocket_launch_product_data.name or rocket_launch_product_data[1]
-    --log("rocket launch result type " .. rocket_launch_product_data_type .. " name " .. rocket_launch_product_data_name)
     return {
         name = rocket_launch_product_data_name,
         type = rocket_launch_product_data_type
@@ -265,7 +264,6 @@ end
 RecipeUtil.get_recipe_signature = function(recipe_name, mode)
     local ingredients = RecipeUtil.get_all_recipe_ingredients(recipe_name, mode)
     local recipe_results = RecipeUtil.get_all_recipe_results(recipe_name, mode, true)
-    log("recipe_results " .. Utils.dump_to_console(recipe_results))
     return {
         ingredients = {
             solid = _table.size(
@@ -344,7 +342,6 @@ local function create_technology_effect_result_from_rocket_launch_product_with_a
     local rocket_launch_product_data_type = rocket_launch_product_data.type or "item"
     local rocket_launch_product_data_name = rocket_launch_product_data.name or rocket_launch_product_data[1]
     local rocket_launch_product_data_amount = rocket_launch_product_data.amount or rocket_launch_product_data[2]
-    --log("rocket launch result type " .. rocket_launch_product_data_type .. " name " .. rocket_launch_product_data_name)
     return {
         name = rocket_launch_product_data_name,
         type = rocket_launch_product_data_type,

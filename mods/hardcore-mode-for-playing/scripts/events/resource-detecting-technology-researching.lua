@@ -20,7 +20,6 @@ end
 function research_technology_for_resource_if_exists_not_researched(resource, force, prefix, suffix)
     local resource_name = resource.name
     local resource_technology_name = get_resource_detected_technology_name(resource_name)
-    -- log("resource_technology_name " .. resource_technology_name)
     if force.technologies[resource_technology_name] and not force.technologies[resource_technology_name].researched then
         local technology = force.technologies[resource_technology_name]
         technology.researched = true

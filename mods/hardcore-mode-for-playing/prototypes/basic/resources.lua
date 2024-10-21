@@ -8,7 +8,6 @@ local function get_minable_datas()
         if not prototype.minable then
             return
         end
-        --log("resource prototype data " .. Utils.dump_to_console(prototype.minable))
         if prototype.minable.results then
             _table.each(prototype.minable.results, function(minable_result)
                 table.insert(result, {
@@ -17,7 +16,6 @@ local function get_minable_datas()
                     required_fluid = prototype.minable.required_fluid,
                     amount = prototype.minable.fluid_amount,
                 })
-                --log("prototype " .. Utils.dump_to_console(prototype))
             end)
         end
     end)
@@ -83,8 +81,6 @@ function create_basic_resource_recipe(basic_data, suffix)
     local resource_type = basic_data.type
     local resource_name = basic_data.name
     local resource_recipe_name = resource_name .. "-" .. suffix
-    --log("creating basic recipe " .. resource_recipe_name)
-    --log("resource data " .. Utils.dump_to_console(basic_data))
     local resource_item_prototype = data.raw[resource_type][resource_name]
     local recipe_data = {
         results = {
@@ -110,8 +106,8 @@ function create_basic_resource_recipe(basic_data, suffix)
         icon = resource_item_prototype.icon,
         icon_size = resource_item_prototype.icon_size,
 
-        normal = recipe_data,
-        expensive = recipe_data,
+        normal = _table.deep_copy(recipe_data),
+        expensive = _table.deep_copy(recipe_data),
     }
     if resource_type == "fluid" then
         recipe.category = "crafting-with-fluid"
@@ -124,8 +120,7 @@ function create_basic_resource_recipe(basic_data, suffix)
     end
     data:extend({
         recipe,
-    })
-    --log("basic recipe " .. resource_recipe_name .. " created")
+    })    
 
     return recipe
 end

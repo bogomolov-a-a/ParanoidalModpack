@@ -87,7 +87,7 @@ local function print_technology_tree0(technology_name, mode, level, visited_tech
 end
 
 TechnologyTreeUtil.print_technology_tree = function(technology_name, mode)
-    log("tree of")
+    log("технологическое дерево технологии ")
     log(technology_name)
     print_technology_tree0(technology_name, mode, 1, {})
 end

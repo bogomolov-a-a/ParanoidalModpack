@@ -31,8 +31,7 @@ function disable_player_entity_on_all_surfaces(force)
     _table.each(game.surfaces, function(surface)
         local surface_entities = surface.find_entities_filtered { force = force }
         _table.each(surface_entities, function(entity)
-            if not _table.contains(all_available_entity_items, entity.name) then
-                --    log('deactivated entity.name ' .. entity.name)
+            if not _table.contains(all_available_entity_items, entity.name) then                
                 disable_entity(entity)
             end
         end)
@@ -60,8 +59,7 @@ function enable_player_entity_on_all_surfaces(force)
     _table.each(game.surfaces, function(surface)
         local surface_entities = surface.find_entities_filtered { force = force }
         _table.each(surface_entities, function(entity)
-            if _table.contains(all_available_entity_items, entity.name) then
-                --log('activated entity.name ' .. entity.name)
+            if _table.contains(all_available_entity_items, entity.name) then                
                 enable_entity(entity)
             end
         end)

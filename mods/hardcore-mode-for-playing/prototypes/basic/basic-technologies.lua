@@ -48,8 +48,7 @@ local function create_basic_technology(
 end
 
 function create_resource_detected_technology(resource_name, icon_path, icon_size, resource_recipe_name)
-    local technology_name = get_resource_detected_technology_name(resource_name)
-    log("resource_recipe_name " .. resource_recipe_name)
+    local technology_name = get_resource_detected_technology_name(resource_name)    
     return create_basic_technology(
         technology_name,
         { resource_recipe_name, "salvaged-automation-science-pack", "salvaged-assembling-machine" },

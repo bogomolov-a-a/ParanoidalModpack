@@ -145,7 +145,6 @@ local function get_another_trees_handling_error_message(
             effect_ingredient_not_found_in_current_tree
         )
     local all_with_hidden_technology_names = tech_util.get_all_technology_names_with_hidden()
-    local result = ""--"all with hidden technology names " .. Utils.dump_to_console(all_with_hidden_technology_names) .. "\n"
     local all_with_hidden_technology_names_for_missed_ingredient =
         filter_all_available_technologies_with_ingredient(
             all_with_hidden_technology_names,
@@ -155,16 +154,15 @@ local function get_another_trees_handling_error_message(
 
     local effect_ingredient_not_found_in_current_tree_name =
         effect_ingredient_not_found_in_current_tree.name or effect_ingredient_not_found_in_current_tree[1]
+    local result =        
+        "С ингредиентом  " ..
+        effect_ingredient_not_found_in_current_tree_name ..
+        ", как результатом производства рецепта найдены следующие АКТИВНЫЕ технологии(имена) " .. Utils.dump_to_console(available_technology_names_for_missed_ingredient) .. "\n"
     result =
         result ..
-        "with ingredient as result " ..
+        "С ингредиентом " ..
         effect_ingredient_not_found_in_current_tree_name ..
-        " all ACTIVE technologies " .. Utils.dump_to_console(available_technology_names_for_missed_ingredient) .. "\n"
-    result =
-        result ..
-        "with ingredient as result " ..
-        effect_ingredient_not_found_in_current_tree_name ..
-        " all WITH HIDDEN technologies " ..
+        " , как результатом производства рецепта найдены следующие ВСЕ(ВМЕСТЕ СО СКРЫТЫМИ) технологии(имена) " ..
         Utils.dump_to_console(all_with_hidden_technology_names_for_missed_ingredient) .. "\n"
 
     result =
@@ -173,7 +171,7 @@ local function get_another_trees_handling_error_message(
         technology_name .. "]" .. Utils.dump_to_console(data.raw["technology"][technology_name]) .. "\n"
     result =
         result ..
-        "technology tree of " ..
+        "Список технологий, входящих в технологическое дерево(без учёта древовидной структуры) " ..
         technology_name ..
         " is " ..
         Utils.dump_to_console(TechnologyTreeUtil.find_prerequisites_for_technology_for_all_levels(technology_name, mode)) ..
@@ -193,20 +191,20 @@ local function get_another_trees_handling_error_message(
 
     result =
         result ..
-        "for technology " ..
+        "Для технологии " ..
         technology_name ..
-        " for mode " ..
+        ", режим игры " ..
         mode ..
-        " keep unresolved " ..
+        " остался неразрешённым в дереве следующий ингредиент: " ..
         Utils.dump_to_console(effect_ingredient_not_found_in_current_tree) ..
-        " ingredient dependency! Contained recipe names: " ..
+        "! Список имён рецептов, которые содержат ингредиент: " ..
         Utils.dump_to_console(available_recipe_names_for_ingredient) .. "\n"
     return result
 end
 local function raise_error_unresolved_ingredient_in_technology_tree(technology_name, mode, unresolved_ingredient)
-    log("\nhandle unresolved ingredient")
+    log("\nОбработка неразрешённого в дереве технологий ингредиента")
     local error_message = get_another_trees_handling_error_message(unresolved_ingredient, technology_name, mode)
-    log("\nunresolved ingredient handled")
+    log("\nnОбработка неразрешённого в дереве технологий ингредиента ЗАВЕРШЕНА")
     error(error_message)
 end
 local function check_recipe_ingredient_reachable_in_tree(
@@ -494,7 +492,7 @@ local function check_recipe_ingredients_results_must_be_greater_than_zero(active
 end
 
 local function handle_technology_tree(active_technology_name, mode)
-    log("checking technology tree " .. active_technology_name .. " for mode " .. mode)
+    log("Начата проверка технологического дерева технологии " .. active_technology_name .. ", режим игры " .. mode)
     local tree = TechnologyTreeUtil.get_technology_tree(active_technology_name, mode)
     check_tree_not_has_hidden_element(active_technology_name, tree, mode)
     check_recipes_not_has_hidden_in_tree_element(active_technology_name, mode)
@@ -512,7 +510,7 @@ local function handle_technology_tree(active_technology_name, mode)
     if settings.startup["check-technology-tree-mods-protocol-use-validating-result-ingredients-greater-than-zero-in-signature"].value then
         check_recipe_ingredients_results_must_be_greater_than_zero(active_technology_name, mode)
     end
-    log("technology tree " .. active_technology_name .. " for mode " .. mode .. " checked")
+    log("Успешно завершена проверка технологического дерева технологии " .. active_technology_name .. ", режим игры " .. mode  )
 end
 
 TechnologyHandler.handle_technologies = function(mode)
@@ -522,9 +520,9 @@ TechnologyHandler.handle_technologies = function(mode)
     _table.each(
         all_active_technology_names,
         function(active_technology_name)
-            log("handling technology " .. tostring(index) .. " of " .. tostring(count))
+            log("Обрабатывается технология с номером " .. tostring(index) .. " из " .. tostring(count))
             handle_technology_tree(active_technology_name, mode)
-            log("technology " .. tostring(index) .. " of " .. tostring(count) .. " handled")
+            log("Обработана технология с номером" .. tostring(index) .. " из " .. tostring(count) )
             index = index + 1
         end
     )

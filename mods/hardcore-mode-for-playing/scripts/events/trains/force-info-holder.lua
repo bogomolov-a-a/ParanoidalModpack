@@ -1,7 +1,6 @@
 ForceTrainInfoHolder = Class()
 -- за тик обрабатываем до 10 поездов
-function ForceTrainInfoHolder:init()
-    -- log("ForceTrainInfoHolder:init")
+function ForceTrainInfoHolder:init()    
     self.trains = {}
     self.train_schedules = {}
     self.train_links = {}
@@ -15,9 +14,6 @@ function ForceTrainInfoHolder:insert_train_info_in_holder(train)
     local train_id = train.id
     self.trains[train_id] = train
     self.train_indexes = _table.keys(self.trains)
-    --[[log("ForceTrainInfoHolder:insert_train_info_in_holder")
-    log("self.trains " .. Utils.dump_to_console(self.trains))
-    log("self.train_indexes " .. Utils.dump_to_console(self.train_indexes))]]
 end
 
 function ForceTrainInfoHolder:get_train_info_from_holder_by_train_index(train_id)
@@ -30,18 +26,13 @@ function ForceTrainInfoHolder:remove_train_info_from_holder_by_train_index(train
     self.trains[train_id] = nil
     self.train_indexes = _table.keys(self.trains)
     return true
-    --[[   log("ForceTrainInfoHolder:remove_train_info_from_holder_by_train_index")
-    log("self.trains " .. Utils.dump_to_console(self.trains))
-    log("self.train_indexes " .. Utils.dump_to_console(self.train_indexes))]]
 end
 
 function ForceTrainInfoHolder:add_schedule_for_train(train_id, train_schedule)
-    --log("ForceTrainInfoHolder:add_schedule_for_train train_id " .. train_id)
     self.train_schedules[train_id] = train_schedule
 end
 
 function ForceTrainInfoHolder:get_schedule_for_train(train_id, train_schedule)
-    --log("ForceTrainInfoHolder:get_schedule_for_train train_id " .. train_id)
     local old_train_id_with_schedule = self.train_links[train_id]
     -- если расписания назначено не было, значит не назначаем ничего в ответ.
     if not old_train_id_with_schedule then
@@ -54,7 +45,6 @@ function ForceTrainInfoHolder:get_schedule_for_train(train_id, train_schedule)
 end
 
 function ForceTrainInfoHolder:add_link_train(old_train_id, new_train_id)
-    -- log("ForceTrainInfoHolder:add_link_train set link " .. old_train_id .. " to " .. new_train_id)
     self.train_links[new_train_id] = old_train_id
 end
 
@@ -64,9 +54,6 @@ function ForceTrainInfoHolder:get_next_train_infos()
     if end_index >= self.count then
         end_index = self.count
     end
-    --[[log("ForceTrainInfoHolder:get_next_train_infos")
-    log("self.trains " .. Utils.dump_to_console(self.trains))
-    log("self.train_indexes " .. Utils.dump_to_console(self.train_indexes))]]
     for index = self.current_index, end_index do
         table.insert(result, self:get_train_info_from_holder_by_train_index(self.train_indexes[index]))
     end

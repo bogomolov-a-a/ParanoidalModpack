@@ -231,9 +231,9 @@ local function add_science_pack_to_technology_units(technology_candidate_name, i
     if not ingredient_value then
         error("ingredient_value not specified")
     end
+    
     local technology = Utils.get_moded_object("technology", technology_candidate_name, mode)
     if technology.unit and technology.unit.ingredients then
-        --log("technology.unit.ingredients " .. Utils.dump_to_console(technology.unit.ingredients))
         _table.insert_all_if_not_exists_with_compare(
             technology.unit.ingredients,
             { ingredient_value },
@@ -245,11 +245,11 @@ local function add_science_pack_to_technology_units(technology_candidate_name, i
                             return item.name or item[1]
                         end
                     )
-                --log("ingredient_names " .. Utils.dump_to_console(ingredient_names))
                 local inserting_ingredient_name = inserting_item.name or inserting_item[1]
-                --log("inserting_ingredient_name " .. inserting_ingrediend_name)
                 local result = not _table.contains(ingredient_names, inserting_ingredient_name)
-                --log("result " .. tostring(result))
+                if result then 
+                    log(	"Для технологии " ..technology_candidate_name .. ', режим игры ' .. mode .. " добавлен исследовательский пакет " .. inserting_ingredient_name)
+                end
                 return result
             end
         )
@@ -317,13 +317,7 @@ TechUtil.has_technology_recipe_effects = function(technology_candidate_name, rec
 end
 TechUtil.replace_all_occurs_prerequisite_to_another_in_active_technologies = function(from, to, mode)
     local with_deleting_prerequisite_technology_names = TechUtil
-        .find_all_active_technology_names_with_specified_prerequisite_name(from, mode)
-    --[[log(
-        "with_deleting_prerequisite_technology_names "
-            .. Utils.dump_to_console(with_deleting_prerequisite_technology_names)
-            .. " for technology "
-            .. from
-    )]]
+        .find_all_active_technology_names_with_specified_prerequisite_name(from, mode)    
     _table.each(
         with_deleting_prerequisite_technology_names,
         function(with_deleting_prerequisite_technology_name)

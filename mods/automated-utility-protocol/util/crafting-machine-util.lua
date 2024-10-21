@@ -135,7 +135,6 @@ CraftingMachineUtil.get_crafting_machines_in_technology = function(
         error("recipe_signature_result_solid")
     end
     local recipe_results = tech_util.get_all_recipe_results_for_specified_technology(active_technology_name, mode)
-    --log("recipe_results " .. Utils.dump_to_console(recipe_results))
     local result = {}
     _table.insert_all_if_not_exists(result, handle_assembling_machines(recipe_results, recipe_signature_result_solid))
     _table.insert_all_if_not_exists(result, handle_furnaces(recipe_results))
