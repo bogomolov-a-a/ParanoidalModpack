@@ -1,4 +1,4 @@
-![Запускаемость сборки ](https://github.com/bogomolov-a-a/ParanoidalModpack/actions/workflows/launchability.yml/badge.svg?event=workflow_run)
+[![Запускаемость сборки]([![Modpack launchability](https://github.com/bogomolov-a-a/ParanoidalModpack/actions/workflows/launchability.yml/badge.svg)](https://github.com/bogomolov-a-a/ParanoidalModpack/actions/workflows/launchability.yml))
 <table align="center"><tr><td align="center" width="9999">
 
 ![LOGO](docs/images/logo.png)
