@@ -27,7 +27,7 @@ end
 
 local function add_prerequisites_to_technologies_in_regular_tree(mode)
     --для бойлеров
-    tech_util.add_prerequisites_to_technology("bi-tech-bio-boiler", { "bio-processing-alien-3" }, mode)
+   -- tech_util.add_prerequisites_to_technology("bi-tech-bio-boiler", { "bio-processing-alien-3" }, mode)
     -- конец для бойлеров
     --под настройками
     if settings.startup["bobs-military-simplify"].value == false then
@@ -351,6 +351,11 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("angels-brass-smelting-2",{"strand-casting-1"},mode)
     tech_util.add_prerequisites_to_technology("angels-bronze-smelting-3",{"angels-coolant-1"},mode)
     tech_util.add_prerequisites_to_technology("angels-gunmetal-smelting-1",{"angels-tin-smelting-1"},mode)
+    tech_util.add_prerequisites_to_technology("steam-power",{"OilBurning"},mode)
+    tech_util.add_prerequisites_to_technology("bob-steam-engine-2",{"bob-boiler-2","OilBurning-2"},mode)    
+    tech_util.add_prerequisites_to_technology("bob-steam-engine-3",{"bob-boiler-3","OilBurning-3"},mode)    
+    tech_util.add_prerequisites_to_technology("bob-steam-engine-4",{"bob-boiler-4","OilBurning-4"},mode)    
+    tech_util.add_prerequisites_to_technology("bob-steam-engine-5",{"bob-boiler-5","OilBurning-5"},mode)    
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
@@ -370,6 +375,7 @@ local function remove_prerequisites_from_technologies_in_regular_tree(mode)
     tech_util.remove_prerequisites_from_technology("logistic-science-pack", { "angels-bronze-smelting-1" }, mode)
     tech_util.remove_prerequisites_from_technology("alien-artifact", { "gardens" }, mode) 
     tech_util.remove_prerequisites_from_technology("electronics-machine-2", { "advanced-electronics" }, mode)   
+    tech_util.remove_prerequisites_from_technology("bi-tech-bio-boiler",{"steam-power"},mode)
 end
 
 local function remove_recipes_from_technology_effects_in_regular_tree(mode)
@@ -562,6 +568,7 @@ local function hide_technologies(mode)
     tech_util.hide_technology("zinc-processing", mode)        
     tech_util.hide_technology("nitrogen-processing", mode)
     tech_util.hide_technology("mirv-technology", mode)
+   -- tech_util.hide_technology("bi-tech-bio-boiler",mode)
     -- конец остальное]]--
     -- после выяснения используемых реально рецептов
 end
