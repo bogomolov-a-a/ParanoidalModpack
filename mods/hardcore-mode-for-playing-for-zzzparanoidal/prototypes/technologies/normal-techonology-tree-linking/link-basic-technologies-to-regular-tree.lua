@@ -355,7 +355,8 @@ local function add_prerequisites_to_technologies_in_regular_tree(mode)
     tech_util.add_prerequisites_to_technology("bob-steam-engine-2",{"bob-boiler-2","OilBurning-2"},mode)    
     tech_util.add_prerequisites_to_technology("bob-steam-engine-3",{"bob-boiler-3","OilBurning-3"},mode)    
     tech_util.add_prerequisites_to_technology("bob-steam-engine-4",{"bob-boiler-4","OilBurning-4"},mode)    
-    tech_util.add_prerequisites_to_technology("bob-steam-engine-5",{"bob-boiler-5","OilBurning-5"},mode)    
+    tech_util.add_prerequisites_to_technology("bob-steam-engine-5",{"bob-boiler-5","OilBurning-5"},mode)
+    tech_util.add_prerequisites_to_technology("OilBurning",{"flammables"},mode)
 end
 
 local function remove_prerequisites_from_technologies_in_regular_tree(mode)
