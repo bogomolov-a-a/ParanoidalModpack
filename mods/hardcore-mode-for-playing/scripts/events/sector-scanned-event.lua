@@ -44,9 +44,6 @@ end
 function on_sector_scanned(e)
     local radar = e.radar
     local radar_area = e.area
-    log("radar type " .. radar.type .. ", radar name " .. radar.name)
-    log('area ' .. Utils.dump_to_console(radar_area))
-    log('chunk_position ' .. Utils.dump_to_console(e.chunk_position))
     local radar_force = radar.force
     local radar_surface = radar.surface
     local distinct_found_resources = find_all_resources_in_or_at_ground(radar_area, radar_surface)

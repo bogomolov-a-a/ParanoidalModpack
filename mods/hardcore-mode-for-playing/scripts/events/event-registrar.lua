@@ -7,9 +7,7 @@ function register_events()
             },
             on_player_mined_entity
         )
-        log("on_player_mined_entity " .. tostring(on_player_mined_entity))
         script.on_event({ defines.events.on_player_mined_item }, on_player_mined_item)
-        log("on_player_mined_item " .. tostring(on_player_mined_item))
     else
         script.on_event(
             {

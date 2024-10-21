@@ -21,11 +21,11 @@ local function set_settings_default_value(settings_type, settings_name, settings
     end
     data.raw[settings_type][settings_name].default_value = settings_default_value
     log(
-        "setting data.raw['"
+        "настройка data.raw['"
         .. settings_type
         .. "']['"
         .. settings_name
-        .. "'].default_value to "
+        .. "'].default_value установлена по умолчанию в "
         .. tostring(settings_default_value)
     )
 end

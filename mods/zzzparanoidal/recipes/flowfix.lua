@@ -14,7 +14,7 @@ local function scaleTable(t, pack)
             if type(t[j][2]) == 'number' then
                 t[j][2] = t[j][2]*pack
             else
-                log("WARRRING!!! not found ingredients count")
+                error("WARRRING!!! not found ingredients count")
             end
         end
     end
@@ -49,7 +49,7 @@ local function scaleRecipe(recipe)
         if recipe.ingredients then
             scaleTable(recipe.ingredients, pack)
         else
-            log("no ingridients in "..recipe.name)
+            error("no ingridients in "..recipe.name)
         end
         if recipe.result then
             if not recipe.result_count then
@@ -66,7 +66,6 @@ end
 
 for k,v in pairs(data.raw.module) do
     if v.effect.productivity and v.limitation then
-        --log("use limitation from "..v.name)
         for i,r in pairs(v.limitation) do
             local recipe = data.raw.recipe[r]
             if recipe.name ~= "rocket-part"  then

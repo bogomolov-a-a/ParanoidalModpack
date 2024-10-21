@@ -79,12 +79,6 @@ local function is_allow_fuel_category_for_entity_with_burner_applying(prototype,
     if
         effectivity_max_item_stack_fuel_value - maximum_energy_consumption_for_entity_with_burner_prototype >= -EPSILON
     then
-        --[[log(
-			"maximum_energy_consumption_for_entity_with_burner_prototype "
-				.. tostring(maximum_energy_consumption_for_entity_with_burner_prototype)
-				.. " effectivity_max_item_stack_fuel_value "
-				.. tostring(effectivity_max_item_stack_fuel_value)
-		)]]
         return true
     end
     return false
@@ -126,8 +120,7 @@ local function is_allow_prototype_to_apply_entity_with_burner_prototype(
         end
         burner_source_fuel_inventory_size = 1
     end
-    --	log("recipe_result_prototype " .. Utils.dump_to_console(recipe_result_prototype.fuel_category))
-
+   
     local fuel_candidate_stack_size = recipe_result_prototype.stack_size
     local max_item_stack_fuel_value = burner_source_fuel_inventory_size
         * FuelEnergyUtil.read_energy_value_in_raw_joules(recipe_result_prototype.fuel_value)
@@ -136,22 +129,13 @@ local function is_allow_prototype_to_apply_entity_with_burner_prototype(
     return nuclear_reactor_compatiable(recipe_result_prototype, prototype)
         and is_allow_fuel_category_for_entity_with_burner_applying(prototype, effectivity_max_item_stack_fuel_value)
 end
+
 local function handle_prototype_burner_or_energy_source_candidate(prototype, mode, technology_name)
     if not is_available_burner_or_energry_source_prototype(prototype) then
         return false
     end
     local burner_energy_source = prototype.burner or prototype.energy_source
     correct_effectivity_to_real(burner_energy_source)
-    --[[log(
-		"found prototype type "
-			.. prototype.type
-			.. " called "
-			.. prototype.name
-			.. " in "
-			.. technology_name
-			.. " with burner "
-			.. Utils.dump_to_console(burner_energy_source)
-	)]]
     if prototype.type == "boiler" then
         return
     end
@@ -166,11 +150,11 @@ local function handle_prototype_burner_or_energy_source_candidate(prototype, mod
     )
     if not fuel_category_candidates or _table.size(fuel_category_candidates) == 0 then
         error(
-            "for prototype "
+            "Для сжигателя(НЕ БОЙЛЕР)  "
             .. prototype.type
-            .. " called "
+            .. " с именем "
             .. prototype.name
-            .. " fuel_category_candidates is empty!May be technology tree don't contain technology with fuel candidates?"
+            .. " список категорий топлива пустой!Возможно не добавлены какие-то технологии, которые содержат топливо для данного типа сжигателя?"
         )
     end
     _table.each(fuel_category_candidates, function(fuel_category_candidate)
@@ -179,16 +163,6 @@ local function handle_prototype_burner_or_energy_source_candidate(prototype, mod
             get_fuel_category_name_for_prototype(fuel_category_candidate)
         )
     end)
-    --[[log(
-		"changed prototype type "
-			.. prototype.type
-			.. " called "
-			.. prototype.name
-			.. " in "
-			.. technology_name
-			.. " with burner "
-			.. Utils.dump_to_console(burner_energy_source)
-	)]]
     return true
 end
 
@@ -216,5 +190,4 @@ _table.each(GAME_MODES, function(mode)
             _table.insert_all_if_not_exists(prototype_types, { result_type })
         end
     end)
-    --log("prototype_types " .. Utils.dump_to_console(prototype_types))
 end)

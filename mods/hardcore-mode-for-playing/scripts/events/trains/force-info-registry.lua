@@ -56,8 +56,7 @@ end
 
 local force_trains_info_holder_registry_instance = nil
 function ForceTrainsInfoHolderRegistry.get_registry_instance()
-    if not force_trains_info_holder_registry_instance then
-        -- log("create new instance ForceTrainsInfoHolderRegistry")
+    if not force_trains_info_holder_registry_instance then        
         force_trains_info_holder_registry_instance = ForceTrainsInfoHolderRegistry()
     end
     return force_trains_info_holder_registry_instance

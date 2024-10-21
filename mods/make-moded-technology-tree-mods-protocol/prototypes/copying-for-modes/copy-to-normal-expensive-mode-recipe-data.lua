@@ -109,7 +109,6 @@ end
 _table.each(GAME_MODES, function(mode)
     _table.each(data.raw["recipe"], function(recipe)
         merge_recipe_for_modes(recipe, mode)
-        --    log("after merge recipe " .. recipe.name .. Utils.dump_to_console(recipe) .. " for mode " .. mode)
     end)
 end)
 local function clear_general_recipe_data(recipe)

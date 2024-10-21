@@ -114,7 +114,7 @@ local function evaluate_fuel_datas_for_recipe(
     mode,
     boiler_data
 )
-    --log("boiler_data " .. boiler_data.name)
+    log("Имя сущности(предмета, рецепта) бойлера " .. boiler_data.name)
     local available_fuel_prototypes = FuelEnergyUtil.evaluate_available_fuel_prototype_for_entity_prototype(
         prototype,
         is_allow_prototype_to_apply_prototype_function,
@@ -127,9 +127,8 @@ local function evaluate_fuel_datas_for_recipe(
         (_table.size(available_fuel_prototypes) == 0)
         and (boiler_data.is_burner_energy_source or boiler_data.is_fluid_energy_source)
     then
-        error("boiler don't have available fuels!")
+        error("Для бойлера нет доступных видов топлива в принципе(в технологической цепочке технологии, которая содержит рецепт данного бойлера)!")
     end
-    --log("available_fuel_prototypes " .. Utils.dump_to_console(available_fuel_prototypes))
 
     local result = {}
     local water_heating_energy_value =
@@ -137,21 +136,12 @@ local function evaluate_fuel_datas_for_recipe(
     _table.each(available_fuel_prototypes, function(prototype)
         local fuel_data_energy_value =
             FuelEnergyUtil.read_energy_value_in_raw_joules(data.raw[prototype.type][prototype.name].fuel_value)
-        local water_amount_for_fuel = fuel_data_energy_value / water_heating_energy_value
-        --[[log(
-			"for data.raw["
-				.. prototype.type
-				.. "]["
-				.. prototype.name
-				.. "], water_amount_for_fuel "
-				.. tostring(water_amount_for_fuel)
-		)]]
+        local water_amount_for_fuel = fuel_data_energy_value / water_heating_energy_value        
         if is_available_water_amount_level_by_fuel_rype(water_amount_for_fuel, prototype.type) then
             local fuel_data_element = {
                 fuel_data = { type = prototype.type, name = prototype.name, amount = 1 },
                 water_amount = water_amount_for_fuel,
             }
-            --	log("fuel_data_element " .. Utils.dump_to_console(fuel_data_element))
             table.insert(result, fuel_data_element)
         end
     end)

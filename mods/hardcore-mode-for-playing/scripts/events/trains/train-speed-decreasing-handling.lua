@@ -144,7 +144,6 @@ function TrainSpeedDecreasingHandling:detect_max_train_speed_on_the_current_rail
                 }
             )
         else
-            -- log("rail_segment_entrance_entity_prototype.type " .. rail_segment_entrance_entity_prototype.type)
             local rail_segment_entrance_entity = self:get_evaluated_rail_segment_entrance_entity(rail)
             if rail_segment_entrance_entity then
                 rail_segment_entrance_entity_prototype = rail_segment_entrance_entity.prototype
@@ -178,15 +177,12 @@ end
 
 function TrainSpeedDecreasingHandling:detect_max_speed_from_connected_entity_prototype(
     rail_segment_entrance_entity_prototype)
-    -- log("found " .. rail_segment_entrance_entity_prototype.type)
     -- если есть станция - проходим медленнее
     if rail_segment_entrance_entity_prototype.type == "train-stop" then
-        --log("station_block_speed_limit " .. station_block_speed_limit)
         return self:evaluate_target_train_speed(station_block_speed_limit)
     end
     -- если есть проходной сигнал на пути - проходим медленнее, и группу таких сигналов тоже.
     if rail_segment_entrance_entity_prototype.type == "rail-chain-signal" then
-        --log("rail_chain_signal_speed_limit " .. rail_chain_signal_speed_limit)
         return self:evaluate_target_train_speed(rail_chain_signal_speed_limit)
     end
     -- вход в сегмент считаем знаком "Конец всех ограничений" и движемся максимально с той скоростью которую позволяет знак ограничения скорости
@@ -294,17 +290,9 @@ function TrainSpeedDecreasingHandling:handle_train_mover(abs_current_train_speed
     local mover_prototype = mover.prototype
     local burner_effectivity = mover.prototype.burner_prototype.effectivity
     --
-    --log('mover_prototype.max_energy_usage  ' .. tostring(mover_prototype.max_energy_usage))
     local fuel_max_remaining_value = mover_prototype.max_energy_usage / burner_effectivity
     local fuel_percent_remaining_accordingly_train_speed = (max_train_speed_in_movers_direction - abs_current_train_speed) /
         max_train_speed_in_movers_direction
-    --[[ log('max_train_speed_in_movers_direction ' .. tostring(max_train_speed_in_movers_direction))
-    log('abs_current_train_speed ' .. tostring(abs_current_train_speed))
-    log('fuel_percent_remaining_accordingly_train_speed ' .. tostring(fuel_percent_remaining_accordingly_train_speed))
-    log('fuel_max_remaining_value ' .. tostring(fuel_max_remaining_value))
-    log('before mover_burner.remaining_burning_fuel ' .. tostring(mover_burner.remaining_burning_fuel))]]
     local adding_remaining_burner_fuel_value = fuel_percent_remaining_accordingly_train_speed * fuel_max_remaining_value
     mover_burner.remaining_burning_fuel = mover_burner.remaining_burning_fuel + adding_remaining_burner_fuel_value
-    --[[log('adding_remaining_burner_fuel ' .. tostring(adding_remaining_burner_fuel_value))
-    log('after mover_burner.remaining_burning_fuel ' .. tostring(mover_burner.remaining_burning_fuel))]]
-end
+   end

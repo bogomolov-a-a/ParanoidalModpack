@@ -91,7 +91,7 @@ local function get_boilers_by_target_temperature(technology_names, mode)
             boiler_count = boiler_count + 1
         end)
     end)
-    log("total count of boilers is " .. tostring(boiler_count))
+    log("общее число бойлеров " .. tostring(boiler_count))
     return result
 end
 function boiler_processing(technology_names, mode)
@@ -168,17 +168,16 @@ end
 
 local function handle_one_recipe_data_by_temperature(recipe_data_by_temperature)
     local fuel_data_water_amount = recipe_data_by_temperature.fuel_data_water_amount
-    --	log("fuel_data_water_amount " .. Utils.dump_to_console(fuel_data_water_amount))
     local fuel_data = fuel_data_water_amount.fuel_data
     local boiler_data = recipe_data_by_temperature.boiler_data
     local boiler_name = boiler_data.name
-    log("boiler_name " .. boiler_name)
+    log("Имя сущности бойлера(для замены) " .. boiler_name)
     if string.find(boiler_name, "-with-", 1, true) then
         -- бойлер уже обработан
         return
     end
     local target_boiler_name = boiler_name .. "-" .. recipe_data_by_temperature.recipe_name
-    --log("target_boiler_name " .. target_boiler_name)
+    log("Имя сущности бойлера(после замены) " .. target_boiler_name)
     local target_boiler_prototype = flib.copy_prototype(data.raw["boiler"][boiler_name], target_boiler_name)
     target_boiler_prototype.localised_name=evaluate_target_boiler_entity_localised_name(boiler_name,fuel_data)
     target_boiler_prototype.localised_description=evaluate_target_boiler_entity_localised_description(boiler_name,fuel_data)
@@ -203,7 +202,6 @@ local function handle_one_recipe_data_by_temperature(recipe_data_by_temperature)
     target_boiler_item.localised_description=evaluate_target_boiler_item_localised_description(boiler_name,fuel_data)
     local mode = recipe_data_by_temperature.mode
     if tech_util.has_technology_recipe_effects(boiler_data.technology_name_occured_boiler_prototype, boiler_name, mode) then
-        --		log("from " .. boiler_data.technology_name_occured_boiler_prototype .. " removed recipe " .. boiler_name)
         tech_util.remove_recipe_effect_from_technology(boiler_data.technology_name_occured_boiler_prototype, boiler_name,
             mode)
     end
@@ -212,7 +210,6 @@ local function handle_one_recipe_data_by_temperature(recipe_data_by_temperature)
     target_boiler_recipe.localised_description=evaluate_target_boiler_recipe_localised_description(boiler_name,fuel_data)
     set_recipe_result(target_boiler_recipe, target_boiler_name)
     data:extend({ target_boiler_prototype, target_boiler_item, target_boiler_recipe })
-    log("target_boiler_recipe " .. Utils.dump_to_console(target_boiler_recipe))
     tech_util.add_recipe_effect_to_technology(boiler_data.technology_name_occured_boiler_prototype, target_boiler_name,
         mode)
     if not tech_util.has_technology_recipe_effects(boiler_data.technology_name_occured_boiler_prototype, "steam", mode) then

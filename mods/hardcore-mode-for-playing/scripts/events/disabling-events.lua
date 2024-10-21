@@ -40,7 +40,6 @@ local function tech_cost(tech)
                 amount = item[2]
             end
             if name then
-                --log(name..'----'..amount)
                 sum = sum + amount * (science_packet_cost[name] or 1)
             end
         end
@@ -77,9 +76,8 @@ local function reset_evolution_factor_to_researched_technologies()
     end
 
     local researched_technologies = _table.filter(player.force.technologies, filter_only_research_technologies)
-    --log("researched_technologies " .. Utils.dump_to_console(researched_technologies))
     if _table.size(researched_technologies) == 1 then
-        log("no technologies!")
+        log("Нет технологий!")
         for _, force in pairs(game.forces) do
             if force.ai_controllable or force == game.forces.enemy then
                 return
@@ -148,7 +146,7 @@ local function disable_entity_on_all_surfaces_by_type(entity_type, force)
 end
 
 local function disable_player_entities()
-    log("production entities must be disabled on surfaces!")
+    log("Производящие сущности(сборочные автоматы, печки) подлежат отключению, кроме списка исследованных, на ВСЕХ поверхностях!")
     local player = get_player()
     if not player then
         return
@@ -161,19 +159,19 @@ local function disable_player_entities()
             disable_entity_on_all_surfaces_by_type(entity_type, player.force)
         end
     )
-    log("production entities disabled on surfaces")
+    log("Производящие сущности(сборочные автоматы, печки) ОТКЛЮЧЕНЫ, кроме списка исследованных, на ВСЕХ поверхностях!")
 end
 
 local function disable_recipe_for_manual_crafting(recipe_name, force)
-    --log(recipe_name .. " is disabling for manual crafting")
     force.set_hand_crafting_disabled_for_recipe(recipe_name, true)
     if not force.get_hand_crafting_disabled_for_recipe(recipe_name) then
-        error("recipe_name " .. recipe_name .. "can't disable for manual crafting!")
+        error("Рецепт с именем " .. recipe_name .. " не существует или не может быть исключён из ручной сборки!")
     end
-    --log(recipe_name .. " is disabled for manual crafting")
 end
 
 local function disable_all_recipes_for_manual_crafting()
+    log("ВСЕ РЕЦЕПТЫ БУДУТ ОТКЛЮЧЕНЫ ДЛЯ ПРОИЗВОСТВА ВРУЧНУЮ!")
+    
     local player = get_player()
     if not player then
         return
@@ -184,6 +182,8 @@ local function disable_all_recipes_for_manual_crafting()
             disable_recipe_for_manual_crafting(recipe_name, player.force)
         end
     )
+    log("ВСЕ РЕЦЕПТЫ УСПЕШНО ОТКЛЮЧЕНЫ ДЛЯ ПРОИЗВОСТВА ВРУЧНУЮ!")
+    
 end
 
 local function add_ingredient_to(target_ingredients, ingredient_amount, ingredient_name)
@@ -226,7 +226,7 @@ local function reset_technology_ingredients_if_technology_has_unresearched_prere
             map_ingredient_table_to_ingredient_array(technology.research_unit_ingredients, technology
                 .research_unit_count)
         technology.researched = false
-        log("technology unresearched " .. technology.name)
+        log("технология не исследована " .. technology.name..', все потомки этой технологии будут сброшены для того, чтобы не было неисследованных дыр!')
         add_ingredients_to(result, mapped_ingredient_array)
     end
     return result
@@ -244,8 +244,8 @@ end
 local function return_ingredient_to_player(ingredient_value, ingredient_name, player)
     local ingredient_count = math.floor(ingredient_value * (1 - TAX_RATE))
     log(
-        'after tax_rate decrease has count of ingredient called "' ..
-        ingredient_name .. '"  is ' .. tostring(ingredient_count)
+        'Число возвращённых исследовательских пакетов за сброшенные технологии "' ..
+        ingredient_name .. '"  = ' .. tostring(ingredient_count)
     )
     if ingredient_count > 0 then
         player.surface.spill_item_stack(
@@ -269,8 +269,8 @@ local function return_ingredient_to_player(ingredient_value, ingredient_name, pl
         )
     end
     log(
-        'after tax_rate decrease has count of ingredient called "' ..
-        ingredient_name .. '"  is ' .. tostring(ingredient_count) .. " will be returned to player!"
+        'Число возвращённых исследовательских пакетов за сброшенные технологии "' ..
+        ingredient_name .. '"  = ' .. tostring(ingredient_count) .. " было успешно возращено игроку!"
     )
 end
 
@@ -288,17 +288,17 @@ local function reset_technologies_with_unresearched_prerequisites_in_the_path()
     if not player then
         return
     end
-    log("START all researched technologies")
+    log("Поиск всех исследованных технологий")
     player.force.research_queue = nil
     local researched_technologies = _table.filter(player.force.technologies, filter_only_research_technologies)
-    log("END all researched technologies")
+    log("Найдены все исследованные в сохранении технологии")
     local all_returned_ingredients = {}
     repeat
         _table.each(researched_technologies, handle_one_researched_technology)
         add_ingredients_to(all_returned_ingredients, returned_ingredients)
         returned_ingredients = {}
     until #returned_ingredients == 0
-    log("total ingredients for return to player are " .. game.table_to_json(all_returned_ingredients))
+    log("Общее число(состав и численное значение) исследовательских пакетов, возвращённых игроку = " .. game.table_to_json(all_returned_ingredients))
     return_ingredients_to_player(player, all_returned_ingredients)
 end
 
@@ -373,8 +373,6 @@ function on_built_disabling_event(e)
     end
     local created_entity_type = created_entity.type
     local created_entity_name = created_entity.name
-    --    log("created_entity " .. created_entity_type .. " name " .. created_entity.name)
-    --    log("all_available_entity_items " .. Utils.dump_to_console(all_available_entity_items))
     created_entity_surface_name = created_entity.surface.name
     local is_type_for_disabling =
         _table.contains(ENTITY_TYPES_FOR_DISABLING, created_entity_type) and
