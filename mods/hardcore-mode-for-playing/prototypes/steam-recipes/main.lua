@@ -88,18 +88,14 @@ local function is_allow_prototype_to_apply_boiler_prototype(boiler_prototype, re
         return false
     end
     if boiler_data.is_burner_energy_source then
-        log('имя предмета '..recipe_result_prototype.name)
         local result=recipe_result_prototype.type == "item"
-        if result then log('Допустимо') end
         return result
     end
     if boiler_data.is_fluid_energy_source then
-        log('имя жидкости '..recipe_result_prototype.name)
         local result=energy_source.fluid_box
             and
             (energy_source.fluid_box.filter and energy_source.fluid_box.filter == recipe_result_prototype.name or not energy_source.fluid_box.filter)
             and recipe_result_prototype.type == "fluid"
-        if result then log('Допустимо')end
         return result 
     end
     return false
