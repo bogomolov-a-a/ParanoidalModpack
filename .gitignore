@@ -1,11 +1,10 @@
 *
 !.github
+!.github/**
 !mods
-!mods/** 
-
+!mods/**
 !docs
-!run-with-mods.sh
-!Paranoidal.sln
+!./run-with-mods.sh
 !config.json
 !.gitlab-ci.yml
 !README.md

@@ -20,4 +20,4 @@ jobs:
           lfs: true
           set-safe-directory: false          
       - name: Проверка на запускаемость с текущим набором модов и версией zzzparanoidal, указанной в манифесте мода
-        run: ./run-with-mods.sh
+        run: chmod +x ./run-with-mods.sh&&./run-with-mods.sh
