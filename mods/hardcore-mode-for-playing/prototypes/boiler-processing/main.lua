@@ -51,15 +51,15 @@ local function get_boilers_by_target_temperature(technology_names, mode)
             end
             if not result[target_temperature] then
                 error(
-                    "for mode "
+                    "Для режима игры "
                     .. mode
-                    .. " technology_name "
+                    .. " в технологии "
                     .. technology_name
-                    .. " found boiler "
+                    .. " для найденого бойлер  "
                     .. recipe_result_name
-                    .. "\nValue:"
+                    .. "\nОписание:"
                     .. Utils.dump_to_console(boiler)
-                    .. " target_temperature is not detected!"
+                    .. " поле target_temperature не указано!"
                 )
             end
             local boiler_data = {
@@ -76,19 +76,21 @@ local function get_boilers_by_target_temperature(technology_names, mode)
             }
             if not check_boiler_data(boiler_data) then
                 error(
-                    "for mode "
+                 "Для режима игры "
                     .. mode
-                    .. " technology_name "
+                    .. " в технологии "
                     .. technology_name
-                    .. " found boiler "
+                    .. " для найденого бойлер  "
                     .. recipe_result_name
-                    .. "\nValue:"
+                    .. "\nОписание:"
                     .. Utils.dump_to_console(boiler)
-                    .. " not detected non Void energy_source!"
+                    .. " не найден источник питания не равный Void!"
                 )
             end
-            _table.insert(result[target_temperature], boiler_data)
-            boiler_count = boiler_count + 1
+            if not _table.contains_f_deep(result[target_temperature],boiler_data) then             
+                table.insert(result[target_temperature], boiler_data)
+                boiler_count = boiler_count + 1
+            end
         end)
     end)
     log("общее число бойлеров " .. tostring(boiler_count))
