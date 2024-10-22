@@ -3,7 +3,7 @@
     "version": "0.0.4",
     "title": "Thicker Power Wires",
     "author": "Lachlan McDonald",
-    "factorio_version": "1.1",
+    "factorio_version": "2.0",
 	"dependencies": ["base >= 1.0.0"],
     "description": "Improved visibility of power lines and circuit wires"
 ]]
