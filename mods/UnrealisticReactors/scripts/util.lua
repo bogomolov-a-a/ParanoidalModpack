@@ -2,9 +2,9 @@ local function dbg(str)
 	if not global.dbg then global.dbg = 1 end
 		if type(str) ~= "number" and type(str) ~= "string" then
 		if str == true then
-			str = "true"
+			str = true
 		elseif str == false then
-			str = "false"
+			str = false
 		elseif type(str) == "table" then
 			str = serpent.line(str)
 		else

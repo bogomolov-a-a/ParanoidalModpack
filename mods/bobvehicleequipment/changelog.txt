@@ -59,7 +59,7 @@ Date: 23. 01. 2020
   Info:
     - Updated to work with Factorio 0.18
   Changes:
-    - Change all recipe enabled = "false" lines to enabled = false
+    - Change all recipe enabled = false lines to enabled = false
 ---------------------------------------------------------------------------------------------------
 Version: 0.17.5
 Date: 17. 06. 2019

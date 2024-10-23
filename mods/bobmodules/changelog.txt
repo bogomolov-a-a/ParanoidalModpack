@@ -70,7 +70,7 @@ Date: 23. 01. 2020
   Info:
     - Updated to work with Factorio 0.18
   Changes:
-    - Change all recipe enabled = "false" lines to enabled = false
+    - Change all recipe enabled = false lines to enabled = false
   Bugfixes:
     - Added icon-size tags for all base game module change lists.
     - Fixed beacon icons

@@ -167,7 +167,7 @@ Date: 15. 07. 2019
 Version: 0.17.13
 Date: 01. 07. 2019
   Changes:
-    - Change all recipe enabled = "false" lines to enabled = false
+    - Change all recipe enabled = false lines to enabled = false
   Bugfixes:
     - Fixed underground belt bounding boxes causing an error in 0.17.53.
 ---------------------------------------------------------------------------------------------------

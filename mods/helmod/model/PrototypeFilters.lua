@@ -30,7 +30,7 @@ end
 ---Get inverts
 ---@return table
 function PrototypeFilters.getInverts()
-  local modes = {"false","true"}
+  local modes = {false,true}
   return modes
 end
 

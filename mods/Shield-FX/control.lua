@@ -103,7 +103,7 @@ end)
 script.set_event_filter(defines.events.on_entity_damaged, {{filter = "vehicle"},{filter = "type", type = "character"}})
 
 function b2s(bool)
-if bool then return "true" else return "false" end
+if bool then return true else return false end
 end
 
 script.on_nth_tick(1, function(event)

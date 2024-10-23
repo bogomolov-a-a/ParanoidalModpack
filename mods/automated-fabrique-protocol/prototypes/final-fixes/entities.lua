@@ -5,16 +5,16 @@ _table.each(data.raw["train-stop"],
     end)
 _table.each(data.raw["locomotive"], function(rolling_stock)
     rolling_stock.connection_distance = 4.05
-    rolling_stock.joint_distance = 3.1
-    rolling_stock.collision_box = { { -1, -1.75 }, { 1, 1.75 } }
+    rolling_stock.joint_distance = 3.08
+    rolling_stock.collision_box = { { -1, -1.74 }, { 1, 1.74 } }
     rolling_stock.drawing_box = { { -1, -2.1 }, { 1, 2.1 } }
     rolling_stock.vertical_selection_shift = -0.5
     rolling_stock.selection_box = { { -1, -2.5 }, { 1, 2.5 } }
 end)
 local function handle_cargo_wagon_rolling_stock(rolling_stock)
-    rolling_stock.connection_distance = 4.05
-    rolling_stock.joint_distance = 2.8
-    rolling_stock.collision_box = { { -1, -1.6 }, { 1, 1.6 } }
+    rolling_stock.connection_distance = 4.057
+    rolling_stock.joint_distance = 2.74
+    rolling_stock.collision_box = { { -1, -1.56 }, { 1, 1.75 } }
     rolling_stock.drawing_box = { { -1, -2.1 }, { 1, 2.1 } }
     rolling_stock.vertical_selection_shift = -0.5
     rolling_stock.selection_box = { { -1, -2.5 }, { 1, 2.5 } }

@@ -110,7 +110,7 @@ BI.hidden_entities.misc = {
   light = nil,
   --~ minable = nil,
   next_upgrade = "",
-  remove_decoratives = "false",
+  remove_decoratives = false,
   water_reflection = {pictures = BI.hidden_entities.picture},
 }
 

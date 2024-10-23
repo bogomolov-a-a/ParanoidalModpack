@@ -167,9 +167,9 @@ function Converter.indentTable(input, level)
     return "\"" .. input .. "\""
   elseif type(input) == "boolean" then
     if input == true then
-      return "true"
+      return true
     else
-      return "false"
+      return false
     end
   end
   return input

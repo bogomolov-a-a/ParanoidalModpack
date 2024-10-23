@@ -16,7 +16,7 @@ end
 local function trafos_mkrecipe(f) return {
 	type = "recipe",
 	name = "trafo-"..f,
-	enabled = "false",
+	enabled = false,
 	result = "trafo-"..f,
 	ingredients = trafos_mkingredients(f),
 } end

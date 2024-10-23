@@ -50,7 +50,7 @@ script.on_event(defines.events.on_research_finished, function(event, by_script)
   local tech = event.research
   if ignored_tech(tech) then return end
   local inc = tech_cost(tech)
-  --log("adding "..inc.." to evolution factor "..(by_script or "FALSE"))
+  --log("adding "..inc.." to evolution factor "..(by_script or false))
   if by_script==true then return end
   for _,force in pairs(game.forces) do
     if force.ai_controllable or force == game.forces.enemy then

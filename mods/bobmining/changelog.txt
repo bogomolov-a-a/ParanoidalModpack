@@ -60,7 +60,7 @@ Date: 23. 01. 2020
 Version: 0.17.6
 Date: 13. 10. 2019
   Changes:
-    - Change all recipe enabled = "false" lines to enabled = false
+    - Change all recipe enabled = false lines to enabled = false
     - Added a steam filter to the input of the steam powered mining drill.
     - Changed collision_box size of pumpjacks and water miners to match the base game pumpjack to fix fast replace and upgrade.
 ---------------------------------------------------------------------------------------------------

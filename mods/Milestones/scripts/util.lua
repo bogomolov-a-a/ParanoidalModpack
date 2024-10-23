@@ -36,7 +36,7 @@ function validate_milestones(milestones)
         if milestone.type == "alias" and type(milestone.equals) ~= "string" then
             return nil, {"", {"milestones.message_invalid_import_missing_field"}, "equals"}
         end
-        if (type(milestone.hidden) == "boolean" and milestone.hidden) or milestone.hidden == "true" then
+        if (type(milestone.hidden) == "boolean" and milestone.hidden) or milestone.hidden == true then
             milestone.hidden = true
         else
             milestone.hidden = nil

@@ -14,89 +14,89 @@ local collision_mask = {}
 local collision_mask_mode = {}
 local samples = {}
 local sample = {name="list of production machines", type="entity", value={}}
-table.insert(sample.value, { mode="and", filter="crafting-machine", invert="false"})
-table.insert(sample.value, { mode="and", filter="hidden", invert="true"})
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="lab"})
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="mining-drill"})
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="rocket-silo"})
+table.insert(sample.value, { mode="and", filter="crafting-machine", invert=false})
+table.insert(sample.value, { mode="and", filter="hidden", invert=true})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="lab"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="mining-drill"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="rocket-silo"})
 table.insert(samples, sample)
 
 local sample = {name="list of production machines II", type="entity", value={}}
 table.insert(sample.value, {filter="crafting-machine", mode="or"})
-table.insert(sample.value, {filter="hidden", mode="and", invert="true"})
+table.insert(sample.value, {filter="hidden", mode="and", invert=true})
 table.insert(sample.value, {filter="crafting-machine", mode="or"})
 table.insert(sample.value, {filter="flag", flag="player-creation", mode="and"})
 table.insert(sample.value, {filter="type", type="lab", mode="or"})
-table.insert(sample.value, {filter="hidden", mode="and", invert="true"})
+table.insert(sample.value, {filter="hidden", mode="and", invert=true})
 table.insert(sample.value, {filter="type", type="lab", mode="or"})
 table.insert(sample.value, {filter="flag", flag="player-creation", mode="and"})
 table.insert(sample.value, {filter="type", type="mining-drill", mode="or"})
-table.insert(sample.value, {filter="hidden", mode="and", invert="true"})
+table.insert(sample.value, {filter="hidden", mode="and", invert=true})
 table.insert(sample.value, {filter="type", type="mining-drill", mode="or"})
 table.insert(sample.value, {filter="flag", flag="player-creation", mode="and"})
 table.insert(sample.value, {filter="type", type="rocket-silo", mode="or"})
-table.insert(sample.value, {filter="hidden", mode="and", invert="true"})
+table.insert(sample.value, {filter="hidden", mode="and", invert=true})
 table.insert(sample.value, {filter="type", type="rocket-silo", mode="or"})
 table.insert(sample.value, {filter="flag", flag="player-creation", mode="and"})
 table.insert(samples, sample)
 
 sample = {name="list of beacons", type="entity", value={}}
-table.insert(sample.value, { mode="and", filter="type", invert="false", option="beacon"})
-table.insert(sample.value, { mode="and", filter="hidden", invert="true"})
+table.insert(sample.value, { mode="and", filter="type", invert=false, option="beacon"})
+table.insert(sample.value, { mode="and", filter="hidden", invert=true})
 table.insert(samples, sample)
 
 sample = {name="list of offshore-pumps", type="entity", value={}}
-table.insert(sample.value, { mode="and", filter="type", invert="false", option="offshore-pump"})
-table.insert(sample.value, { mode="and", filter="hidden", invert="true"})
+table.insert(sample.value, { mode="and", filter="type", invert=false, option="offshore-pump"})
+table.insert(sample.value, { mode="and", filter="hidden", invert=true})
 table.insert(samples, sample)
 
 sample = {name="list of modules", type="item", value={}}
-table.insert(sample.value, { mode="and", filter="type", invert="false", option="module"})
-table.insert(sample.value, { mode="and", filter="flag", invert="true", option="hidden"})
+table.insert(sample.value, { mode="and", filter="type", invert=false, option="module"})
+table.insert(sample.value, { mode="and", filter="flag", invert=true, option="hidden"})
 table.insert(samples, sample)
 
 sample = {name="list of power machines", type="entity", value={}}
 for _,type in pairs({"generator", "solar-panel", "accumulator", "reactor", "burner-generator", "electric-energy-interface"}) do
-  table.insert(sample.value, { mode="or", filter="type", invert="false", option=type})
+  table.insert(sample.value, { mode="or", filter="type", invert=false, option=type})
 end
 table.insert(samples, sample)
 
 sample = {name="list of fuels", type="item", value={}}
-table.insert(sample.value, { mode="or", filter="fuel-value", invert="false", option={value=0,comparison=">"}})
+table.insert(sample.value, { mode="or", filter="fuel-value", invert=false, option={value=0,comparison=">"}})
 table.insert(samples, sample)
 
 sample = {name="Item logistic list of inserters", type="entity", value={}}
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="inserter"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="inserter"})
 table.insert(samples, sample)
 
 sample = {name="Item logistic list of belts", type="entity", value={}}
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="transport-belt"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="transport-belt"})
 table.insert(samples, sample)
 
 sample = {name="Item logistic list of containers", type="entity", value={}}
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="container"})
-table.insert(sample.value, { mode="and", filter="minable", invert="false", option=nil})
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="logistic-container"})
-table.insert(sample.value, { mode="and", filter="minable", invert="false", option=nil})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="container"})
+table.insert(sample.value, { mode="and", filter="minable", invert=false, option=nil})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="logistic-container"})
+table.insert(sample.value, { mode="and", filter="minable", invert=false, option=nil})
 table.insert(samples, sample)
 
 sample = {name="Item logistic list of transports", type="entity", value={}}
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="cargo-wagon"})
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="logistic-robot"})
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="car"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="cargo-wagon"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="logistic-robot"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="car"})
 table.insert(samples, sample)
 
 sample = {name="Fluid logistic list of pipes", type="entity", value={}}
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="pipe"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="pipe"})
 table.insert(samples, sample)
 
 sample = {name="Fluid logistic list of containers", type="entity", value={}}
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="storage-tank"})
-table.insert(sample.value, { mode="and", filter="minable", invert="false", option=nil})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="storage-tank"})
+table.insert(sample.value, { mode="and", filter="minable", invert=false, option=nil})
 table.insert(samples, sample)
 
 sample = {name="Fluid logistic list of transports", type="entity", value={}}
-table.insert(sample.value, { mode="or", filter="type", invert="false", option="fluid-wagon"})
+table.insert(sample.value, { mode="or", filter="type", invert=false, option="fluid-wagon"})
 table.insert(samples, sample)
 
 -------------------------------------------------------------------------------
@@ -411,7 +411,7 @@ end
 ---@param prototype_filter table
 ---@return table
 function PrototypeFiltersPanel:convertFilter(prototype_filter)
-  local filter = {mode= prototype_filter.mode, invert=(prototype_filter.invert=="true"), filter=prototype_filter.filter  }
+  local filter = {mode= prototype_filter.mode, invert=(prototype_filter.invert==true), filter=prototype_filter.filter  }
     if prototype_filter.option ~= nil then
       if prototype_filter.option.comparison ~= nil then
         filter["comparison"] = prototype_filter.option.comparison
