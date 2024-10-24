@@ -291,7 +291,7 @@ function AbstractSelector:onEvent(event)
   end
 
   if event.action == "change-sroll-groups" then
-    User.setSetting("filter_scroll_groups", event.item1 == "true")
+    User.setSetting("filter_scroll_groups", event.item1 == true)
     local flow_panel, content_panel, menu_panel = self:getPanel()
     content_panel.clear()
     Controller:send("on_gui_update", event, self.classname)
@@ -488,11 +488,11 @@ function AbstractSelector:updateFilter(event)
     local group_sroll = GuiElement.add(options_right, GuiFlowH("group_sroll"))
     group_sroll.style.horizontal_spacing = 2
     if filter_scroll_groups ~= false then
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "true"):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm_selected"))
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "false"):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", true):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm_selected"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", false):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm"))
     else
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "true"):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm"))
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "false"):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm_selected"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", true):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", false):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm_selected"))
     end
     
     local group_visible = GuiElement.add(options_right, GuiFlowH("group_visible"))

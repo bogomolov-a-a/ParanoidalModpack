@@ -117,7 +117,7 @@ Date: 23. 01. 2020
   Info:
     - Updated to work with Factorio 0.18
   Changes:
-    - Change all recipe enabled = "false" lines to enabled = false
+    - Change all recipe enabled = false lines to enabled = false
     - Some working visualisation updates, in case support is ever added for it.
   Bugfixes:
     - Fixed bob-heat-pipe-1 does not exist error message.

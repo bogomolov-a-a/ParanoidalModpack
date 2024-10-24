@@ -63,7 +63,7 @@ Date: 23. 01. 2020
     - Updated to work with Factorio 0.18
   Changes:
     - Added a little more AAI Industry compatabillity.
-    - Change all recipe enabled = "false" lines to enabled = false
+    - Change all recipe enabled = false lines to enabled = false
   Bugfixes:
     - Fixed science pack icon update
   Balancing:

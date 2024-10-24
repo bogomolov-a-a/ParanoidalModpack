@@ -155,14 +155,14 @@ Date: 23. 01. 2020
     - Updated to work with Factorio 0.18
     - Removed my custom ore generation system from the library (It's not needed anymore as all my functions actually use the 0.17 ore generator)
   Changes:
-    - Changed bobmods.lib.recipe.enabled to actually use bool (Bool isn't actually a string of "true" or "false" anymore (it was in older versions of factorio)) 
+    - Changed bobmods.lib.recipe.enabled to actually use bool (Bool isn't actually a string of true or false anymore (it was in older versions of factorio)) 
     - Changed particle to optimized-particle on ore-particle generator
 ---------------------------------------------------------------------------------------------------
 Version: 0.17.5
 Date: 24. 06. 2019
   Features:
     - Added bobmods.lib.safe_insert function. Adds a string to the specified table only if it doesn't already exist.
-    - Added bobmods.lib.recipe.enabled(recipe, bool) and bobmods.lib.recipe.difficulty_enabled(recipe, difficulty, bool) (Bool is actually a string of "true" or "false") to make adding enabled = "false" to recipes easier. (enabled needs to be on the difficulty)
+    - Added bobmods.lib.recipe.enabled(recipe, bool) and bobmods.lib.recipe.difficulty_enabled(recipe, difficulty, bool) (Bool is actually a string of true or false) to make adding enabled = false to recipes easier. (enabled needs to be on the difficulty)
 ---------------------------------------------------------------------------------------------------
 Version: 0.17.4
 Date: 17. 06. 2019

@@ -108,7 +108,7 @@ end
 ---@return string
 function User.getSortedStyle(key)
   local user_order = User.getParameter()
-  if user_order == nil then user_order = User.setParameter("order", {name="index",ascendant="true"})  end
+  if user_order == nil then user_order = User.setParameter("order", {name="index",ascendant=true})  end
   local style = "helmod_button-sorted-none"
   if user_order.name == key and user_order.ascendant then style = "helmod_button-sorted-up" end
   if user_order.name == key and not(user_order.ascendant) then style = "helmod_button-sorted-down" end

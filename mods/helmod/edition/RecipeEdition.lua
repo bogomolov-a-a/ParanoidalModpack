@@ -238,7 +238,7 @@ function RecipeEdition:onEvent(event)
   if model == nil or block == nil or recipe == nil then return end
 
   if event.action == "change-sroll-groups" then
-    User.setSetting("recipe_edition_scroll_groups", event.item1 == "true")
+    User.setSetting("recipe_edition_scroll_groups", event.item1 == true)
     Controller:send("on_gui_update", event, self.classname)
   end
 
@@ -1185,11 +1185,11 @@ function RecipeEdition:updateObjectInfo(event)
 
     local recipe_edition_scroll_groups = self:getRecipeEditionScrollGroups()
     if recipe_edition_scroll_groups == true then
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "false"):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm"))
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "true"):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm_selected"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", false):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", true):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm_selected"))
     else
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "false"):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm_selected"))
-      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", "true"):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", false):sprite("menu", defines.sprites.two_rows.black, defines.sprites.two_rows.black):style("helmod_button_menu_sm_selected"))
+      GuiElement.add(group_sroll, GuiButton(self.classname, "change-sroll-groups", true):sprite("menu", defines.sprites.three_rows.black, defines.sprites.three_rows.black):style("helmod_button_menu_sm"))
     end
 
     local recipe_prototype = RecipePrototype(recipe)
